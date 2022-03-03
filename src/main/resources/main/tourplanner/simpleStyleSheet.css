@@ -1,0 +1,12 @@
+.title{
+    -fx-background-color: green;
+}
+.menu{
+    -fx-background-color: red;
+}
+.tours{
+    -fx-background-color: blue;
+}
+.details{
+    -fx-background-color: yellow;
+}
