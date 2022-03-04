@@ -9,7 +9,6 @@
 }
 .details{
     -fx-background-color: yellow;
-    -fx-background-size: cover, auto;
-    display: flex;
-    flex-flow: row wrap;
+
+
 }

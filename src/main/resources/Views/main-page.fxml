@@ -34,7 +34,7 @@
                 <Button prefHeight="26.0" prefWidth="77.0">Tour 3</Button>
             </VBox>
         </VBox>
-        <VBox prefHeight="106.0" prefWidth="259.0" styleClass="details">
+        <VBox prefHeight="180.0" prefWidth="380.0" styleClass="details">
             <HBox>
                 <Label>Title: "Tour 1"</Label>
             </HBox>
