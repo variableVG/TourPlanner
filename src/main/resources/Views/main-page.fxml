@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <stylesheets>
+        <URL value="@simpleStyleSheet.css" />
+    </stylesheets>
+
+    <HBox styleClass="menu">
+        <Button>File</Button>
+        <Button>Options</Button>
+        <Button>Help</Button>
+        <TextField />
+        <Button>Search</Button>
+    </HBox>
+
+    <HBox>
+        <VBox styleClass="tours">
+            <HBox>
+                <Label prefHeight="24.0" prefWidth="64.0">Tours</Label>
+                <Button>+</Button>
+            </HBox>
+            <VBox prefHeight="79.0" prefWidth="90.0">
+                <Button contentDisplay="CENTER" prefHeight="26.0" prefWidth="78.0" textAlignment="CENTER">Tour 1</Button>
+                <Button prefHeight="26.0" prefWidth="77.0">Tour 2</Button>
+                <Button prefHeight="26.0" prefWidth="77.0">Tour 3</Button>
+            </VBox>
+        </VBox>
+        <VBox prefHeight="106.0" prefWidth="259.0" styleClass="details">
+            <HBox>
+                <Label>Title: "Tour 1"</Label>
+            </HBox>
+            <HBox>
+                <Button onAction="#onRouteButtonClick">Route</Button>
+                <Button onAction="#onDescriptionButtonClick">Description</Button>
+                <Button onAction="#onLogsButtonClick">Logs</Button>
+            </HBox>
+            <VBox prefHeight="18.0" prefWidth="130.0">
+                <Label fx:id="testTextObjectPlaceholder">...by default, map/route is shown</Label>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

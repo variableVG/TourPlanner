@@ -1,10 +1,10 @@
-package main.tourplanner;
+package Views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class TourPlannerController {
 
     @FXML
     private Label testTextObjectPlaceholder;
