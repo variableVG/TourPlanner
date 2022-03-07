@@ -26,7 +26,7 @@
         <VBox styleClass="tours">
             <HBox>
                 <Label prefHeight="24.0" prefWidth="64.0">Tours</Label>
-                <Button>+</Button>
+                <Button onAction="#addTour">+</Button>
             </HBox>
             <VBox prefHeight="79.0" prefWidth="90.0">
                 <Button contentDisplay="CENTER" prefHeight="26.0" prefWidth="78.0" textAlignment="CENTER">Tour 1</Button>

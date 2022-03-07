@@ -4,7 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+
 public class TourPlannerController {
+
+    //Could that be correct?
+    TourPlannerApplication tourPlannerApplication = new TourPlannerApplication();
 
     @FXML
     private Label testTextObjectPlaceholder;
@@ -19,5 +24,10 @@ public class TourPlannerController {
 
     public void onLogsButtonClick(ActionEvent actionEvent) {
         testTextObjectPlaceholder.setText("here you can see your logs and logs of other users, Yesssa! (in a table)\n\tdate:\n\ttime:\n\tdistance:");
+    }
+
+    public void addTour(ActionEvent actionEvent) throws IOException {
+        System.out.println("Hi");
+        tourPlannerApplication.addTourWindow();
     }
 }

@@ -19,6 +19,29 @@ public class TourPlannerApplication extends Application {
         //change here
         stage.setScene(scene);
         stage.show();
+
+        /*In the video: https://www.youtube.com/watch?v=ak9W_D1xFbU this is like this:
+        in the start function:
+        ModelFactory mf = new ModelFactory();
+        ViewModelFactory viewModelFactory = new ViewModelFactory(mf);
+        ViewHandler viewHandler = new ViewHandler(stage, viewModelFactory);
+        viewHandler.start();
+
+        runAutoUpdate((DataModelManager) mf.getDataModel());*/
+
+    }
+
+    public void addTourWindow() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("addTour.fxml"));
+        //change here
+        Scene scene = new Scene(fxmlLoader.load(), 500,500);
+        stage.setTitle("Add a Tour, Yeah!");
+        stage.setMinHeight(400);
+        stage.setMinWidth(400);
+        //change here
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
