@@ -3,8 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<?import java.net.URL?>
 <VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
     <AnchorPane>
         <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
@@ -38,7 +36,7 @@
             <VBox>
                 <FlowPane>
                     <Label text="Tours" />
-                    <Button>+</Button>
+                    <Button onAction="#addTourOnButtonClick">+</Button>
                 </FlowPane>
                 <ListView VBox.vgrow="ALWAYS">
                     <Label>Tour 1</Label>
@@ -51,7 +49,10 @@
                 <tabs>
                     <Tab text="Route">
                         <content>
-                            <AnchorPane />
+                            <AnchorPane>
+                        <children>
+                           <Label layoutX="78.0" layoutY="122.0" fx:id="testTourOutputLabel" />
+                        </children></AnchorPane>
                         </content>
                     </Tab>
                     <Tab text="Description">

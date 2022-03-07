@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddTourPageController">
+   <children>
+      <TextField fx:id="tourNameInputTextField" layoutX="132.0" layoutY="154.0" />
+       <Button layoutX="194.0" layoutY="187.0" onAction="#addTourNameOnClick">Create</Button>
+       <Label fx:id="tourNameOutputLabel" layoutX="171.0" layoutY="238.0" prefHeight="17.0" prefWidth="84.0" />
+   </children>
+</AnchorPane>
