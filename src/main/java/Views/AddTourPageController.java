@@ -18,10 +18,8 @@ public class AddTourPageController {
 
     @FXML
     public void initialize(){
-
         this.tourNameInputTextField.textProperty().bindBidirectional(model.getTourNameInputProperty());
         this.tourNameOutputLabel.textProperty().bindBidirectional(model.getTourNameOutputProperty());
-
     }
 
     public void addTourNameOnClick(ActionEvent actionEvent){
