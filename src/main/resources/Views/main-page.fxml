@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
+<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
+    <AnchorPane>
+        <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="import" />
+                        <MenuItem mnemonicParsing="false" text="export" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="do" />
+                        <MenuItem mnemonicParsing="false" text="something" />
+                        <MenuItem mnemonicParsing="false" text="here" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="help" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Button text="Search" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="0" />
+        <TextField prefWidth="100" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+    </AnchorPane>
+
+    <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
+        <items>
+            <VBox>
+                <FlowPane>
+                    <Label text="Tours" />
+                    <Button onAction="#addTourOnButtonClick">+</Button>
+                </FlowPane>
+                <ListView VBox.vgrow="ALWAYS">
+                    <Label>Tour 1</Label>
+                    <Label>Tour 2</Label>
+                    <Label>Tour 3</Label>
+                </ListView>
+            </VBox>
+
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <Tab text="Route">
+                        <content>
+                            <AnchorPane>
+                        <children>
+                        </children></AnchorPane>
+                        </content>
+                    </Tab>
+                    <Tab text="Description">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                    </Tab>
+                    <Tab text="Logs">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </items>
+    </SplitPane>
+
+    <!--
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -48,4 +112,6 @@
             </VBox>
         </VBox>
     </HBox>
+    -->
+
 </VBox>
