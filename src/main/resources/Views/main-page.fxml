@@ -30,7 +30,7 @@
         </MenuBar>
         <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
         <Button layoutX="236.0" prefHeight="25.0" prefWidth="63.0" textAlignment="JUSTIFY">
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="275.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="275.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../java/Views/icons/loupe.png" />
                 </image>
@@ -78,7 +78,9 @@
                         </Tab>
                         <Tab text="Logs">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <fx:include source="logTourTab.fxml"/>
+                                </AnchorPane>
                             </content>
                         </Tab>
                     </tabs>

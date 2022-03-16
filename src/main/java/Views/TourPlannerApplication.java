@@ -11,7 +11,7 @@ public class TourPlannerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500,500);
+        Scene scene = new Scene(fxmlLoader.load(), 700,500);
         stage.setTitle("Tour Planner Test, Yeah!");
         stage.setMinHeight(400);
         stage.setMinWidth(400);
