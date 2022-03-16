@@ -10,24 +10,23 @@ import javafx.scene.input.MouseEvent;
 
 public class AddTourPageController {
 
-    private AddTourPageModel model = new AddTourPageModel();
+    @FXML public TextField tourNameTextField;
+    @FXML public Label testTourNameLabel;
+    @FXML private AddTourPageModel model = new AddTourPageModel();
 
-    @FXML
-    private TextField tourNameInputTextField;
-    @FXML
-    public Label tourNameOutputLabel;
-    @FXML
-    private TextArea tourDescriptionTextArea;
+    //@FXML private TextField tourNameInputTextField;
+    //@FXML public Label tourNameOutputLabel;
+    //@FXML private TextArea tourDescriptionTextArea;
 
 
     @FXML
     public void initialize(){
-        this.tourNameInputTextField.textProperty().bindBidirectional(model.getTourNameInputProperty());
-        this.tourNameOutputLabel.textProperty().bindBidirectional(model.getTourNameOutputProperty());
-        this.tourDescriptionTextArea.textProperty().bindBidirectional(model.getTourNameOutputProperty());
+        this.tourNameTextField.textProperty().bindBidirectional(model.getTourNameInputProperty());
+        this.testTourNameLabel.textProperty().bindBidirectional(model.getTourNameOutputProperty());
+        //this.tourDescriptionTextArea.textProperty().bindBidirectional(model.getTourNameOutputProperty());
     }
 
-    public void addTourNameOnClick(ActionEvent actionEvent){
+    public void addTourOnClick(ActionEvent actionEvent){
         this.model.concat();
     }
 

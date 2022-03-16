@@ -3,20 +3,89 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddTourPageController">
+
+<HBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddTourPageController">
    <children>
-      <TextField fx:id="tourNameInputTextField" layoutX="138.0" layoutY="234.0" />
-       <Button layoutX="194.0" layoutY="187.0" onAction="#addTourNameOnClick">Create</Button>
-       <Label fx:id="tourNameOutputLabel" layoutX="171.0" layoutY="238.0" prefHeight="17.0" prefWidth="84.0" />
-       <Label layoutY="23.0" prefHeight="17.0" prefWidth="84.0" text="Description" />
-       <TextArea fx:id="tourDescriptionTextArea" layoutX="70.0" layoutY="12.0" prefHeight="17.0" prefWidth="248.0" />
-       <Label layoutY="69.0" prefHeight="17.0" prefWidth="84.0" text="Name" />
-       <TextField fx:id="tourName" layoutX="70.0" layoutY="129.0" />
-       <Label layoutY="99.0" prefHeight="17.0" prefWidth="84.0" text="From" />
-       <TextField fx:id="tourOrigin" layoutX="70.0" layoutY="95.0" />
-       <Label layoutY="133.0" prefHeight="17.0" prefWidth="84.0" text="To" />
-       <TextField fx:id="tourDestination" layoutX="70.0" layoutY="65.0" />
+      <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
+         <children>
+            <VBox>
+               <children>
+                  <Label>Tour-Name:</Label><!--maybe we can use something like "text="@string/tour_name_label" from AAD"-->
+                  <TextField fx:id="tourNameTextField" />
+               </children>
+            </VBox>
+      
+            <VBox>
+               <children>
+                  <Label>(From:)</Label>
+                  <TextField fx:id="fromTextField" /><!--location/coordinates from map?-->
+               </children>
+            </VBox>
+      
+             <VBox>
+                 <children>
+                      <Label>(To:)</Label>
+                      <TextField fx:id="toTextField" /><!--location/coordinates from map?-->
+                 </children>
+             </VBox>
+      
+             <VBox>
+                 <children>
+                     <Label>Transport-Type:</Label>
+                     <TextField fx:id="transportTypeTextField" /><!--fixed options to choose from (walk, bike, car, ufo...)?-->
+                 </children>
+             </VBox>
+      
+             <VBox>
+                 <children>
+                     <Label>Distance:</Label>
+                     <TextField fx:id="distanceTextField" /><!--calculated from map from-to?-->
+                 </children>
+             </VBox>
+      
+             <VBox>
+                 <children>
+                     <Label>Estimated-Time:</Label>
+                     <TextField fx:id="estimadedTimeTextField" /><!--calculated from map from-to?-->
+                 </children>
+             </VBox>
+      
+             <VBox>
+                 <children>
+                     <Label>Route-Information:</Label>
+                     <TextArea fx:id="routeInformationTextArea" />
+                     <!--gleich wie <Label>Description:</Label>
+                     <TextArea fx:id="descriptionTextArea"/>-->
+                 </children>
+             </VBox>
+      
+             <!--maybe use map here to set start and endpoint like in google-maps
+             and automatically set from, to, distance and eTime-->
+      
+                  <Button onAction="#addTourOnClick">Add new tour</Button>
+      
+      
+                   <!--<Label layoutX="96.0" layoutY="27.0" prefHeight="17.0" prefWidth="84.0" text="Name" />
+                   <TextField fx:id="tourName" layoutX="225.0" layoutY="23.0" />-->
+      
+                   <!--<Label layoutX="103.0" layoutY="55.0" prefHeight="17.0" prefWidth="84.0" text="Description" />
+                   <TextArea fx:id="tourDescriptionTextArea" layoutX="213.0" layoutY="53.0" prefHeight="17.0" prefWidth="248.0" />-->
+      
+      
+                   <!--<Label layoutX="118.0" layoutY="120.0" prefHeight="17.0" prefWidth="84.0" text="From" />
+                   <TextField fx:id="tourOrigin" layoutX="225.0" layoutY="116.0" />
+                   <Label layoutX="118.0" layoutY="165.0" prefHeight="17.0" prefWidth="84.0" text="To" />
+                   <TextField fx:id="tourDestination" layoutX="233.0" layoutY="23.0" />-->
 
+             <VBox>
+                 <children>
+                     <Label fx:id="testTourNameLabel"/>
+                     <!--<TextField fx:id="tourNameInputTextField" layoutX="150.0" layoutY="245.0" />-->
+                 </children>
+             </VBox>
 
+      
+               </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>
