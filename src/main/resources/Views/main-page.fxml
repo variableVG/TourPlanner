@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
+<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
     <AnchorPane>
         <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
             <menus>
@@ -27,8 +28,14 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Button text="search" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="0" />
-        <TextField prefWidth="100" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+        <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+        <Button layoutX="236.0" prefHeight="25.0" prefWidth="63.0" textAlignment="JUSTIFY">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="275.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../java/Views/icons/loupe.png" />
+                </image>
+            </ImageView>
+        </Button>
     </AnchorPane>
 
     <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
@@ -57,8 +64,8 @@
                     </Tab>
                     <Tab text="Description">
                         <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
-                                <fx:include source="descriptionTourTab.fxml"></fx:include>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <fx:include source="descriptionTourTab.fxml" />
                             </AnchorPane>
                         </content>
                     </Tab>
