@@ -25,6 +25,8 @@ public class TourPlannerApplication extends Application {
         stage.setTitle("Tour Planner Test, Yeah!");
         stage.setMinHeight(400);
         stage.setMinWidth(400);
+        stage.setX(600);
+        stage.setY(150);
         stage.setScene(scene);
         stage.show();
     }
