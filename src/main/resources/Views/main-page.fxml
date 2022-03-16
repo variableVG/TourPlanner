@@ -27,7 +27,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Button text="Search" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="0" />
+        <Button text="search" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="0" />
         <TextField prefWidth="100" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
     </AnchorPane>
 
