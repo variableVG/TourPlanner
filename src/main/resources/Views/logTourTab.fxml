@@ -14,4 +14,5 @@
          <TableColumn prefWidth="75.0" text="rating" />
      </columns>
    </TableView>
+    <Button alignment="CENTER_RIGHT" onAction="#addLogOnButtonClick">+</Button>
 </AnchorPane>
