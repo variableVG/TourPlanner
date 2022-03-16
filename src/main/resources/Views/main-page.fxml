@@ -65,7 +65,7 @@
                         <Tab text="Route">
                             <content>
                                 <AnchorPane>
-
+                                    <fx:include source="routeTourTab.fxml"/>
                                 </AnchorPane>
                             </content>
                         </Tab>
