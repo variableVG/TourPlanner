@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
+<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.TourPlannerController">
     <AnchorPane>
         <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
             <menus>
@@ -45,30 +45,38 @@
                     <Label>Tour 3</Label>
                 </ListView>
             </VBox>
+            <VBox>
+                <ToolBar>
+                    <Label prefHeight="18.0" prefWidth="100.0" text="-tourname-" />
+                    <Pane HBox.hgrow="ALWAYS" />
+                    <Button alignment="CENTER_RIGHT">edit</Button><!--mnemonicParsing="false"-->
+                    <Button alignment="CENTER_RIGHT">delete</Button><!--mnemonicParsing="false"-->
+                </ToolBar>
 
-            <TabPane tabClosingPolicy="UNAVAILABLE">
-                <tabs>
-                    <Tab text="Route">
-                        <content>
-                            <AnchorPane>
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Route">
+                            <content>
+                                <AnchorPane>
 
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-                    <Tab text="Description">
-                        <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
-                                <fx:include source="descriptionTourTab.fxml"></fx:include>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
-                    <Tab text="Logs">
-                        <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                    </Tab>
-                </tabs>
-            </TabPane>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Description">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <fx:include source="descriptionTourTab.fxml"/>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Logs">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </VBox>
         </items>
     </SplitPane>
 
