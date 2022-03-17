@@ -30,7 +30,7 @@
         </MenuBar>
         <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" />
 
-        <Button AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" contentDisplay="GRAPHIC_ONLY">
+        <Button contentDisplay="GRAPHIC_ONLY" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0">
                     <Image url="@../Icons/loupe.png" />
@@ -65,8 +65,20 @@
                 <ToolBar>
                     <Label prefHeight="18.0" text="-tourname-" />
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button alignment="CENTER_RIGHT">edit</Button>
-                    <Button alignment="CENTER_RIGHT">delete</Button>
+                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY">
+                        <graphic>
+                            <ImageView fitHeight="15.0" fitWidth="15.0">
+                                <Image url="@../Icons/edit.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY">
+                        <graphic>
+                            <ImageView fitHeight="15.0" fitWidth="15.0">
+                                <Image url="@../Icons/delete.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
                 </ToolBar>
 
                 <TabPane tabClosingPolicy="UNAVAILABLE">
