@@ -12,7 +12,7 @@ public class TourPlannerApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700,500);
-        stage.setTitle("Tour Planner Test, Yeah!");
+        stage.setTitle("Tour Planner Application");
         stage.setMinHeight(400);
         stage.setMinWidth(400);
         stage.setScene(scene);
@@ -22,7 +22,7 @@ public class TourPlannerApplication extends Application {
     public void addRoute(Stage stage) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-tour-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,500);
-        stage.setTitle("Tour Planner Test, Yeah!");
+        stage.setTitle("New Tour");
         stage.setMinHeight(400);
         stage.setMinWidth(400);
         stage.setX(600);
@@ -33,7 +33,7 @@ public class TourPlannerApplication extends Application {
     public void addLog(Stage stage) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,500);
-        stage.setTitle("Tour Planner Test, Yeah!");
+        stage.setTitle("New Log");
         stage.setMinHeight(400);
         stage.setMinWidth(400);
         stage.setX(600);
