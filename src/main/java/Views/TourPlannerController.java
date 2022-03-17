@@ -1,11 +1,14 @@
 package Views;
 
+import Models.TourPlannerModel;
 import javafx.application.Application;
+import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +16,19 @@ import java.io.IOException;
 public class TourPlannerController  {//extends Application
 
     private TourPlannerApplication tpa = new TourPlannerApplication();
+    private TourPlannerModel model = new TourPlannerModel();
+
+    @FXML
+    public ListView routeList;
+
+
+    @FXML
+    public void initialize() {
+        this.routeList.setItems(model.tourNames);
+
+    }
+
+
 
     @FXML
     private Label testTextObjectPlaceholder;

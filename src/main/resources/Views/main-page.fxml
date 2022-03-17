@@ -55,7 +55,7 @@
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER_RIGHT" onAction="#addTourOnButtonClick">+</Button>
                 </ToolBar>
-                <ListView VBox.vgrow="ALWAYS">
+                <ListView VBox.vgrow="ALWAYS" fx:id="routeList">
                     <Label>Tour 1</Label>
                     <Label>Tour 2</Label>
                     <Label>Tour 3</Label>
