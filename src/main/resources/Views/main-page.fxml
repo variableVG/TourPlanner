@@ -28,14 +28,23 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
-        <Button layoutX="236.0" prefHeight="25.0" prefWidth="63.0" textAlignment="JUSTIFY">
+        <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" />
+
+        <Button AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="15.0" fitWidth="15.0">
+                    <Image url="@../Icons/loupe.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+
+        <!--<Button layoutX="236.0" prefHeight="25.0" prefWidth="63.0" textAlignment="JUSTIFY">
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="275.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../java/Views/icons/loupe.png" />
                 </image>
             </ImageView>
-        </Button>
+        </Button>-->
     </AnchorPane>
 
     <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
@@ -54,8 +63,8 @@
             </VBox>
             <VBox>
                 <ToolBar>
-                    <Label prefHeight="18.0" text="-tourname-"/>
-                    <Pane HBox.hgrow="ALWAYS"/>
+                    <Label prefHeight="18.0" text="-tourname-" />
+                    <Pane HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER_RIGHT">edit</Button>
                     <Button alignment="CENTER_RIGHT">delete</Button>
                 </ToolBar>
@@ -65,21 +74,21 @@
                         <Tab text="Route">
                             <content>
                                 <AnchorPane>
-                                    <fx:include source="routeTourTab.fxml"/>
+                                    <fx:include source="routeTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Description">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <fx:include source="descriptionTourTab.fxml"/>
+                                    <fx:include source="descriptionTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Logs">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <fx:include source="logTourTab.fxml"/>
+                                    <fx:include source="logTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
