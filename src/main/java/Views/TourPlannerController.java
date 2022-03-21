@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TourPlannerController  {//extends Application
+public class TourPlannerController  {
+    @FXML
+    public Label tabTourname;//extends Application
 
     private TourPlannerApplication tpa = new TourPlannerApplication();
     private TourPlannerModel model = new TourPlannerModel();
@@ -25,6 +27,7 @@ public class TourPlannerController  {//extends Application
     @FXML
     public void initialize() {
         this.routeList.setItems(model.tourNames);
+        // this.tabTourname.setName
 
     }
 
