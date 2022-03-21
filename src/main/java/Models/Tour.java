@@ -18,6 +18,10 @@ public class Tour {
 
     private ArrayList<Log> logs;
 
+    public Tour (String name) {
+        this.name = name;
+    }
+
     
 
 }

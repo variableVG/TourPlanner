@@ -1,14 +1,10 @@
 package Views;
 
 import Models.TourPlannerModel;
-import javafx.application.Application;
-import javafx.beans.property.Property;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -29,13 +25,13 @@ public class TourPlannerController  {
 
     @FXML
     public void initialize() {
-        this.routeList.setItems(model.tourNames);
+        this.routeList.setItems(model.getTourNames());
         // this.tabTourname.setName
         this.routeList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1) {
+                tabTourname.setText(routeList.getSelectionModel().selectedItemProperty().getValue().toString());
 
-                tabTourname.setText(routeList.getSelectionModel().getSelectedItems().toString());
             }
         });
 

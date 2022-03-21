@@ -1,8 +1,6 @@
 package Models;
 
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -11,18 +9,29 @@ public class TourPlannerModel {
 
     ////////////////////////////////////////////////
     // In this part we should connect with the DB
-    public ObservableList<String> tourNames =
-            FXCollections.observableArrayList();
+    public ArrayList<Tour> tours = new ArrayList<>();
 
     public TourPlannerModel () {
-        tourNames.add("Tour 1");
-        tourNames.add("Tour 2");
-        tourNames.add("Tour 3");
-        tourNames.add("Tour 4");
+        tours.add(new Tour("Tour 1"));
+        tours.add(new Tour("Tour 2"));
+        tours.add(new Tour("Tour 3"));
+        tours.add(new Tour("Tour 4"));
 
+    }
+
+    public ArrayList<Tour> getTours() {
+        return tours;
     }
 
     public ObservableList<String> getTourNames() {
+        ObservableList<String> tourNames =
+                FXCollections.observableArrayList();
+
+        for(Tour tour : tours) {
+            tourNames.add(tour.getName());
+        }
         return tourNames;
     }
+
+
 }
