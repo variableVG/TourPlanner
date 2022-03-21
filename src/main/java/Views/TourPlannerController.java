@@ -34,7 +34,7 @@ public class TourPlannerController  {
         this.routeList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1) {
-                
+
                 tabTourname.setText(routeList.getSelectionModel().getSelectedItems().toString());
             }
         });

@@ -63,6 +63,11 @@
             <artifactId>ikonli-swing</artifactId>
             <version>12.3.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>Lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
     </dependencies>
 
     <build>
