@@ -3,6 +3,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DescriptionTourTabController">
-            <Label>Hallönchen!</Label>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@descriptionTourTab.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DescriptionTourTabController">
+    <VBox VBox.vgrow="ALWAYS">
+        <HBox HBox.hgrow="ALWAYS">
+            <Label prefHeight="18.0" prefWidth="36.0" >From: </Label>
+            <Label fx:id="originTourLabel" prefHeight="18.0" prefWidth="92.0" text="Origin" />
+
+            <Label prefHeight="18.0" prefWidth="23.0">To: </Label>
+            <Label fx:id="destinationTourLabel" prefHeight="18.0" prefWidth="152.0" text="Destination" />
+
+            <Label prefHeight="18.0" prefWidth="113.0">Tour Distance: </Label>
+            <Label fx:id="tourDistanceLabel" text="xx.x km" />
+        </HBox>
+
+        <HBox>
+            <Label layoutX="258.0" prefHeight="18.0" prefWidth="96.0">Estimated Time:  </Label>
+            <Label fx:id="estimatedTimeLabel" prefHeight="18.0" prefWidth="61.0" text="y h" />
+
+            <Label prefHeight="18.0" prefWidth="93.0">Transport Type: </Label>
+            <Label fx:id="transportTypeLabel" text="Bike, feet ..." />
+        </HBox>
+
+        <HBox>
+            <Label>Popularity: </Label>
+            <Label fx:id="tourPopularityLabel" prefHeight="18.0" prefWidth="50.0" text="* * *" />
+
+            <Label layoutX="427.0" prefHeight="18.0" prefWidth="107.0">Child Friendliness: </Label>
+            <Label fx:id="childFriendlinessLabel" text="* *" />
+        </HBox>
+
+        <HBox>
+            <VBox>
+                <Label>Tour Description: </Label>
+                <Label fx:id="tourDescriptionLabel" text="This is the worst Tour Description ever" />
+            </VBox>
+
+        </HBox>
+
+    </VBox>
+
 </AnchorPane>
