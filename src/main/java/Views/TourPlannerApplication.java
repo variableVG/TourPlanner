@@ -32,7 +32,7 @@ public class TourPlannerApplication extends Application {
     }
     public void addLog(Stage stage) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500,500);
+        Scene scene = new Scene(fxmlLoader.load(), 500,400);
         stage.setTitle("New Log");
         stage.setMinHeight(400);
         stage.setMinWidth(400);

@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Views.AddLogPageController"
-            prefHeight="400.0" prefWidth="600.0">
+<HBox alignment="CENTER" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddLogPageController">
+   <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
+      <VBox>
+         <Label>Date:</Label>
+         <TextField fx:id="date"/>
+      </VBox>
 
-</AnchorPane>
+      <VBox>
+         <Label>Time:</Label>
+         <TextField fx:id="time"/>
+      </VBox>
+
+      <VBox>
+         <Label>Comment:</Label>
+         <TextField fx:id="comment"/>
+      </VBox>
+
+      <VBox>
+         <Label>Difficulty:</Label>
+         <TextField fx:id="difficulty"/>
+      </VBox>
+
+      <VBox>
+         <Label>Total time:</Label>
+         <TextField fx:id="totalTime"/>
+      </VBox>
+
+      <VBox>
+         <Label>Rating:</Label>
+         <TextField fx:id="rating"/>
+      </VBox>
+   </VBox>
+</HBox>
