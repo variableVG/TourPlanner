@@ -6,11 +6,6 @@
 <HBox alignment="CENTER" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddLogPageController">
    <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
       <VBox>
-         <Label>Fuck:</Label>
-         <TextField fx:id="fuck"/>
-      </VBox>
-
-      <VBox>
          <Label>Date:</Label>
          <TextField fx:id="date"/>
       </VBox>
