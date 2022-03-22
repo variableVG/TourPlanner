@@ -34,5 +34,7 @@
          <Label>Rating:</Label>
          <TextField fx:id="rating"/>
       </VBox>
+
+      <Button>Add new log</Button>
    </VBox>
 </HBox>
