@@ -5,8 +5,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,34 +17,37 @@ import java.io.IOException;
 public class TourPlannerController  {
     @FXML
     public Label tabTourname;//extends Application
+    @FXML
+    public AnchorPane descriptionTourTab;
+    @FXML
+    public ListView routeList;
+    @FXML
+    private DescriptionTourTabController descriptionTourTabController;
 
     private TourPlannerApplication tpa = new TourPlannerApplication();
     private TourPlannerModel model = new TourPlannerModel();
 
-    @FXML
-    public ListView routeList;
-
-
-
-    @FXML
-    public void initialize() {
-        this.routeList.setItems(model.getTourNames());
-        // this.tabTourname.setName
-        this.routeList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observableValue, Object o, Object t1) {
-                tabTourname.setText(routeList.getSelectionModel().selectedItemProperty().getValue().toString());
-
-            }
-        });
-
+    public TourPlannerController() throws IOException {
 
     }
 
 
+    @FXML
+    public void initialize() throws IOException {
+        this.routeList.setItems(model.getTourNames());
+        // this.tabTourname.setName
 
+        this.routeList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                String tourName = routeList.getSelectionModel().selectedItemProperty().getValue().toString();
+                tabTourname.setText(tourName);
+                descriptionTourTabController.updateTour(model.getTourByName(tourName));
 
+            }
+        });
 
+    }
 
 
     @FXML

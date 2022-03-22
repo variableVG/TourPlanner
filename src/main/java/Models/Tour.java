@@ -2,13 +2,16 @@ package Models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import lombok.*;
 
 
 @Data
 public class Tour {
     private String name;
-    private String description;
+    private StringProperty description;
     private String origin;
     private String destination;
     private String transportType;
@@ -18,10 +21,12 @@ public class Tour {
 
     private ArrayList<Log> logs;
 
-    public Tour (String name) {
+    public Tour (String name, String description) {
         this.name = name;
+        this.description = new SimpleStringProperty(description);
+        //this.description = description;
     }
 
-    
+
 
 }
