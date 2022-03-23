@@ -27,12 +27,12 @@ public class DescriptionTourTabController {
         this.tourDescriptionLabel.textProperty().bindBidirectional(tour.getDescription());
     }
 
-    public void updateTour(Tour tour) {
+    public void updateTourTab(Tour tour) {
         this.tour = tour;
-        System.out.println("Tour name now is " + tour.getName());
-        System.out.println("And tour description now is " + tour.getDescription().getValue());
+        //System.out.println("Tour name now is " + tour.getName());
+        //System.out.println("And tour description now is " + tour.getDescription().getValue());
         //this.tourDescriptionLabel.setText(tour.getDescription().getValue());
-        System.out.println(tourDescriptionLabel);
+        //System.out.println(tourDescriptionLabel);
         this.tourDescriptionLabel.setText(tour.getDescription().getValue());
 
     }

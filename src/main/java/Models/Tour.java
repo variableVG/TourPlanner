@@ -10,7 +10,7 @@ import lombok.*;
 
 @Data
 public class Tour {
-    private String name;
+    private StringProperty name;
     private StringProperty description;
     private String origin;
     private String destination;
@@ -22,7 +22,7 @@ public class Tour {
     private ArrayList<Log> logs;
 
     public Tour (String name, String description) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
         //this.description = description;
     }

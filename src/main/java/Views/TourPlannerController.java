@@ -5,11 +5,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +23,7 @@ public class TourPlannerController  {
     private DescriptionTourTabController descriptionTourTabController;
 
     private TourPlannerApplication tpa = new TourPlannerApplication();
-    private TourPlannerModel model = new TourPlannerModel();
+    private TourPlannerModel model = TourPlannerModel.getInstance();
 
     public TourPlannerController() throws IOException {
 
@@ -34,6 +32,7 @@ public class TourPlannerController  {
 
     @FXML
     public void initialize() throws IOException {
+
         this.routeList.setItems(model.getTourNames());
         // this.tabTourname.setName
 
@@ -42,7 +41,8 @@ public class TourPlannerController  {
             public void changed(ObservableValue observableValue, Object o, Object t1) {
                 String tourName = routeList.getSelectionModel().selectedItemProperty().getValue().toString();
                 tabTourname.setText(tourName);
-                descriptionTourTabController.updateTour(model.getTourByName(tourName));
+                System.out.println("Tourname is " + tourName);
+                descriptionTourTabController.updateTourTab(model.getTourByName(tourName));
 
             }
         });

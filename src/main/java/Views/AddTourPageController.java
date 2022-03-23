@@ -12,6 +12,7 @@ public class AddTourPageController {
 
     @FXML public TextField tourNameTextField;
     @FXML public Label testTourNameLabel;
+    @FXML public TextField fromTextField;
     @FXML private AddTourPageModel model = new AddTourPageModel();
 
     //@FXML private TextField tourNameInputTextField;
@@ -21,13 +22,15 @@ public class AddTourPageController {
 
     @FXML
     public void initialize(){
-        this.tourNameTextField.textProperty().bindBidirectional(model.getTourNameInputProperty());
-        this.testTourNameLabel.textProperty().bindBidirectional(model.getTourNameOutputProperty());
+        this.tourNameTextField.textProperty().bindBidirectional(model.getTourName());
         //this.tourDescriptionTextArea.textProperty().bindBidirectional(model.getTourNameOutputProperty());
     }
 
     public void addTourOnClick(ActionEvent actionEvent){
-        this.model.concat();
+        System.out.println("addTourOnClick has been pressed");
+        System.out.println(tourNameTextField);
+        model.addTour();
+
     }
 
 }
