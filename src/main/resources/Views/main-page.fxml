@@ -37,14 +37,6 @@
                 </ImageView>
             </graphic>
         </Button>
-
-        <!--<Button layoutX="236.0" prefHeight="25.0" prefWidth="63.0" textAlignment="JUSTIFY">
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="275.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../java/Views/icons/loupe.png" />
-                </image>
-            </ImageView>
-        </Button>-->
     </AnchorPane>
 
     <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
@@ -91,12 +83,7 @@
                         <Tab text="Description">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-
                                         <fx:include source="descriptionTourTab.fxml" fx:id="descriptionTourTab"/>
-
-
-
-
                                 </AnchorPane>
                             </content>
                         </Tab>
@@ -112,50 +99,4 @@
             </VBox>
         </items>
     </SplitPane>
-
-    <!--
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-
-    <stylesheets>
-        <URL value="@simpleStyleSheet.css" />
-    </stylesheets>
-
-    <HBox styleClass="menu">
-        <Button>File</Button>
-        <Button>Options</Button>
-        <Button>Help</Button>
-        <TextField />
-        <Button>Search</Button>
-    </HBox>
-
-    <HBox>
-        <VBox styleClass="tours">
-            <HBox>
-                <Label prefHeight="24.0" prefWidth="64.0">Tours</Label>
-                <Button onAction="#addTour">+</Button>
-            </HBox>
-            <VBox prefHeight="79.0" prefWidth="90.0">
-                <Button contentDisplay="CENTER" prefHeight="26.0" prefWidth="78.0" textAlignment="CENTER">Tour 1</Button>
-                <Button prefHeight="26.0" prefWidth="77.0">Tour 2</Button>
-                <Button prefHeight="26.0" prefWidth="77.0">Tour 3</Button>
-            </VBox>
-        </VBox>
-        <VBox prefHeight="180.0" prefWidth="380.0" styleClass="details">
-            <HBox>
-                <Label>Title: "Tour 1"</Label>
-            </HBox>
-            <HBox>
-                <Button onAction="#onRouteButtonClick">Route</Button>
-                <Button onAction="#onDescriptionButtonClick">Description</Button>
-                <Button onAction="#onLogsButtonClick">Logs</Button>
-            </HBox>
-            <VBox prefHeight="18.0" prefWidth="130.0">
-                <Label fx:id="testTextObjectPlaceholder">...by default, map/route is shown</Label>
-            </VBox>
-        </VBox>
-    </HBox>
-    -->
-
 </VBox>

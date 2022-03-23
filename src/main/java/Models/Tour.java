@@ -17,7 +17,6 @@ public class Tour {
     private StringProperty transportType;
     private StringProperty distance;
     private StringProperty time;
-    //private StringProperty information;
     private StringProperty popularity;
     private StringProperty childFriendliness;
 

@@ -17,11 +17,6 @@ public class AddTourPageController {
     @FXML public TextArea description;
     @FXML private AddTourPageModel model = new AddTourPageModel();
 
-    //@FXML private TextField tourNameInputTextField;
-    //@FXML public Label tourNameOutputLabel;
-    //@FXML private TextArea tourDescriptionTextArea;
-
-
     @FXML
     public void initialize(){
         this.tourName.textProperty().bindBidirectional(model.getTourName());
@@ -31,14 +26,10 @@ public class AddTourPageController {
         this.distance.textProperty().bindBidirectional(model.getDistance());
         this.time.textProperty().bindBidirectional(model.getTime());
         this.description.textProperty().bindBidirectional(model.getDescription());
-        //this.tourDescriptionTextArea.textProperty().bindBidirectional(model.getTourNameOutputProperty());
     }
 
     public void addTourOnClick(ActionEvent actionEvent){
-        System.out.println("addTourOnClick has been pressed");
-        System.out.println(tourName);
         model.addTour();
-
     }
 
 }

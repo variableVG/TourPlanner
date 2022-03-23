@@ -19,17 +19,12 @@ public class DescriptionTourTabController {
     @FXML public Label childFriendlinessLabel;
     Tour tour;
 
-
     public DescriptionTourTabController() {
-        System.out.println("Controller is called");
         tour = new Tour("Tour X");
-
     }
-
 
     @FXML
     public void initialize() {
-        System.out.println("I am initializing");
         this.tourDescriptionLabel.textProperty().bindBidirectional(tour.getDescription());
         this.originTourLabel.textProperty().bindBidirectional(tour.getOrigin());
         this.destinationTourLabel.textProperty().bindBidirectional(tour.getDestination());
