@@ -25,7 +25,7 @@ public class Tour {
 
     public Tour (String name) {
         this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty("some text...");
+        this.description = new SimpleStringProperty("some text...");//data from database
         this.origin = new SimpleStringProperty("");
         this.destination = new SimpleStringProperty("");
         this.transportType = new SimpleStringProperty("");
@@ -33,8 +33,20 @@ public class Tour {
         this.time = new SimpleStringProperty("");
         this.popularity = new SimpleStringProperty("");
         this.childFriendliness = new SimpleStringProperty("");
+    }
 
-
+    public Tour (String name, String description, String origin,
+                 String destination, String transportType, String distance,
+                 String time) {
+        this.name = new SimpleStringProperty(name);
+        this.description = new SimpleStringProperty(description);//data from database
+        this.origin = new SimpleStringProperty(origin);
+        this.destination = new SimpleStringProperty(destination);
+        this.transportType = new SimpleStringProperty(transportType);
+        this.distance = new SimpleStringProperty(distance);
+        this.time = new SimpleStringProperty(time);
+        this.popularity = new SimpleStringProperty("...");
+        this.childFriendliness = new SimpleStringProperty("...");
     }
 
 }
