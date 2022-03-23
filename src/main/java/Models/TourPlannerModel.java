@@ -28,10 +28,10 @@ public class TourPlannerModel {
             throw new RuntimeException("Cannot create. Please use getInstance8)\n");
         }
 
-        tours.add(new Tour("Tour 1", "abc"));
-        tours.add(new Tour("Tour 2", "This is description for Tour 2"));
-        tours.add(new Tour("Tour 3", "tour for Rawan"));
-        tours.add(new Tour("Tour 4", "Tour for Manuel"));
+        tours.add(new Tour("Tour 1"));
+        tours.add(new Tour("Tour 2"));
+        tours.add(new Tour("Tour 3"));
+        tours.add(new Tour("Tour 4"));
 
     }
 

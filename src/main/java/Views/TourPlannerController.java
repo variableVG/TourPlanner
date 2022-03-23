@@ -21,6 +21,8 @@ public class TourPlannerController  {
     public ListView routeList;
     @FXML
     private DescriptionTourTabController descriptionTourTabController;
+    //durch @FXML wird hier das DescController Objekt verwendet, dass ursprünglich beim
+    //"starten" in TourApplication erzeugt wird -> sonst wird ein neues Object erzeugt und macht probleme
 
     private TourPlannerApplication tpa = new TourPlannerApplication();
     private TourPlannerModel model = TourPlannerModel.getInstance();

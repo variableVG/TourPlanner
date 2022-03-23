@@ -28,7 +28,7 @@ public class AddTourPageModel {
 
         //TODO get all properties of the tour and create a Tour
 
-        Tour newTour = new Tour(tourName.getValue(), "TODO add the description");
+        Tour newTour = new Tour(tourName.getValue());
 
         tourPlannerModel.addTour(newTour);
 
