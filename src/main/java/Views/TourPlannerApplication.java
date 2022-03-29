@@ -2,6 +2,7 @@ package Views;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -10,13 +11,34 @@ import java.io.IOException;
 public class TourPlannerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
+        ControllerFactory factory = new ControllerFactory();
+        String fxmlFile = "main-page.fxml";
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, fxmlFile);
+        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Factory.class.getResource("main-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700,500);
         stage.setTitle("Tour Planner Application");
         stage.setMinHeight(400);
         stage.setMinWidth(400);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private FXMLLoader getFxmlLoader(ControllerFactory factory, String fxmlFile ) {
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(
+                        TourPlannerApplication.class.getResource(fxmlFile),
+                        null,
+                        new JavaFXBuilderFactory(),
+                        controller -> {
+                            try {
+                                return factory.create(controller);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        });
+        return fxmlLoader;
     }
 
     public void addRoute(Stage stage) throws IOException{

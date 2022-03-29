@@ -15,7 +15,11 @@ public class AddTourPageController {
     @FXML public TextField distance;
     @FXML public TextField time;
     @FXML public TextArea description;
-    @FXML private AddTourPageModel model = new AddTourPageModel();
+    @FXML private AddTourPageModel model;
+
+    public AddTourPageController(AddTourPageModel addTourPageModel) {
+        this.model = addTourPageModel;
+    }
 
     @FXML
     public void initialize(){
