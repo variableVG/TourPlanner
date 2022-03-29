@@ -31,6 +31,9 @@ public class TourPlannerController  {
 
     }
 
+    public TourPlannerController(TourPlannerModel tourPlannerModel) {
+        this.model = tourPlannerModel;
+    }
 
     @FXML
     public void initialize() throws IOException {
