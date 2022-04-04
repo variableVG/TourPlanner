@@ -21,7 +21,7 @@ public class DatabaseConnection implements Closeable {
     }
 
     public Connection connect() throws SQLException{
-        return connect("monstertradingcardsgame");
+        return connect("tourplanner");
     }
 
     public Connection getConnection(){
