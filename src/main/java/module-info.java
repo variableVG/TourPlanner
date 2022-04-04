@@ -6,6 +6,7 @@ module main.tourplanner {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires lombok;
+    requires java.sql;
 
     opens Views to javafx.fxml;
     exports Views;
