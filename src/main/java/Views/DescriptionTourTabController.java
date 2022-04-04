@@ -22,6 +22,7 @@ public class DescriptionTourTabController {
     public DescriptionTourTabController() {
         tour = new Tour("Tour X");
     }
+    //description tour tab model
 
     @FXML
     public void initialize() {
