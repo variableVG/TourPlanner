@@ -7,8 +7,8 @@ import java.util.*;
 public class Database {
     public static void initDb() {
         try (Connection connection = DatabaseConnection.getInstance().connect("")) {
-            DatabaseConnection.executeSql(connection, "DROP DATABASE monstertradingcardsgame", true);
-            DatabaseConnection.executeSql(connection, "CREATE DATABASE monstertradingcardsgame", true);
+            DatabaseConnection.executeSql(connection, "DROP DATABASE tourplanner", true);
+            DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", true);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -17,9 +17,9 @@ public class Database {
             DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS Tour (
                         name VARCHAR(50) NOT NULL PRIMARY KEY,
-                        description VARCHAR(500),
-                        from VARCHAR(50),
-                        to VARCHAR(50),
+                        description VARCHAR(50),
+                        origin VARCHAR(50),
+                        destination VARCHAR(50),
                         transport_type VARCHAR(50),
                         distance VARCHAR(50),
                         estimated_time VARCHAR(50)
@@ -30,7 +30,7 @@ public class Database {
                         id SERIAL PRIMARY KEY,
                         tour_name VARCHAR(50) REFERENCES Tour (name) ON UPDATE CASCADE ON DELETE CASCADE,
                         date_time VARCHAR(50),
-                        comment VARCHAR(500),
+                        comment VARCHAR(50),
                         difficulty NUMERIC,
                         rating NUMERIC,
                         total_time DATE

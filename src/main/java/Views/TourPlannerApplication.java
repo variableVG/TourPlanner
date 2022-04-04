@@ -1,5 +1,6 @@
 package Views;
 
+import DataAccessLayer.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -70,6 +71,7 @@ public class TourPlannerApplication extends Application {
     }
 
     public static void main(String[] args) {
+        Database.initDb();
         launch();
     }
 }
