@@ -27,17 +27,15 @@ public class Database {
                     """);
             DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS log (
-                        name VARCHAR(50) NOT NULL PRIMARY KEY,
-                        description VARCHAR(500),
-                        from VARCHAR(50),
-                        to VARCHAR(50),
-                        transport_type VARCHAR(50),
-                        distance VARCHAR(50),
-                        estimated_time VARCHAR(50)
+                        id SERIAL PRIMARY KEY,
+                        tour_name VARCHAR(50) REFERENCES Tour (name) ON UPDATE CASCADE ON DELETE CASCADE,
+                        date_time VARCHAR(50),
+                        comment VARCHAR(500),
+                        difficulty NUMERIC,
+                        rating NUMERIC,
+                        total_time DATE
                     )
                     """);
-
-
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
