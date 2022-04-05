@@ -3,10 +3,14 @@ package Views;
 import Models.AddTourPageModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddTourPageController {
+
+    @FXML public Button addButton;
 
     @FXML public TextField tourName;
     @FXML public TextField origin;
@@ -34,6 +38,14 @@ public class AddTourPageController {
 
     public void addTourOnClick(ActionEvent actionEvent){
         model.addTour();
+
+        /*
+        some valid input checking
+        */
+
+        Stage stage = (Stage) addButton.getScene().getWindow();
+        stage.close();
+
     }
 
 }

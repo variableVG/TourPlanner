@@ -60,7 +60,7 @@
              <!--maybe use map here to set start and endpoint like in google-maps
              and automatically set from, to, distance and eTime-->
       
-                  <Button onAction="#addTourOnClick">Add new tour</Button>
+                  <Button fx:id="addButton" onAction="#addTourOnClick">Add new tour</Button>
 
                </children>
       </VBox>
