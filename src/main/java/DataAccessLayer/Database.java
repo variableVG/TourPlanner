@@ -11,9 +11,8 @@ public class Database {
     public static void initDb() {
         try (Connection connection = DatabaseConnection.getInstance().connect("")) {
             if(reloadDatabase()) {
-                System.out.println("Am i here?");
-                DatabaseConnection.executeSql(connection, "DROP DATABASE tourplanner", true);
-                DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", true);
+                DatabaseConnection.executeSql(connection, "DROP DATABASE tourplanner", false);
+                DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", false);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
