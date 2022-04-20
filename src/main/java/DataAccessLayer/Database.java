@@ -10,8 +10,11 @@ public class Database {
 
     public static void initDb() {
         try (Connection connection = DatabaseConnection.getInstance().connect("")) {
-            DatabaseConnection.executeSql(connection, "DROP DATABASE tourplanner", true);
-            DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", true);
+            if(reloadDatabase()) {
+                System.out.println("Am i here?");
+                DatabaseConnection.executeSql(connection, "DROP DATABASE tourplanner", true);
+                DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", true);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -43,6 +46,16 @@ public class Database {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    private static boolean reloadDatabase() {
+        System.out.println("Should we reload the database? Press 1 for yes, 0 for no");
+        Scanner scanner = new Scanner(System.in);
+        int answer = scanner.nextInt();
+        if(answer == 1) {
+            return true;
+        }
+        return false;
     }
 
     public static Tour getTour(String tourName) {
