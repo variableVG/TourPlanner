@@ -17,7 +17,7 @@ public class DatabaseConnection implements Closeable {
     }
 
     public Connection connect(String database) throws SQLException{
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + database, "postgres", "");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + database, "postgres", "Globuli48");
     }
 
     public Connection connect() throws SQLException{

@@ -1,6 +1,12 @@
 package BusinessLayer;
 
+import DataAccessLayer.DataAccessLayer;
+import DataAccessLayer.Database;
+import DataAccessLayer.IDataAccessLayer;
+
 public class BusinessLayer implements IBusinessLayer {
+
+    IDataAccessLayer dataAccessLayer = DataAccessLayer.getInstance();
 
     public BusinessLayer() {
 
