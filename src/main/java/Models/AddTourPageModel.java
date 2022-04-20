@@ -1,5 +1,7 @@
 package Models;
 
+import BusinessLayer.BusinessLayer;
+import BusinessLayer.IBusinessLayer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -12,7 +14,8 @@ import java.util.AbstractMap;
 @Data
 public class AddTourPageModel {
 
-    private TourPlannerModel tourPlannerModel = TourPlannerModel.getInstance();
+    //private TourPlannerModel tourPlannerModel = TourPlannerModel.getInstance();
+    private IBusinessLayer businessLayer = new BusinessLayer();
     private StringProperty tourName = new SimpleStringProperty();
     private StringProperty origin = new SimpleStringProperty();
     private StringProperty destination = new SimpleStringProperty();
@@ -33,7 +36,9 @@ public class AddTourPageModel {
                 //popularity.getValue()
                 //childFriendliness.getValue()
         );
-        tourPlannerModel.addTour(newTour);
+        // tourPlannerModel.addTour(newTour);
+        businessLayer.addTour(newTour);
+
     }
 
 }

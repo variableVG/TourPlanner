@@ -1,7 +1,9 @@
 package BusinessLayer;
 
+import Models.Tour;
+
 public interface IBusinessLayer {
-    void addTour(String tourName);
+    void addTour(Tour tourName);
 
     void getAllTours();
 }

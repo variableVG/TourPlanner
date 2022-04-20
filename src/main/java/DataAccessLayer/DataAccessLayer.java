@@ -1,9 +1,16 @@
 package DataAccessLayer;
 
+import Models.Tour;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class DataAccessLayer implements IDataAccessLayer {
     //TODO thread safe
 
-    private static DataAccessLayer DataAccessLayer = null;
+    private static DataAccessLayer dataAccessLayer = null;
 
     private DataAccessLayer() {
         Database.initDb();
@@ -21,9 +28,28 @@ public class DataAccessLayer implements IDataAccessLayer {
          * a thread enters the getInstance() function, the rest of the threads would have to wait
          * if they want to run the function.
          * */
-        if (DataAccessLayer == null) {
-            DataAccessLayer = new DataAccessLayer();
+        if (dataAccessLayer == null) {
+            dataAccessLayer = new DataAccessLayer();
         }
-        return DataAccessLayer;
+        return dataAccessLayer;
     }
+
+
+    @Override
+    public void addTour(Tour newTour) {
+        //Check if TourName is already present:
+        Tour dbTour = Database.getTour(newTour.getName().get());
+        if(dbTour == null) {
+            //.get() is used because newTour.getName() is type StringProperty, we need to cast to string.
+            Database.addTour(newTour);
+
+        }
+        else {
+            //throw exception: THe tour already exist.
+            System.out.println("The tour cannot be added because a tour with the same name is already present in the DB.");
+        }
+
+    }
+
+
 }

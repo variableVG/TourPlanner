@@ -24,19 +24,19 @@ public class TourPlannerModel {
             FXCollections.observableArrayList();
     private IBusinessLayer business;
 
-    private  TourPlannerModel () {
+    public  TourPlannerModel () {
         // The constructor is private, to prevent other objects from using the new operator within the Singleton.
         //Check if Instance already exists.
 
 
 
-        tours.add(new Tour("Tour 1"));
+        /*tours.add(new Tour("Tour 1"));
         tours.add(new Tour("Tour 2"));
         tours.add(new Tour("Tour 3"));
         tours.add(new Tour("Tour 4"));
 
-        business = new BusinessLayer();
-        business.getAllTours();
+        business = new BusinessLayer();*/
+        //business.getAllTours();
 
     }
 
@@ -84,7 +84,7 @@ public class TourPlannerModel {
     }
 
     public void addTour(Tour tour) {
-        business.addTour(tour.getName().getValue());
+        //business.addTour(tour.getName().getValue());
         tours.add(tour);
         tourNames.add(tour.getName().getValue());
     }

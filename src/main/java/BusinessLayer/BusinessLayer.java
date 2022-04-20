@@ -3,6 +3,7 @@ package BusinessLayer;
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.Database;
 import DataAccessLayer.IDataAccessLayer;
+import Models.Tour;
 
 public class BusinessLayer implements IBusinessLayer {
 
@@ -13,8 +14,9 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void addTour(String tourName) {
-        System.out.println(tourName);
+    public void addTour(Tour newTour) {
+        dataAccessLayer.addTour(newTour);
+        System.out.println(newTour.getName());
     }
 
     @Override

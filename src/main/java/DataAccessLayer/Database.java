@@ -1,5 +1,7 @@
 package DataAccessLayer;
 
+import Models.Tour;
+
 import java.sql.Connection;
 import java.sql.*;
 import java.util.*;
@@ -41,6 +43,47 @@ public class Database {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static Tour getTour(String tourName) {
+        String sqlStatement = "SELECT * FROM tour WHERE name = ?";
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sqlStatement)
+        ) {
+            statement.setString(1, tourName);
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next() ) {
+                String name = resultSet.getString("name");
+                //TODO add the other properties to the tours --> While schleife machen
+                return new Tour(name);
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void addTour(Tour newTour) {
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                INSERT INTO tour
+                (name, description, origin, destination, transport_type, distance, estimated_time)
+                VALUES (?, ?, ?, ?, ?, ?, ?);
+                """ )
+        ) {
+            statement.setString(1, newTour.getName().get());
+            statement.setString(2, newTour.getDescription().get());
+            statement.setString(3, newTour.getOrigin().get());
+            statement.setString(4, newTour.getDestination().get());
+            statement.setString(5, newTour.getTransportType().get());
+            statement.setString(6, newTour.getDistance().get());
+            statement.setString(7, newTour.getTime().get());
+            statement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
 
