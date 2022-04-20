@@ -1,7 +1,7 @@
 package DataAccessLayer;
 
 public class DataAccessLayer implements IDataAccessLayer {
-    //TODO thread safe 
+    //TODO thread safe
 
     private static DataAccessLayer DataAccessLayer = null;
 

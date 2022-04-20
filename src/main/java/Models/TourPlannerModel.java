@@ -14,6 +14,7 @@ public class TourPlannerModel {
     // the tour planner model.
 
     private static TourPlannerModel tourPlannerModel = null;
+    public BusinessLayer businessLayer = new BusinessLayer();
 
     ////////////////////////////////////////////////
     // In this part we should connect with the DB

@@ -6,10 +6,10 @@ import DataAccessLayer.IDataAccessLayer;
 
 public class BusinessLayer implements IBusinessLayer {
 
-    IDataAccessLayer dataAccessLayer = DataAccessLayer.getInstance();
+    IDataAccessLayer dataAccessLayer = null;
 
     public BusinessLayer() {
-
+        dataAccessLayer = DataAccessLayer.getInstance();
     }
 
     @Override
