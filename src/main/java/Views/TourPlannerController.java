@@ -81,6 +81,11 @@ public class TourPlannerController  {
         }*/
     }
 
+    public void deleteTourOnButtonClick(ActionEvent event) {
+        Stage stage = new Stage();
+        //tpa.deleteRoute(stage);
+    }
+
     /*@Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-tour-page.fxml"));

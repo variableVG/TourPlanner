@@ -75,4 +75,16 @@ public class TourPlannerApplication extends Application {
         launch();
         DatabaseConnection.getInstance().close();
     }
+
+    public void deleteRoute(Stage stage) {
+        ControllerFactory factory = new ControllerFactory();//maybe as class variable
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "delete-tour-page.fxml");
+        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 200,300);
+        stage.setTitle("Delete Tour");
+        stage.setX(600);
+        stage.setY(150);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

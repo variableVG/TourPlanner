@@ -14,6 +14,7 @@ public class ControllerFactory {
     //private final DescriptionTourTabModel descriptionTourTabModel;
     //private final RouteTourTabModel routeTourTabModel;
     //private final LogTourTabModel logTourTabModel;
+    //private final DeleteTourPageController deleteTourPageController;
     private final Tour tour;
 
     public ControllerFactory() {
@@ -36,6 +37,8 @@ public class ControllerFactory {
             return new RouteTourTabController();
         }else if(controllerClass == LogTourTabController.class){
             return new LogTourTabController();
+        }else if(controllerClass == DeleteTourPageController.class){
+            return new DeleteTourPageController();
         }
         return null;
     }

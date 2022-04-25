@@ -62,7 +62,7 @@
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY">
+                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#deleteTourOnButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/delete.png" />
