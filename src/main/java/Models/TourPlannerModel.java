@@ -24,7 +24,7 @@ public class TourPlannerModel {
             FXCollections.observableArrayList();
     private IBusinessLayer business;
 
-    public  TourPlannerModel () {
+    private  TourPlannerModel () {
         // The constructor is private, to prevent other objects from using the new operator within the Singleton.
         //Check if Instance already exists.
 
