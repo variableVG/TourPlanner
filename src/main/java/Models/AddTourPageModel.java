@@ -38,7 +38,7 @@ public class AddTourPageModel {
         );
         // tourPlannerModel.addTour(newTour);
         businessLayer.addTour(newTour);
-
+        TourPlannerModel.getInstance().addTour(newTour);
     }
 
 }
