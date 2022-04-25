@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TourPlannerApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         ControllerFactory factory = new ControllerFactory();//maybe as class variable
@@ -53,6 +54,18 @@ public class TourPlannerApplication extends Application {
         stage.show();
     }
 
+    public void deleteRoute(Stage stage) throws IOException {
+        ControllerFactory factory = new ControllerFactory();//maybe as class variable
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "delete-tour-page.fxml");
+        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 300,200);
+        stage.setTitle("Delete Tour");
+        stage.setX(600);
+        stage.setY(150);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     private FXMLLoader getFxmlLoader(ControllerFactory factory, String fxmlFile ) {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(
@@ -75,16 +88,4 @@ public class TourPlannerApplication extends Application {
         launch();
         DatabaseConnection.getInstance().close();
     }
-
-    /*public void deleteRoute(Stage stage) {
-        ControllerFactory factory = new ControllerFactory();//maybe as class variable
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "delete-tour-page.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 200,300);
-        stage.setTitle("Delete Tour");
-        stage.setX(600);
-        stage.setY(150);
-        stage.setScene(scene);
-        stage.show();
-    }*/
 }

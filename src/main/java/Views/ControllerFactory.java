@@ -37,9 +37,9 @@ public class ControllerFactory {
             return new RouteTourTabController();
         }else if(controllerClass == LogTourTabController.class){
             return new LogTourTabController();
-        }/*else if(controllerClass == DeleteTourPageController.class){
+        }else if(controllerClass == DeleteTourPageController.class){
             return new DeleteTourPageController();
-        }*/
+        }
         return null;
     }
 }

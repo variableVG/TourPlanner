@@ -81,9 +81,9 @@ public class TourPlannerController  {
         }*/
     }
 
-    public void deleteTourOnButtonClick(ActionEvent event) {
-        /*Stage stage = new Stage();
-        tpa.deleteRoute(stage);*/
+    public void deleteTourOnButtonClick(ActionEvent event) throws IOException{
+        Stage stage = new Stage();
+        tpa.deleteRoute(stage);
     }
 
     /*@Override
