@@ -6,8 +6,10 @@ import java.sql.*;
 public class DatabaseConnection implements Closeable {
     private static DatabaseConnection instance;
     private Connection connection;
+    private DbConfig dbConfig;
 
     public DatabaseConnection(){
+        dbConfig = new DbConfig();
         try {
             Class.forName("org.postgresql.Driver");
         }catch (ClassNotFoundException e){
@@ -17,11 +19,11 @@ public class DatabaseConnection implements Closeable {
     }
 
     public Connection connect(String database) throws SQLException{
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + database, "postgres", "");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + database, dbConfig.getUser(), dbConfig.getPassword());
     }
 
     public Connection connect() throws SQLException{
-        return connect("tourplanner");
+        return connect(dbConfig.getDatabase());
     }
 
     public Connection getConnection(){
