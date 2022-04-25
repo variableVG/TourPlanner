@@ -5,6 +5,8 @@ import DataAccessLayer.Database;
 import DataAccessLayer.IDataAccessLayer;
 import Models.Tour;
 
+import java.util.List;
+
 public class BusinessLayer implements IBusinessLayer {
 
     IDataAccessLayer dataAccessLayer = null;
@@ -20,7 +22,7 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void getAllTours() {
-
+    public List<Tour> getAllTours() {
+        return dataAccessLayer.getTours();
     }
 }

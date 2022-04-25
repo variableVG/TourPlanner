@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TourPlannerModel {
 
@@ -14,7 +15,7 @@ public class TourPlannerModel {
     // the tour planner model.
 
     private static TourPlannerModel tourPlannerModel = null;
-    public BusinessLayer businessLayer = new BusinessLayer();
+    //public BusinessLayer businessLayer = new BusinessLayer();
 
     ////////////////////////////////////////////////
     // In this part we should connect with the DB
@@ -22,7 +23,7 @@ public class TourPlannerModel {
             FXCollections.observableArrayList();
     ObservableList<String> tourNames =
             FXCollections.observableArrayList();
-    private IBusinessLayer business;
+    private IBusinessLayer business = new BusinessLayer();
 
     private  TourPlannerModel () {
         // The constructor is private, to prevent other objects from using the new operator within the Singleton.
@@ -37,7 +38,16 @@ public class TourPlannerModel {
 
         business = new BusinessLayer();*/
         //business.getAllTours();
+        getAllTours();
 
+    }
+
+    private void getAllTours(){
+        List<Tour> toursDb = business.getAllTours();
+        for(Tour t: toursDb){
+            tours.add(t);
+            tourNames.add(t.getName().getValue());
+        }
     }
 
     public static synchronized TourPlannerModel getInstance() {

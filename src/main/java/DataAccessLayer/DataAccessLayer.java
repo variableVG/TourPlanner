@@ -6,10 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataAccessLayer implements IDataAccessLayer {
     //TODO thread safe
 
+    //private Database database;
     private static DataAccessLayer dataAccessLayer = null;
 
     private DataAccessLayer() {
@@ -42,7 +44,6 @@ public class DataAccessLayer implements IDataAccessLayer {
         if(dbTour == null) {
             //.get() is used because newTour.getName() is type StringProperty, we need to cast to string.
             Database.addTour(newTour);
-
         }
         else {
             //throw exception: THe tour already exist.
@@ -51,5 +52,8 @@ public class DataAccessLayer implements IDataAccessLayer {
 
     }
 
-
+    @Override
+    public List<Tour> getTours() {
+        return Database.getTours();
+    }
 }

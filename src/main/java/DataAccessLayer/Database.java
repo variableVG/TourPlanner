@@ -20,7 +20,7 @@ public class Database {
 
         try {
             DatabaseConnection.getInstance().executeSql("""
-                        CREATE TABLE IF NOT EXISTS Tour (
+                        CREATE TABLE IF NOT EXISTS tour (
                         name VARCHAR(50) NOT NULL PRIMARY KEY,
                         description VARCHAR(50),
                         origin VARCHAR(50),
@@ -98,6 +98,32 @@ public class Database {
 
     }
 
+    public static List<Tour> getTours(){
+        List<Tour> tours = new ArrayList<>();
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT *
+                FROM tour
+                """ )
+        ) {
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                tours.add(
+                        new Tour(
+                            resultSet.getString(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6),
+                            resultSet.getString(7)
+                        )
+                );
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return tours;
+    }
 
 }
 /*
