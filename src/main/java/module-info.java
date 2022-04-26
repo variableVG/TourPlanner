@@ -7,6 +7,8 @@ module main.tourplanner {
     requires org.kordamp.bootstrapfx.core;
     requires lombok;
     requires java.sql;
+    requires java.desktop;
+    requires java.net.http;
 
     opens Views to javafx.fxml;
     exports Views;

@@ -61,14 +61,18 @@ public class DatabaseConnection implements Closeable {
     }
 
     public void close() {
+
         if(connection != null){
             try {
+                System.out.println("I am closing");
                 connection.close();
+
             }catch (SQLException throwables){
                 throwables.printStackTrace();
             }
             connection = null;
         }
+
     }
 
     public static DatabaseConnection getInstance(){

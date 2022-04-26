@@ -25,4 +25,6 @@ public class BusinessLayer implements IBusinessLayer {
     public List<Tour> getAllTours() {
         return dataAccessLayer.getTours();
     }
+
+
 }
