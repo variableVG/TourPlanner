@@ -9,7 +9,9 @@ module main.tourplanner {
     requires java.sql;
     requires java.desktop;
     requires java.net.http;
-    requires jackson.core;
+    //requires jackson.core;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
 
     opens Views to javafx.fxml;
     exports Views;

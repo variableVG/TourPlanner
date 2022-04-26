@@ -1,12 +1,18 @@
 package Models;
 
 import Map.ApiMap;
+import Map.MapRequest;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.concurrent.ExecutionException;
 
 public class RouterTourTabModel {
 
-    ApiMap map;
+    MapRequest map;
 
-    public RouterTourTabModel() {
-        map = new ApiMap();
+    public RouterTourTabModel() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+        map = new MapRequest();
+        map.getMap();
     }
 }
