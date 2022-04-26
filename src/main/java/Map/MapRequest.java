@@ -33,9 +33,15 @@ public class MapRequest {
 
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
-    public CompletableFuture<ApiMap> getMap() throws IOException, URISyntaxException, InterruptedException, ExecutionException {
+    public ApiMap getMap() throws IOException, URISyntaxException, InterruptedException, ExecutionException {
         CompletableFuture<ApiMap> yieldFact = getStaticMap();
-        return yieldFact;
+        System.out.println("Waiting for picture");
+        while(!yieldFact.isDone()) {
+            System.out.print(".");
+            Thread.sleep(250);
+        }
+        System.out.println("picture received");
+        return yieldFact.get();
     }
 
     private static CompletableFuture<ApiMap> getStaticMap() throws URISyntaxException {
