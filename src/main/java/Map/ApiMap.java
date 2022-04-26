@@ -1,5 +1,7 @@
 package Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,7 +11,7 @@ import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class Map {
+public class ApiMap {
     // https://github.com/hoereth/google-static-map-creator
     // Username: TourPlanner_3
     // Application: TourPlanner
@@ -22,16 +24,16 @@ public class Map {
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
     public static void getMap() throws IOException, URISyntaxException, InterruptedException, ExecutionException {
-        CompletableFuture<Map> yieldFact = getStaticMap();
+        CompletableFuture<ApiMap> yieldFact = getStaticMap();
         System.out.println("Waiting for fact");
         while(!yieldFact.isDone()) {
             System.out.print(".");
             Thread.sleep(250);
         }
-        System.out.println("Fact received :" + yieldFact.get().getValue());
+
     }
 
-    private static CompletableFuture<Map> getStaticMap() throws URISyntaxException {
+    private static CompletableFuture<ApiMap> getStaticMap() throws URISyntaxException {
         String url = HTTPS_API_MAP;
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(new URI(url)).build();
@@ -39,12 +41,34 @@ public class Map {
                 .thenApply(
                         stringHttpResponse -> {
                             try {
-                                simulateLatency();
                                 return parseResponse(stringHttpResponse.body());
-                            } catch (JsonProcessingException | InterruptedException e) {
+                            } catch (JsonProcessingException e) {
                                 e.printStackTrace();
                             }
                             return null;
                         });
+    }
+
+    private static ApiMap parseResponse(String toParse) throws JsonProcessingException {
+        /*Map response;
+        var objectMapper = new ObjectMapper();
+        objectMapper.addHandler(new DeserializationProblemHandler() {
+            @Override
+            public boolean handleUnknownProperty(
+                    DeserializationContext ctxt,
+                    JsonParser p,
+                    JsonDeserializer<?> deserializer,
+                    Object beanOrClass,
+                    String propertyName) throws IOException {
+                if(beanOrClass.getClass().equals(ChuckNorrisFact.class)) {
+                    p.skipChildren();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        return objectMapper.readValue(toParse, ChuckNorrisFact.class);*/
+        return null;
     }
 }
