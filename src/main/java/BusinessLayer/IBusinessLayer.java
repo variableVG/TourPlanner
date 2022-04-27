@@ -8,4 +8,6 @@ public interface IBusinessLayer {
     void addTour(Tour tourName);
 
     List<Tour> getAllTours();
+
+    void deleteTour(String tourName);
 }

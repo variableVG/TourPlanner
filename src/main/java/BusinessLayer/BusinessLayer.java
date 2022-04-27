@@ -26,5 +26,8 @@ public class BusinessLayer implements IBusinessLayer {
         return dataAccessLayer.getTours();
     }
 
-
+    @Override
+    public void deleteTour(String tourName) {
+        dataAccessLayer.deleteTour(tourName);
+    }
 }
