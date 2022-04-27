@@ -63,6 +63,7 @@ public class TourPlannerApplication extends Application {
         stage.setX(600);
         stage.setY(150);
         stage.setScene(scene);
+
         stage.show();
     }
 
@@ -88,4 +89,6 @@ public class TourPlannerApplication extends Application {
         launch();
         DatabaseConnection.getInstance().close();
     }
+
+
 }

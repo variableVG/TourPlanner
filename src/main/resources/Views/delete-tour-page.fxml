@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.DeleteTourPageController">
 
-      <Button fx:id="confirmDeleteButton" layoutX="64.0" layoutY="114.0" mnemonicParsing="false">Delete</Button>
+      <Button fx:id="confirmDeleteButton" layoutX="64.0" layoutY="114.0" mnemonicParsing="false" onAction="#onDeleteButtonClick">Delete</Button>
       <Button fx:id="cancelButton" layoutX="186.0" layoutY="114.0" mnemonicParsing="false" onAction="#onCancelButtonClick">Cancel</Button>
       <Label layoutX="41.0" layoutY="45.0" text="Are you sure, you want to delete this Tour?" />
 
