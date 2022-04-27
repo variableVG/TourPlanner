@@ -2,7 +2,9 @@ package Map;
 ;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -30,10 +32,14 @@ public class ApiMap {
     // Consumer Secret: hAY2hNZvov7m7XYW
 
     private String value;
-    BufferedImage mapImage;
+    BufferedImage bufferedImageMap;
+    InputStream inputStream;
 
     public ApiMap(BufferedImage map) {
-        this.mapImage = map;
+
+        this.bufferedImageMap = map;
+        System.out.println("In the ApiMap constructor");
+        System.out.println(map);
     }
 
 

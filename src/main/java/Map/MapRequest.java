@@ -11,8 +11,10 @@ import javafx.scene.effect.ImageInput;
 import org.w3c.dom.ls.LSOutput;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -21,6 +23,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
@@ -33,22 +36,16 @@ public class MapRequest {
 
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
-    public ApiMap getMap() throws IOException, URISyntaxException, InterruptedException, ExecutionException {
+    public CompletableFuture<ApiMap>  getMap() throws IOException, URISyntaxException, InterruptedException, ExecutionException {
         CompletableFuture<ApiMap> yieldFact = getStaticMap();
-        System.out.println("Waiting for picture");
-        while(!yieldFact.isDone()) {
-            System.out.print(".");
-            Thread.sleep(250);
-        }
-        System.out.println("picture received");
-        return yieldFact.get();
+        return yieldFact;
     }
 
     private static CompletableFuture<ApiMap> getStaticMap() throws URISyntaxException {
         String url = HTTPS_API_MAP;
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(new URI(url)).build();
-        return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
+        return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofByteArray())
                 .thenApply(
                         stringHttpResponse -> {
                             try {
@@ -61,29 +58,29 @@ public class MapRequest {
                                         return parseResponseImage(stringHttpResponse.body());
                                     }
                                     else {
-                                        return parseResponseJSON(stringHttpResponse.body());
+                                        //return parseResponseJSON(stringHttpResponse.body().toString());
                                     }
                                 }
 
-                            } catch (JsonProcessingException e) {
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             return null;
                         });
     }
 
-    private static ApiMap parseResponseImage(String httpBodyResponse) {
-        try {
-            // I convert the response in a image. To do so, the read() function just take a file or Stream, so
-            // I have to convert first the httpBodyResponse in a stream.
-            InputStream inputStream = new ByteArrayInputStream(httpBodyResponse.getBytes());
-            BufferedImage map = ImageIO.read(inputStream);
-            return new ApiMap(map);
-
-
-        } catch (IOException e) {
-        }
-        return null;
+    private static ApiMap parseResponseImage(byte[] httpBodyResponse) throws IOException {
+        // I convert the response in a image. To do so, the read() function just take a file or Stream, so
+        // I have to convert first the httpBodyResponse in a stream.
+        System.out.println("I am in ParseResponseImage and httpBodyResponse is ");
+        //System.out.println(httpBodyResponse);
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
+        System.out.println("the input stream is");
+        System.out.println(inputStream);
+        BufferedImage map = ImageIO.read(inputStream);
+        System.out.println("and the bufferedImage is ");
+        System.out.println(map);
+        return new ApiMap(map);
     }
 
     private static ApiMap parseResponseJSON(String toParse) throws JsonProcessingException {
