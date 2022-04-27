@@ -10,9 +10,11 @@ import java.io.IOException;
 public class DeleteTourPageController {
 
     @FXML public Button cancelButton;
-    //@FXML public Button confirmDeleteButton;
+    @FXML public Button confirmDeleteButton;
+
 
     public DeleteTourPageController() throws IOException {
+
     }
 
     public void onCancelButtonClick(ActionEvent event) {

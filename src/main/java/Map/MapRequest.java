@@ -72,14 +72,8 @@ public class MapRequest {
     private static ApiMap parseResponseImage(byte[] httpBodyResponse) throws IOException {
         // I convert the response in a image. To do so, the read() function just take a file or Stream, so
         // I have to convert first the httpBodyResponse in a stream.
-        System.out.println("I am in ParseResponseImage and httpBodyResponse is ");
-        //System.out.println(httpBodyResponse);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
-        System.out.println("the input stream is");
-        System.out.println(inputStream);
         BufferedImage map = ImageIO.read(inputStream);
-        System.out.println("and the bufferedImage is ");
-        System.out.println(map);
         return new ApiMap(map);
     }
 

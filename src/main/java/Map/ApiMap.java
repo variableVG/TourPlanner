@@ -33,13 +33,9 @@ public class ApiMap {
 
     private String value;
     BufferedImage bufferedImageMap;
-    InputStream inputStream;
 
     public ApiMap(BufferedImage map) {
-
         this.bufferedImageMap = map;
-        System.out.println("In the ApiMap constructor");
-        System.out.println(map);
     }
 
 

@@ -35,9 +35,7 @@ public class RouteTourTabController {
 
         completableFutureApiMap.thenApply(
                 futureApiMap -> {
-                    System.out.println("I am in the future");
                     BufferedImage mapBufferedImage = futureApiMap.getBufferedImageMap();
-                    System.out.println(mapBufferedImage);
                     Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
                     // Source: https://stackoverflow.com/questions/30970005/bufferedimage-to-javafx-image
                     this.apiMapImageView.setImage(mapImage);

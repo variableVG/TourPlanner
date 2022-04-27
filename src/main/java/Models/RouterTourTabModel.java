@@ -38,25 +38,9 @@ public class RouterTourTabModel {
         //this.setInitialMapImage();
         mapRequest = new MapRequest();
         completableFutureApiMap =  mapRequest.getMap();
-        System.out.println("In the model the completable FutureApiMap is ");
-        System.out.println(completableFutureApiMap);
 
     }
 
-    private void setInitialMapImage() throws IOException {
-        //Ge the file to read
-
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File("C:\\programming\\swen2\\TourPlanner\\src\\main\\java\\Models\\Blank.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mapImage = SwingFXUtils.toFXImage(img, null);
-
-        //propertyApiMap.setValue(mapImage);
-
-    }
 
 
 }
