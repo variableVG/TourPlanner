@@ -10,4 +10,6 @@ public interface IDataAccessLayer {
     void addTour(Tour newTour);
 
     List<Tour> getTours();
+
+    void deleteTour(String tourName);
 }

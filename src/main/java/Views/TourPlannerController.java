@@ -21,6 +21,8 @@ public class TourPlannerController  {
     public ListView routeList;
     @FXML
     private DescriptionTourTabController descriptionTourTabController;
+    @FXML
+    private DeleteTourPageController deleteTourPageController;
     //durch @FXML wird hier das DescController Objekt verwendet, dass ursprünglich beim
     //"starten" in TourApplication erzeugt wird -> sonst wird ein neues Object erzeugt und macht probleme
 
@@ -49,13 +51,15 @@ public class TourPlannerController  {
                 System.out.println("Tourname is " + tourName);
                 descriptionTourTabController.updateTourTab(model.getTourByName(tourName));
 
+                //deleteTourPageController.updateDeleteTourname(model.getTourByName(tourName));
+
             }
         });
 
     }
 
 
-    @FXML
+    /*@FXML
     private Label testTextObjectPlaceholder;
 
     public void onRouteButtonClick(ActionEvent actionEvent) {
@@ -68,7 +72,7 @@ public class TourPlannerController  {
 
     public void onLogsButtonClick(ActionEvent actionEvent) {
         testTextObjectPlaceholder.setText("here you can see your logs and logs of other users, Yesssa! (in a table)\n\tdate:\n\ttime:\n\tdistance:");
-    }
+    }*/
 
     public void addTourOnButtonClick(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -82,6 +86,8 @@ public class TourPlannerController  {
     }
 
     public void deleteTourOnButtonClick(ActionEvent event) throws IOException{
+        //einfacher ??? das tabTourname verwenden als referenz auf die zu deletende route
+
         Stage stage = new Stage();
         tpa.deleteRoute(stage);
     }

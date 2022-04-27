@@ -125,6 +125,22 @@ public class Database {
         return tours;
     }
 
+    public static void deleteTour(String tourName) {
+        //return type boolean -> delete succ || err ?
+        //parameter of type Tour? more specific ?
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                DELETE 
+                FROM tour 
+                WHERE name=?;
+                """ )
+        ) {
+            statement.setString(1, tourName);
+            statement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }
 /*
 package at.fhtw.bif3vz.swe.mtcg.if19b101.database;
