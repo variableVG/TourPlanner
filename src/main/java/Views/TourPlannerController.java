@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
@@ -87,9 +88,21 @@ public class TourPlannerController  {
     }
 
     public void deleteTourOnButtonClick(ActionEvent event) throws IOException{
+        String tourName = tabTourname.getText();
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        /*
+        a.setTitle("Do you want to delete Tour" + tourName + "?");
 
-        Stage stage = new Stage();
-        tpa.deleteRoute(stage);
+        a.show();*/
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                System.out.println("We can delete from here");
+                model.deleteTour(tourName);
+            }
+        });
+        //Stage stage = new Stage();
+        //tpa.deleteRoute(stage);
     }
 
     /*@Override

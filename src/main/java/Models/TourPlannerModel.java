@@ -100,6 +100,6 @@ public class TourPlannerModel {
     }
 
 
-
-
+    public void deleteTour(String tourName) {
+    }
 }
