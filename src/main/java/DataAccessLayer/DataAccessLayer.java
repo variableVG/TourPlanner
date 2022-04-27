@@ -13,6 +13,8 @@ public class DataAccessLayer implements IDataAccessLayer {
 
     //private Database database;
     private static DataAccessLayer dataAccessLayer = null;
+    //
+    private static Object mutex = new Object();
 
     private DataAccessLayer() {
         Database.initDb();
@@ -31,7 +33,12 @@ public class DataAccessLayer implements IDataAccessLayer {
          * if they want to run the function.
          * */
         if (dataAccessLayer == null) {
-            dataAccessLayer = new DataAccessLayer();
+            synchronized (mutex) {
+
+                if (dataAccessLayer == null)
+                    dataAccessLayer = new DataAccessLayer();
+            }
+
         }
         return dataAccessLayer;
     }
