@@ -89,20 +89,16 @@ public class TourPlannerController  {
 
     public void deleteTourOnButtonClick(ActionEvent event) throws IOException{
         String tourName = tabTourname.getText();
+        //Source: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html
         Alert a = new Alert(Alert.AlertType.NONE);
         a.setAlertType(Alert.AlertType.CONFIRMATION);
-        /*
-        a.setTitle("Do you want to delete Tour" + tourName + "?");
+        a.setHeaderText("Do you want to delete " +  tourName + "?");
 
-        a.show();*/
         a.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                System.out.println("We can delete from here");
                 model.deleteTour(tourName);
             }
         });
-        //Stage stage = new Stage();
-        //tpa.deleteRoute(stage);
     }
 
     /*@Override
