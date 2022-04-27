@@ -87,7 +87,6 @@ public class TourPlannerController  {
     }
 
     public void deleteTourOnButtonClick(ActionEvent event) throws IOException{
-        //einfacher ??? das tabTourname verwenden als referenz auf die zu deletende route
 
         Stage stage = new Stage();
         tpa.deleteRoute(stage);
