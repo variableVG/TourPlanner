@@ -44,6 +44,7 @@ public class TourPlannerController  {
 
         this.routeList.setItems(model.getTourNames());
         // this.tabTourname.setName
+        //option.getChildre().clear() use a cell factory
 
         this.routeList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -93,7 +94,6 @@ public class TourPlannerController  {
         Alert a = new Alert(Alert.AlertType.NONE);
         a.setAlertType(Alert.AlertType.CONFIRMATION);
         a.setHeaderText("Do you want to delete " +  tourName + "?");
-
         a.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 model.deleteTour(tourName);

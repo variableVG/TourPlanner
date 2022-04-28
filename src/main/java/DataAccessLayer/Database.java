@@ -11,7 +11,7 @@ public class Database {
     public static void initDb() {
         try (Connection connection = DatabaseConnection.getInstance().connect("")) {
             if(reloadDatabase()) {
-                DatabaseConnection.executeSql(connection, "DROP DATABASE tourplanner", false);
+                DatabaseConnection.executeSql(connection, "DROP DATABASE IF EXISTS tourplanner", false);
                 DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", false);
             }
         } catch (SQLException throwables) {

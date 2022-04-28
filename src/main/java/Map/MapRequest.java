@@ -55,6 +55,7 @@ public class MapRequest {
                                 List<String> contentType = stringHttpResponse.headers().map().get("content-type");
                                 for(String s : contentType) {
                                     if(s.equals("image/jpeg")) {
+                                        //TODO it is not necessary this part, we should get always the same
                                         return parseResponseImage(stringHttpResponse.body());
                                     }
                                     else {
