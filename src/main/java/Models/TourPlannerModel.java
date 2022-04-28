@@ -16,7 +16,7 @@ public class TourPlannerModel {
 
     private static TourPlannerModel tourPlannerModel = null;
     //public BusinessLayer businessLayer = new BusinessLayer();
-
+    private static Object mutex = new Object();
     ////////////////////////////////////////////////
     // In this part we should connect with the DB
     ObservableList<Tour> tours =
@@ -62,6 +62,7 @@ public class TourPlannerModel {
          * a thread enters the getInstance() function, the rest of the threads would have to wait
          * if they want to run the function.
          * */
+
         if(tourPlannerModel == null) {
             tourPlannerModel = new TourPlannerModel();
         }
