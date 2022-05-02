@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Views.EditTourPageController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <HBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" >
+        <children>
+            <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
+                <children>
+                    <VBox>
+                        <children>
+                            <Label>Tour-Name:</Label>
+                            <TextField fx:id="tourName"/>
+                        </children>
+                    </VBox>
+
+                    <VBox>
+                        <children>
+                            <Label>(From:)</Label>
+                            <TextField fx:id="origin"/><!--location/coordinates from Map?-->
+                        </children>
+                    </VBox>
+
+                    <VBox>
+                        <children>
+                            <Label>(To:)</Label>
+                            <TextField fx:id="destination"/><!--location/coordinates from Map?-->
+                        </children>
+                    </VBox>
+
+                    <VBox>
+                        <children>
+                            <Label>Transport-Type:</Label>
+                            <TextField fx:id="transportType"/><!--fixed options to choose from (walk, bike, car, ufo...)?-->
+                        </children>
+                    </VBox>
+
+                    <VBox>
+                        <children>
+                            <Label>Distance:</Label>
+                            <TextField fx:id="distance"/><!--calculated from Map from-to?-->
+                        </children>
+                    </VBox>
+
+                    <VBox>
+                        <children>
+                            <Label>Estimated-Time:</Label>
+                            <TextField fx:id="time"/><!--calculated from Map from-to?-->
+                        </children>
+                    </VBox>
+
+                    <VBox>
+                        <children>
+                            <Label>Route-Description:</Label>
+                            <TextArea fx:id="description" />
+                        </children>
+                    </VBox>
+
+                    <!--maybe use Map here to set start and endpoint like in google-maps
+                    and automatically set from, to, distance and eTime-->
+
+                    <Button fx:id="editButton" onAction="#editTourOnClick">Edit tour</Button>
+
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+
+
+</AnchorPane>

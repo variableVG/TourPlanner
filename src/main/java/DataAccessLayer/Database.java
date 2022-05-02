@@ -63,12 +63,15 @@ public class Database {
         ) {
             statement.setString(1, tourName);
             ResultSet resultSet = statement.executeQuery();
-
             if(resultSet.next() ) {
                 String name = resultSet.getString("name");
-                //TODO add the other properties to the tours --> While schleife machen
-                return new Tour(name);
-
+                String description = resultSet.getString("description");
+                String origin = resultSet.getString("origin");
+                String destination = resultSet.getString("destination");
+                String transportType = resultSet.getString("transport_type");
+                String distance = resultSet.getString("distance");
+                String time = resultSet.getString("estimated_time");
+                return new Tour(name, description, origin, destination, transportType, distance, time);
             }
 
         } catch (SQLException throwables) {

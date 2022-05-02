@@ -10,4 +10,6 @@ public interface IBusinessLayer {
     List<Tour> getAllTours();
 
     void deleteTour(String tourName);
+
+    Tour getTourByName(String tourName);
 }

@@ -55,7 +55,7 @@
                 <ToolBar>
                     <Label prefHeight="18.0" text="-tourname-" fx:id="tabTourname"/>
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY">
+                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/edit.png" />

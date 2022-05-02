@@ -39,7 +39,6 @@ public class TourPlannerController  {
 
     @FXML
     public void initialize() throws IOException {
-        System.out.println("tour names are");
         this.routeList.setItems(model.getTourNames());
         // this.tabTourname.setName
         //option.getChildre().clear() use a cell factory
@@ -49,7 +48,6 @@ public class TourPlannerController  {
             public void changed(ObservableValue observableValue, Object o, Object t1) {
                 String tourName = routeList.getSelectionModel().selectedItemProperty().getValue().toString();
                 tabTourname.setText(tourName);
-                System.out.println("Tourname is " + tourName);
                 descriptionTourTabController.updateTourTab(model.getTourByName(tourName));
 
                 //deleteTourPageController.updateDeleteTourname(model.getTourByName(tourName));
@@ -97,6 +95,16 @@ public class TourPlannerController  {
                 model.deleteTour(tourName);
             }
         });
+    }
+
+    public void editTourButtonClick(ActionEvent actionEvent) throws IOException {
+        /** When clicking the button "Edit" a new window is open and a new controller is created.
+         * To know which tour we need to edit, we pass the tourName to the new window.
+         * */
+        String tourName = tabTourname.getText();
+        Stage stage = new Stage();
+        tpa.editRouteStage(stage, tourName);
+
     }
 
     /*@Override

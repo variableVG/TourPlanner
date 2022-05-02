@@ -12,10 +12,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TourPlannerApplication extends Application {
+    ControllerFactory factory = new ControllerFactory();
 
     @Override
     public void start(Stage stage) throws IOException {
-        ControllerFactory factory = new ControllerFactory();//maybe as class variable
+        factory = new ControllerFactory();//maybe as class variable
         //String fxmlFile = "main-page.fxml";
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "main-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
@@ -29,7 +30,6 @@ public class TourPlannerApplication extends Application {
     }
 
     public void addRoute(Stage stage) throws IOException{
-        ControllerFactory factory = new ControllerFactory();//maybe as class variable
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "add-tour-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-tour-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,500);
@@ -42,7 +42,6 @@ public class TourPlannerApplication extends Application {
         stage.show();
     }
     public void addLog(Stage stage) throws IOException{
-        ControllerFactory factory = new ControllerFactory();//maybe as class variable
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "add-log-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,400);
@@ -55,18 +54,6 @@ public class TourPlannerApplication extends Application {
         stage.show();
     }
 
-    public void deleteRoute(Stage stage) throws IOException {
-        ControllerFactory factory = new ControllerFactory();//maybe as class variable
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "delete-tour-page.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300,200);
-        stage.setTitle("Delete Tour");
-        stage.setX(600);
-        stage.setY(150);
-        stage.setScene(scene);
-
-        stage.show();
-    }
 
     private FXMLLoader getFxmlLoader(ControllerFactory factory, String fxmlFile ) {
         FXMLLoader fxmlLoader =
@@ -92,4 +79,16 @@ public class TourPlannerApplication extends Application {
     }
 
 
+    public void editRouteStage(Stage stage, String tourName) throws IOException {
+        factory.setTourName(tourName);
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "editTourPage.fxml");
+        Scene scene = new Scene(fxmlLoader.load(), 500,500);
+        stage.setTitle("Edit Tour: " + tourName);
+        stage.setMinHeight(400);
+        stage.setMinWidth(400);
+        stage.setX(600);
+        stage.setY(150);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

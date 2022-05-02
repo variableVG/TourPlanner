@@ -30,4 +30,9 @@ public class BusinessLayer implements IBusinessLayer {
     public void deleteTour(String tourName) {
         dataAccessLayer.deleteTour(tourName);
     }
+
+    @Override
+    public Tour getTourByName(String tourName) {
+        return Database.getTour(tourName);
+    }
 }

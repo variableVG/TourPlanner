@@ -17,15 +17,15 @@ public class TourPlannerModel {
     private static TourPlannerModel tourPlannerModel = null;
     //public BusinessLayer businessLayer = new BusinessLayer();
     private static Object mutex = new Object();
-    ////////////////////////////////////////////////
-    // In this part we should connect with the DB
+
     private ObservableList<Tour> tours =
             FXCollections.observableArrayList();
     private ObservableList<String> tourNames =
             FXCollections.observableArrayList();
-    private IBusinessLayer business = new BusinessLayer();
+    private IBusinessLayer business;
 
     private  TourPlannerModel () {
+        business = new BusinessLayer();
         getAllTours();
     }
 
@@ -74,7 +74,6 @@ public class TourPlannerModel {
 
     public Tour getTourByName(String name) {
         Tour tour = null;
-
         for (Tour t : tours) {
             if(t.getName().getValue().equals(name)) {
                 tour = t;
@@ -88,7 +87,6 @@ public class TourPlannerModel {
         tours.add(tour);
         tourNames.add(tour.getName().getValue());
     }
-
 
     public void deleteTour(String tourName) {
         business.deleteTour(tourName);
