@@ -92,5 +92,7 @@ public class TourPlannerModel {
 
     public void deleteTour(String tourName) {
         business.deleteTour(tourName);
+        tourNames.remove(tourName);
+        tours.remove(getTourByName(tourName));
     }
 }
