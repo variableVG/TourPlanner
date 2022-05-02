@@ -19,31 +19,19 @@ public class TourPlannerModel {
     private static Object mutex = new Object();
     ////////////////////////////////////////////////
     // In this part we should connect with the DB
-    ObservableList<Tour> tours =
+    private ObservableList<Tour> tours =
             FXCollections.observableArrayList();
-    ObservableList<String> tourNames =
+    private ObservableList<String> tourNames =
             FXCollections.observableArrayList();
     private IBusinessLayer business = new BusinessLayer();
 
     private  TourPlannerModel () {
-        // The constructor is private, to prevent other objects from using the new operator within the Singleton.
-        //Check if Instance already exists.
-
-
-
-        /*tours.add(new Tour("Tour 1"));
-        tours.add(new Tour("Tour 2"));
-        tours.add(new Tour("Tour 3"));
-        tours.add(new Tour("Tour 4"));
-
-        business = new BusinessLayer();*/
-        //business.getAllTours();
         getAllTours();
-
     }
 
     private void getAllTours(){
         List<Tour> toursDb = business.getAllTours();
+        System.out.println("tours in the model are ");
         for(Tour t: toursDb){
             tours.add(t);
             tourNames.add(t.getName().getValue());
@@ -75,9 +63,10 @@ public class TourPlannerModel {
 
     public ObservableList<String> getTourNames() {
 
-        for(Tour tour : tours) {
+       /* MISTAKE was here!
+       for(Tour tour : tours) {
             tourNames.add(tour.getName().getValue());
-        }
+        }*/
         return tourNames;
     }
 

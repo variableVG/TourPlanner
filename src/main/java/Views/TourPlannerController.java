@@ -28,20 +28,18 @@ public class TourPlannerController  {
     //durch @FXML wird hier das DescController Objekt verwendet, dass ursprünglich beim
     //"starten" in TourApplication erzeugt wird -> sonst wird ein neues Object erzeugt und macht probleme
 
-    private TourPlannerApplication tpa = new TourPlannerApplication();
-    private TourPlannerModel model = TourPlannerModel.getInstance();
+    private TourPlannerApplication tpa;
+    private TourPlannerModel model;
 
-    public TourPlannerController() throws IOException {
-
+    public TourPlannerController() {
+        this.tpa = new TourPlannerApplication();
+        this.model = TourPlannerModel.getInstance();
     }
 
-    public TourPlannerController(TourPlannerModel tourPlannerModel) {
-        this.model = tourPlannerModel;
-    }
 
     @FXML
     public void initialize() throws IOException {
-
+        System.out.println("tour names are");
         this.routeList.setItems(model.getTourNames());
         // this.tabTourname.setName
         //option.getChildre().clear() use a cell factory

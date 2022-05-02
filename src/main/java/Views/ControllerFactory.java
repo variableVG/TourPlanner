@@ -25,7 +25,7 @@ public class ControllerFactory {
 
     public Object create(Class controllerClass) throws Exception{
         if (controllerClass == TourPlannerController.class ) {
-            return new TourPlannerController(this.tourPlannerModel);
+            return new TourPlannerController();
             //return this.tourPlannerModel;
         }else if (controllerClass == AddTourPageController.class) {
             return new AddTourPageController(this.addTourPageModel);
