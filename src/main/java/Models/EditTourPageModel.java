@@ -14,4 +14,11 @@ public class EditTourPageModel {
         business = new BusinessLayer();
         tour = business.getTourByName(tourName);
     }
+
+    public void updateTour(Tour tour) {
+        business.updateTour(tour);
+    }
+
+    public void updateTour() {
+    }
 }

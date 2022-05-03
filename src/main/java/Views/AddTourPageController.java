@@ -21,8 +21,8 @@ public class AddTourPageController {
     @FXML public TextArea description;
     @FXML private AddTourPageModel model;
 
-    public AddTourPageController(AddTourPageModel addTourPageModel) {
-        this.model = addTourPageModel;
+    public AddTourPageController() {
+        model = new AddTourPageModel();
     }
 
     @FXML

@@ -11,17 +11,10 @@ public class ControllerFactory {
 
     //all models that have a controller
     private final TourPlannerModel tourPlannerModel;
-    private final AddTourPageModel addTourPageModel;
     private String tourName;
-    //private final AddLogPageModel addLogPageModel;
-    //private final DescriptionTourTabModel descriptionTourTabModel;
-    //private final RouteTourTabModel routeTourTabModel;
-    //private final LogTourTabModel logTourTabModel;
-    //private final DeleteTourPageController deleteTourPageController;
 
     public ControllerFactory() {
         this.tourPlannerModel = TourPlannerModel.getInstance();
-        this.addTourPageModel = new AddTourPageModel();
 
     }
 
@@ -29,7 +22,7 @@ public class ControllerFactory {
         if (controllerClass == TourPlannerController.class ) {
             return new TourPlannerController();
         }else if (controllerClass == AddTourPageController.class) {
-            return new AddTourPageController(this.addTourPageModel);
+            return new AddTourPageController();
         }else if (controllerClass == AddLogPageController.class) {
             return new AddLogPageController();
         }else if(controllerClass == DescriptionTourTabController.class){

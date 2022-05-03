@@ -27,9 +27,9 @@ public class EditTourPageController {
 
     @FXML
     public void initialize(){
-        tourName.setText(this.tour.getName().getValue());
-        origin.setText(this.tour.getOrigin().getValue());
-        destination.setText(this.tour.getDestination().getValue());
+        tourName.textProperty().bindBidirectional(tour.getName());
+        origin.textProperty().bindBidirectional(tour.getOrigin());
+        destination.textProperty().bindBidirectional(tour.getName());
         transportType.setText(this.tour.getTransportType().getValue());
         distance.setText(this.tour.getDistance().getValue());
         time.setText(this.tour.getTime().getValue());
@@ -38,6 +38,7 @@ public class EditTourPageController {
 
 
     public void editTourOnClick(ActionEvent actionEvent) {
+        model.updateTour();
         System.out.println("Edit Button has been clicked");
     }
 }

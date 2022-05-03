@@ -12,4 +12,6 @@ public interface IBusinessLayer {
     void deleteTour(String tourName);
 
     Tour getTourByName(String tourName);
+
+    void updateTour(Tour tour);
 }
