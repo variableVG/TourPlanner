@@ -68,4 +68,9 @@ public class DataAccessLayer implements IDataAccessLayer {
     public void deleteTour(String tourName) {
         Database.deleteTour(tourName);
     }
+
+    @Override
+    public void updateTour(Tour tour) {
+        Database.updateTour(tour);
+    }
 }

@@ -21,7 +21,8 @@ public class Database {
         try {
             DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS tour (
-                        name VARCHAR(50) NOT NULL PRIMARY KEY,
+                        id SERIAL NOT NULL PRIMARY KEY,
+                        name VARCHAR(50) NOT NULL,
                         description VARCHAR(50),
                         origin VARCHAR(50),
                         destination VARCHAR(50),
@@ -143,7 +144,32 @@ public class Database {
             throwables.printStackTrace();
         }
     }
- ////comment
+
+    public static void updateTour(Tour newTour) {
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                UPDATE tour 
+                SET name = ?, description = ?, origin = ?, destination = ?, transport_type = ?, 
+                distance = ?, estimated_time = ?
+                WHERE name = ?;
+                """ )
+        ) {
+            //statement.setString(1, newTour.getId().get());
+            statement.setString(1, newTour.getName().get());
+            statement.setString(2, newTour.getDescription().get());
+            statement.setString(3, newTour.getOrigin().get());
+            statement.setString(4, newTour.getDestination().get());
+            statement.setString(5, newTour.getTransportType().get());
+            statement.setString(6, newTour.getDistance().get());
+            statement.setString(7, newTour.getTime().get());
+            statement.setString(8, newTour.getName().get());
+            statement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
+    ////comment
 }
 /*
 package at.fhtw.bif3vz.swe.mtcg.if19b101.database;

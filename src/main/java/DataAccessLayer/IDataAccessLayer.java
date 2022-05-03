@@ -12,4 +12,6 @@ public interface IDataAccessLayer {
     List<Tour> getTours();
 
     void deleteTour(String tourName);
+
+    void updateTour(Tour tour);
 }

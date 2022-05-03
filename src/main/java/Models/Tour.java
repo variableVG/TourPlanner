@@ -2,6 +2,7 @@ package Models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,6 +11,7 @@ import lombok.*;
 
 @Data
 public class Tour {
+    private int id;
     private StringProperty name;
     private StringProperty description;
     private StringProperty origin;
@@ -47,5 +49,6 @@ public class Tour {
         this.popularity = new SimpleStringProperty("...");
         this.childFriendliness = new SimpleStringProperty("...");
     }
+
 
 }

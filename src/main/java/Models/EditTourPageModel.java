@@ -15,10 +15,9 @@ public class EditTourPageModel {
         tour = business.getTourByName(tourName);
     }
 
-    public void updateTour(Tour tour) {
+    public void updateTour() {
         business.updateTour(tour);
     }
 
-    public void updateTour() {
-    }
+
 }

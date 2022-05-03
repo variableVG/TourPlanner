@@ -4,10 +4,13 @@ import Models.EditTourPageModel;
 import Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class EditTourPageController {
+
 
     EditTourPageModel model;
     Tour tour;
@@ -18,6 +21,7 @@ public class EditTourPageController {
     @FXML TextField distance;
     @FXML TextField time;
     @FXML TextArea description;
+    @FXML public Button editButton;
 
     public EditTourPageController(String tourName) {
         this.model = new EditTourPageModel(tourName);
@@ -29,16 +33,18 @@ public class EditTourPageController {
     public void initialize(){
         tourName.textProperty().bindBidirectional(tour.getName());
         origin.textProperty().bindBidirectional(tour.getOrigin());
-        destination.textProperty().bindBidirectional(tour.getName());
-        transportType.setText(this.tour.getTransportType().getValue());
-        distance.setText(this.tour.getDistance().getValue());
-        time.setText(this.tour.getTime().getValue());
-        description.setText(this.tour.getDescription().getValue());
+        destination.textProperty().bindBidirectional(tour.getDestination());
+        transportType.textProperty().bindBidirectional(tour.getTransportType());
+        distance.textProperty().bindBidirectional(tour.getDistance());
+        time.textProperty().bindBidirectional(tour.getTime());;
+        description.textProperty().bindBidirectional(tour.getDescription());
     }
 
 
     public void editTourOnClick(ActionEvent actionEvent) {
         model.updateTour();
         System.out.println("Edit Button has been clicked");
+        Stage stage = (Stage) editButton.getScene().getWindow();
+        stage.close();
     }
 }

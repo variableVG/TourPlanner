@@ -39,7 +39,7 @@ public class DescriptionTourTabController {
     public void updateTourTab(Tour tour) {
         this.tour = tour;
         this.tourDescriptionLabel.setText(tour.getDescription().getValue());
-        this.originTourLabel.setText(tour.getDescription().getValue());
+        this.originTourLabel.setText(tour.getOrigin().getValue());
         this.destinationTourLabel.setText(tour.getDestination().getValue());
         this.tourDistanceLabel.setText(tour.getDistance().getValue());
         this.estimatedTimeLabel.setText(tour.getTime().getValue());
