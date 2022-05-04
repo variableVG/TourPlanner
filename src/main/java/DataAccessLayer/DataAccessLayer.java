@@ -78,4 +78,8 @@ public class DataAccessLayer implements IDataAccessLayer {
     public Tour getTourByName(String tourName) {
         return Database.getTour(tourName);
     }
+    @Override
+    public Tour getTourById(int id) {
+        return Database.getTourById(id);
+    }
 }

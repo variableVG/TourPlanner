@@ -20,7 +20,16 @@ public class DescriptionTourTabController {
     Tour tour;
 
     public DescriptionTourTabController() {
-        tour = new Tour("Tour X");
+        //we need this, because otherwise tour would be null when we inizialize() -> error
+        tour = new Tour(
+                "no tour selected...",
+                "no tour selected...",
+                "no tour selected...",
+                "no tour selected...",
+                "no tour selected...",
+                "no tour selected...",
+                "no tour selected..."
+        );
     }
     //description tour tab model
 

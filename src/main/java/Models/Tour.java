@@ -24,18 +24,19 @@ public class Tour {
 
     private ArrayList<Log> logs;
 
-    public Tour (String name) {
+    /*public Tour (String name) {
         this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty("some text...");//data from database
-        this.origin = new SimpleStringProperty("");
-        this.destination = new SimpleStringProperty("");
-        this.transportType = new SimpleStringProperty("");
-        this.distance = new SimpleStringProperty("");
-        this.time = new SimpleStringProperty("");
-        this.popularity = new SimpleStringProperty("");
-        this.childFriendliness = new SimpleStringProperty("");
-    }
+        this.description = new SimpleStringProperty("no tour selected...");//data from database
+        this.origin = new SimpleStringProperty("no tour selected...");
+        this.destination = new SimpleStringProperty("no tour selected...");
+        this.transportType = new SimpleStringProperty("no tour selected...");
+        this.distance = new SimpleStringProperty("no tour selected...");
+        this.time = new SimpleStringProperty("no tour selected...");
+        this.popularity = new SimpleStringProperty("no tour selected...");
+        this.childFriendliness = new SimpleStringProperty("no tour selected...");
+    }*/
 
+    //used when we create a tour but we don't know the id yet
     public Tour (String name, String description, String origin,
                  String destination, String transportType, String distance,
                  String time) {
@@ -50,5 +51,19 @@ public class Tour {
         this.childFriendliness = new SimpleStringProperty("...");
     }
 
-
+    //used when we know the id (from database)
+    public Tour (int id, String name, String description, String origin,
+                 String destination, String transportType, String distance,
+                 String time) {
+        this.id = id;
+        this.name = new SimpleStringProperty(name);
+        this.description = new SimpleStringProperty(description);//data from database
+        this.origin = new SimpleStringProperty(origin);
+        this.destination = new SimpleStringProperty(destination);
+        this.transportType = new SimpleStringProperty(transportType);
+        this.distance = new SimpleStringProperty(distance);
+        this.time = new SimpleStringProperty(time);
+        this.popularity = new SimpleStringProperty("...");
+        this.childFriendliness = new SimpleStringProperty("...");
+    }
 }

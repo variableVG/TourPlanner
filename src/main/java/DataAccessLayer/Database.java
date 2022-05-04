@@ -31,7 +31,7 @@ public class Database {
                         estimated_time VARCHAR(50)
                     )
                     """);
-            DatabaseConnection.getInstance().executeSql("""
+            /*DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS log (
                         id SERIAL PRIMARY KEY,
                         tour_name VARCHAR(50) REFERENCES tour (name) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -41,7 +41,7 @@ public class Database {
                         rating NUMERIC,
                         total_time DATE
                     )
-                    """);
+                    """);*/
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -67,6 +67,7 @@ public class Database {
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next() ) {
                 return new Tour(
+                        resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getString("description"),
                         resultSet.getString("origin"),
@@ -115,13 +116,14 @@ public class Database {
             while(resultSet.next()){
                 tours.add(
                         new Tour(
-                            resultSet.getString(1),
-                            resultSet.getString(2),
-                            resultSet.getString(3),
-                            resultSet.getString(4),
-                            resultSet.getString(5),
-                            resultSet.getString(6),
-                            resultSet.getString(7)
+                                resultSet.getInt("id"),
+                                resultSet.getString("name"),
+                                resultSet.getString("description"),
+                                resultSet.getString("origin"),
+                                resultSet.getString("destination"),
+                                resultSet.getString("transport_type"),
+                                resultSet.getString("distance"),
+                                resultSet.getString("estimated_time")
                         )
                 );
             }
@@ -170,6 +172,32 @@ public class Database {
         }
 
 
+    }
+
+    public static Tour getTourById(int id) {
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT * FROM tour WHERE id = ?;
+                """)
+        ) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next() ) {
+                return new Tour(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("description"),
+                        resultSet.getString("origin"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("transport_type"),
+                        resultSet.getString("distance"),
+                        resultSet.getString("estimated_time")
+                );
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
     ////comment
 }

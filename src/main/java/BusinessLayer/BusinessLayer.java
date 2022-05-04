@@ -35,6 +35,10 @@ public class BusinessLayer implements IBusinessLayer {
     public Tour getTourByName(String tourName) {
         return dataAccessLayer.getTourByName(tourName);
     }
+    @Override
+    public Tour getTourById(int id) {
+        return dataAccessLayer.getTourById(id);
+    }
 
     @Override
     public void updateTour(Tour tour) {
