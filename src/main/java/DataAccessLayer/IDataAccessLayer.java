@@ -14,4 +14,6 @@ public interface IDataAccessLayer {
     void deleteTour(String tourName);
 
     void updateTour(Tour tour);
+
+    Tour getTourByName(String tourName);
 }

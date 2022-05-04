@@ -33,7 +33,7 @@ public class BusinessLayer implements IBusinessLayer {
 
     @Override
     public Tour getTourByName(String tourName) {
-        return Database.getTour(tourName);
+        return dataAccessLayer.getTourByName(tourName);
     }
 
     @Override

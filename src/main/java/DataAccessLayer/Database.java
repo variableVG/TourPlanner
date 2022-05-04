@@ -21,7 +21,7 @@ public class Database {
         try {
             DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS tour (
-                        id SERIAL NOT NULL PRIMARY KEY,
+                        id SERIAL PRIMARY KEY,                        
                         name VARCHAR(50) NOT NULL,
                         description VARCHAR(50),
                         origin VARCHAR(50),
@@ -34,7 +34,7 @@ public class Database {
             DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS log (
                         id SERIAL PRIMARY KEY,
-                        tour_name VARCHAR(50) REFERENCES Tour (name) ON UPDATE CASCADE ON DELETE CASCADE,
+                        tour_name VARCHAR(50) REFERENCES tour (name) ON UPDATE CASCADE ON DELETE CASCADE,
                         date_time VARCHAR(50),
                         comment VARCHAR(50),
                         difficulty NUMERIC,
@@ -59,20 +59,22 @@ public class Database {
     }
 
     public static Tour getTour(String tourName) {
-        String sqlStatement = "SELECT * FROM tour WHERE name = ?";
-        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sqlStatement)
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT * FROM tour WHERE name = ?;
+                """)
         ) {
             statement.setString(1, tourName);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next() ) {
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                String origin = resultSet.getString("origin");
-                String destination = resultSet.getString("destination");
-                String transportType = resultSet.getString("transport_type");
-                String distance = resultSet.getString("distance");
-                String time = resultSet.getString("estimated_time");
-                return new Tour(name, description, origin, destination, transportType, distance, time);
+                return new Tour(
+                        resultSet.getString("name"),
+                        resultSet.getString("description"),
+                        resultSet.getString("origin"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("transport_type"),
+                        resultSet.getString("distance"),
+                        resultSet.getString("estimated_time")
+                );
             }
 
         } catch (SQLException throwables) {
