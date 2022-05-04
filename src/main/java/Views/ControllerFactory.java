@@ -12,6 +12,7 @@ public class ControllerFactory {
     //all models that have a controller
     private final TourPlannerModel tourPlannerModel;
     private String tourName;
+    //**private int tourId;
 
     public ControllerFactory() {
         this.tourPlannerModel = TourPlannerModel.getInstance();
@@ -36,6 +37,7 @@ public class ControllerFactory {
         }
         else if(controllerClass == EditTourPageController.class){
             return new EditTourPageController(tourName);
+            //**return new EditTourPageController(tourId);
         }
         return null;
     }

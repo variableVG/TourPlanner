@@ -85,6 +85,7 @@ public class TourPlannerController  {
     }
 
     public void deleteTourOnButtonClick(ActionEvent event) throws IOException{
+        //**we need the tourId here
         String tourName = tabTourname.getText();
         //Source: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html
         Alert a = new Alert(Alert.AlertType.NONE);
@@ -101,6 +102,7 @@ public class TourPlannerController  {
         /** When clicking the button "Edit" a new window is open and a new controller is created.
          * To know which tour we need to edit, we pass the tourName to the new window.
          * */
+        //**we need the tourId here
         String tourName = tabTourname.getText();
         Stage stage = new Stage();
         tpa.editRouteStage(stage, tourName);

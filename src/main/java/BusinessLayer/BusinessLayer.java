@@ -38,7 +38,7 @@ public class BusinessLayer implements IBusinessLayer {
     @Override
     public Tour getTourById(int id) {
         return dataAccessLayer.getTourById(id);
-    }
+    }//**
 
     @Override
     public void updateTour(Tour tour) {

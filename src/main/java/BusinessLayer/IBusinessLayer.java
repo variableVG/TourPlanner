@@ -12,7 +12,7 @@ public interface IBusinessLayer {
     void deleteTour(String tourName);
 
     Tour getTourByName(String tourName);
-    Tour getTourById(int id);
+    Tour getTourById(int id);//**
 
     void updateTour(Tour tour);
 }

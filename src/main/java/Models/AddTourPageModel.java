@@ -38,6 +38,7 @@ public class AddTourPageModel {
         );
         // tourPlannerModel.addTour(newTour);
         businessLayer.addTour(newTour);
+        //businessLayer.addTourReturnId(newTour);
         //maybe we need the id back before we add it to the ObsList,
         // so we have the id when we want to edit a tour
         TourPlannerModel.getInstance().addTour(newTour);

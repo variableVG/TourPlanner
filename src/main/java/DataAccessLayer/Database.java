@@ -174,6 +174,7 @@ public class Database {
 
     }
 
+    //**
     public static Tour getTourById(int id) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 SELECT * FROM tour WHERE id = ?;

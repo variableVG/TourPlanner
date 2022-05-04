@@ -25,6 +25,7 @@ public class EditTourPageController {
 
     public EditTourPageController(String tourName) {
         this.model = new EditTourPageModel(tourName);
+        //**this.model = new EditTourPageModel(tourId);
         this.tour = model.getTour();
 
     }

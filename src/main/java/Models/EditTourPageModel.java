@@ -13,7 +13,7 @@ public class EditTourPageModel {
     public EditTourPageModel(String tourName) {
         business = new BusinessLayer();
         tour = business.getTourByName(tourName);
-        //tour = business.getTourById(id);
+        //**tour = business.getTourById(id);
     }
 
     public void updateTour() {
