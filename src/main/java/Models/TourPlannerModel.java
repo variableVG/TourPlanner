@@ -1,6 +1,7 @@
 package Models;
 
 import BusinessLayer.*;
+import DataAccessLayer.DataAccessLayer;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,9 +51,13 @@ public class TourPlannerModel {
          * a thread enters the getInstance() function, the rest of the threads would have to wait
          * if they want to run the function.
          * */
+        if (tourPlannerModel == null) {
+            synchronized (mutex) {
 
-        if(tourPlannerModel == null) {
-            tourPlannerModel = new TourPlannerModel();
+                if (tourPlannerModel == null)
+                    tourPlannerModel = new TourPlannerModel();
+            }
+
         }
         return tourPlannerModel;
     }
