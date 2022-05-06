@@ -6,5 +6,5 @@ import lombok.Data;
 public class DbConfig {
     private String database = "tourplanner";
     private String user = "postgres";
-    private String password = "rawan";
+    private String password = "";
 }
