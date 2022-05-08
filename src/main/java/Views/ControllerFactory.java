@@ -13,7 +13,7 @@ public class ControllerFactory {
     private final TourPlannerModel tourPlannerModel;
     private String tourName;
     //**private int tourId;
-    DescriptionTourTabController descriptionTourTabController; 
+    DescriptionTourTabController descriptionTourTabController;
 
     public ControllerFactory() {
         this.tourPlannerModel = TourPlannerModel.getInstance();
@@ -26,13 +26,13 @@ public class ControllerFactory {
         }else if (controllerClass == AddTourPageController.class) {
             return new AddTourPageController();
         }else if (controllerClass == AddLogPageController.class) {
-            return new AddLogPageController();
+            return new AddLogPageController(tourPlannerModel.getTourByName(tourName));
         }else if(controllerClass == DescriptionTourTabController.class){
             return new DescriptionTourTabController(tourPlannerModel.getTourByName(tourName));
         }else if(controllerClass == RouteTourTabController.class){
             return new RouteTourTabController();
         }else if(controllerClass == LogTourTabController.class){
-            return new LogTourTabController();
+            return new LogTourTabController(tourPlannerModel.getTourByName(tourName));
         }else if(controllerClass == DeleteTourPageController.class){
             return new DeleteTourPageController();
         }

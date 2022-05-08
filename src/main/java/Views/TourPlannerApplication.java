@@ -3,6 +3,7 @@ package Views;
 import DataAccessLayer.Database;
 import DataAccessLayer.DatabaseConnection;
 import javafx.application.Application;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
@@ -41,11 +42,12 @@ public class TourPlannerApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void addLog(Stage stage) throws IOException{
+    public void addLog(Stage stage, String tourName) throws IOException{
+        factory.setTourName(tourName);
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "add-log-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,400);
-        stage.setTitle("New Log");
+        stage.setTitle("New Log for Tour " + tourName);
         stage.setMinHeight(400);
         stage.setMinWidth(400);
         stage.setX(600);

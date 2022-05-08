@@ -84,8 +84,6 @@ public class TourPlannerModel {
         for (Tour t : tours) {
             if(t.getName().getValue().equals(name)) {
                 tour = t;
-                System.out.println("Distance here is ");
-                System.out.println(t.getDistance());
             }
         }
         return tour;

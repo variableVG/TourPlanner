@@ -90,7 +90,7 @@
                         <Tab text="Logs">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <fx:include source="logTourTab.fxml" />
+                                    <fx:include source="logTourTab.fxml" fx:id="logTourTab"/>
                                 </AnchorPane>
                             </content>
                         </Tab>

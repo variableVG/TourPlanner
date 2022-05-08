@@ -18,8 +18,11 @@ public class TourPlannerController  {
     public AnchorPane descriptionTourTab;
     @FXML
     public ListView routeList;
+    @FXML public AnchorPane logTourTab;
     @FXML
     private DescriptionTourTabController descriptionTourTabController;
+    @FXML
+    private LogTourTabController logTourTabController;
     @FXML
     private DeleteTourPageController deleteTourPageController;
     //durch @FXML wird hier das DescController Objekt verwendet, dass ursprünglich beim
@@ -46,6 +49,7 @@ public class TourPlannerController  {
                 String tourName = routeList.getSelectionModel().selectedItemProperty().getValue().toString();
                 tabTourname.setText(tourName);
                 descriptionTourTabController.updateTourTab(model.getTourByName(tourName));
+                logTourTabController.updateLogs(model.getTourByName(tourName));
                 //deleteTourPageController.updateDeleteTourname(model.getTourByName(tourName));
 
             }
