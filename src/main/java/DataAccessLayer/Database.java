@@ -31,17 +31,17 @@ public class Database {
                         estimated_time VARCHAR(50)
                     )
                     """);
-            /*DatabaseConnection.getInstance().executeSql("""
+            DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS log (
                         id SERIAL PRIMARY KEY,
-                        tour_name VARCHAR(50) REFERENCES tour (name) ON UPDATE CASCADE ON DELETE CASCADE,
+                        tour_id INT REFERENCES tour (id) ON UPDATE CASCADE ON DELETE CASCADE,
                         date_time VARCHAR(50),
                         comment VARCHAR(50),
                         difficulty NUMERIC,
                         rating NUMERIC,
                         total_time DATE
                     )
-                    """);*/
+                    """);
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
