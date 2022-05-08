@@ -44,7 +44,6 @@ public class EditTourPageController {
 
     public void editTourOnClick(ActionEvent actionEvent) {
         model.updateTour();
-        System.out.println("Edit Button has been clicked");
         Stage stage = (Stage) editButton.getScene().getWindow();
         stage.close();
     }

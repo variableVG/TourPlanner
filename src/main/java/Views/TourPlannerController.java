@@ -49,7 +49,6 @@ public class TourPlannerController  {
                 String tourName = routeList.getSelectionModel().selectedItemProperty().getValue().toString();
                 tabTourname.setText(tourName);
                 descriptionTourTabController.updateTourTab(model.getTourByName(tourName));
-
                 //deleteTourPageController.updateDeleteTourname(model.getTourByName(tourName));
 
             }

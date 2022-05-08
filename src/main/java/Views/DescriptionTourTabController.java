@@ -19,9 +19,21 @@ public class DescriptionTourTabController {
     @FXML public Label childFriendlinessLabel;
     Tour tour;
 
-    public DescriptionTourTabController() {
+    public DescriptionTourTabController(Tour tour) {
         //we need this, because otherwise tour would be null when we inizialize() -> error
-        tour = new Tour(
+        if (tour == null) {
+            tour = new Tour(
+                    "no tour selected...",
+                    "no tour selected...",
+                    "no tour selected...",
+                    "no tour selected...",
+                    "no tour selected...",
+                    "no tour selected...",
+                    "no tour selected..."
+            );
+        }
+        this.tour = tour;
+        /*tour = new Tour(
                 "no tour selected...",
                 "no tour selected...",
                 "no tour selected...",
@@ -29,7 +41,7 @@ public class DescriptionTourTabController {
                 "no tour selected...",
                 "no tour selected...",
                 "no tour selected..."
-        );
+        );*/
     }
     //description tour tab model
 

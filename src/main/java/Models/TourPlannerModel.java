@@ -2,6 +2,7 @@ package Models;
 
 import BusinessLayer.*;
 import DataAccessLayer.DataAccessLayer;
+import Views.DescriptionTourTabController;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,8 +32,9 @@ public class TourPlannerModel {
     }
 
     private void getAllTours(){
+        tours.clear();
+        tourNames.clear();
         List<Tour> toursDb = business.getAllTours();
-        System.out.println("tours in the model are ");
         for(Tour t: toursDb){
             tours.add(t);
             tourNames.add(t.getName().getValue());
@@ -82,6 +84,8 @@ public class TourPlannerModel {
         for (Tour t : tours) {
             if(t.getName().getValue().equals(name)) {
                 tour = t;
+                System.out.println("Distance here is ");
+                System.out.println(t.getDistance());
             }
         }
         return tour;
@@ -98,4 +102,15 @@ public class TourPlannerModel {
         tourNames.remove(tourName);
         tours.remove(getTourByName(tourName));
     }
+
+    public void updateTour(Tour tour) {
+        for(Tour t: tours) {
+            if(t.getId() == tour.getId()) {
+                tours.remove(t);
+                tours.add(tour);
+            }
+        }
+    }
+
+
 }

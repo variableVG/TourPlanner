@@ -18,6 +18,7 @@ public class EditTourPageModel {
 
     public void updateTour() {
         business.updateTour(tour);
+        TourPlannerModel.getInstance().updateTour(tour);
     }
 
 
