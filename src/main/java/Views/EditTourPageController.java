@@ -22,11 +22,13 @@ public class EditTourPageController {
     @FXML TextField time;
     @FXML TextArea description;
     @FXML public Button editButton;
+    DescriptionTourTabController descriptionTourTabController;
 
-    public EditTourPageController(String tourName) {
+    public EditTourPageController(String tourName, DescriptionTourTabController descriptionTourTabController) {
         this.model = new EditTourPageModel(tourName);
         //**this.model = new EditTourPageModel(tourId);
         this.tour = model.getTour();
+        this.descriptionTourTabController = descriptionTourTabController;
 
     }
 
@@ -46,5 +48,6 @@ public class EditTourPageController {
         model.updateTour();
         Stage stage = (Stage) editButton.getScene().getWindow();
         stage.close();
+        descriptionTourTabController.updateTourTab(tour);
     }
 }

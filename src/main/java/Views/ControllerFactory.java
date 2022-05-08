@@ -13,6 +13,7 @@ public class ControllerFactory {
     private final TourPlannerModel tourPlannerModel;
     private String tourName;
     //**private int tourId;
+    DescriptionTourTabController descriptionTourTabController; 
 
     public ControllerFactory() {
         this.tourPlannerModel = TourPlannerModel.getInstance();
@@ -36,7 +37,7 @@ public class ControllerFactory {
             return new DeleteTourPageController();
         }
         else if(controllerClass == EditTourPageController.class){
-            return new EditTourPageController(tourName);
+            return new EditTourPageController(tourName, descriptionTourTabController);
             //**return new EditTourPageController(tourId);
         }
         return null;

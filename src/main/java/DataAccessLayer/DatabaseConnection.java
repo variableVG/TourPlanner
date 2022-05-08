@@ -9,7 +9,7 @@ import java.util.Properties;
 public class DatabaseConnection implements Closeable {
     private static DatabaseConnection instance;
     private Connection connection;
-    //private DbConfig dbConfig;
+    private DbConfig dbConfig;
     private String username;
     private String password;
     private String database;

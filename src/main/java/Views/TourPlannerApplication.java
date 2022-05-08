@@ -79,8 +79,9 @@ public class TourPlannerApplication extends Application {
     }
 
 
-    public void editRouteStage(Stage stage, String tourName) throws IOException {
+    public void editRouteStage(Stage stage, String tourName, DescriptionTourTabController descriptionTourTabController) throws IOException {
         factory.setTourName(tourName);
+        factory.setDescriptionTourTabController(descriptionTourTabController);
         //**factory.setTourId(tourId);
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "editTourPage.fxml");
         Scene scene = new Scene(fxmlLoader.load(), 500,500);

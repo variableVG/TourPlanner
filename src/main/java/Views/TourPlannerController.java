@@ -5,10 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -104,8 +101,7 @@ public class TourPlannerController  {
         //**we need the tourId here
         String tourName = tabTourname.getText();
         Stage stage = new Stage();
-        tpa.editRouteStage(stage, tourName);
-
+        tpa.editRouteStage(stage, tourName, descriptionTourTabController);
     }
 
     /*@Override
