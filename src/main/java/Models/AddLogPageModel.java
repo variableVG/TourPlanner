@@ -24,7 +24,7 @@ public class AddLogPageModel {
 
     public void addLog() {
 
-        Log log = new Log(this.date.getValue(), this.time.getValue(), this.comment.getValue(),
+        Log log = new Log(-1, this.date.getValue(), this.time.getValue(), this.comment.getValue(),
                 Integer.parseInt(this.difficulty.getValue()), this.totalTime.getValue(),
                 Integer.parseInt(this.rating.getValue()));
 

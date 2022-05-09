@@ -18,4 +18,6 @@ public interface IBusinessLayer {
     void updateTour(Tour tour);
 
     void addLog(Tour tour, Log log);
+
+    List<Log> getLogs(int tourId);
 }

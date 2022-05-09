@@ -20,4 +20,6 @@ public interface IDataAccessLayer {
     Tour getTourById(int id);//**
 
     void addLog(int id, Log log);
+
+    List<Log> getLogs(int tourId);
 }

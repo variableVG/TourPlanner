@@ -88,4 +88,10 @@ public class DataAccessLayer implements IDataAccessLayer {
     public void addLog(int id, Log log) {
         Database.addLog(id, log);
     }
+
+    @Override
+    public List<Log> getLogs(int tourId) {
+        List<Log> logs = Database.getLogs(tourId);
+        return logs;
+    }
 }

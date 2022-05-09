@@ -202,14 +202,14 @@ public class Database {
         return null;
     }
 
-    public static void addLog(int TourId, Log log) {
+    public static void addLog(int tourId, Log log) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 INSERT INTO log
                 (tour_id, date_time, comment, difficulty, rating, total_time)
                 VALUES (?, ?, ?, ?, ?, ?);
                 """ )
         ) {
-            statement.setInt(1, TourId);
+            statement.setInt(1, tourId);
             statement.setString(2, log.getDate());
             statement.setString(3, log.getComment());
             statement.setInt(4, log.getDifficulty());
@@ -220,6 +220,36 @@ public class Database {
             throwables.printStackTrace();
         }
     }
+
+    public static List<Log> getLogs(int tourId){
+        List<Log> logs = new ArrayList<>();
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT *
+                FROM log WHERE tour_id = ?
+                """ )
+        ) {
+            statement.setInt(1, tourId);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                logs.add(
+                        new Log(
+                                resultSet.getInt("id"),
+                                resultSet.getString("date_time"),
+                                resultSet.getString("date_time"),
+                                resultSet.getString("comment"),
+                                resultSet.getInt("difficulty"),
+                                resultSet.getString("total_time"),
+                                resultSet.getInt("rating")
+
+                        )
+                );
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return logs;
+    }
+
     ////comment
 }
 /*

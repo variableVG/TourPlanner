@@ -2,15 +2,21 @@ package Models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import BusinessLayer.BusinessLayer;
+import BusinessLayer.IBusinessLayer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.*;
 
 
 @Data
 public class Tour {
+    private IBusinessLayer business = new BusinessLayer();
     private int id;
     private StringProperty name;
     private StringProperty description;
@@ -22,7 +28,7 @@ public class Tour {
     private StringProperty popularity;
     private StringProperty childFriendliness;
 
-    private ArrayList<Log> logs;
+    private ObservableList<Log> logs =  FXCollections.observableArrayList();
 
     /*public Tour (String name) {
         this.name = new SimpleStringProperty(name);
@@ -65,5 +71,12 @@ public class Tour {
         this.time = new SimpleStringProperty(time);
         this.popularity = new SimpleStringProperty("...");
         this.childFriendliness = new SimpleStringProperty("...");
+        getLogsFromDb();
+    }
+
+    public void getLogsFromDb() {
+        for (Log l : business.getLogs(this.id)) {
+            logs.add(l);
+        }
     }
 }

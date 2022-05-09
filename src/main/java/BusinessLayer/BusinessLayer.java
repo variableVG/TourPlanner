@@ -52,4 +52,10 @@ public class BusinessLayer implements IBusinessLayer {
         dataAccessLayer.addLog(tour.getId(), log);
 
     }
+
+    @Override
+    public List<Log> getLogs(int tourId) {
+        List<Log> logs = dataAccessLayer.getLogs(tourId);
+        return logs;
+    }
 }

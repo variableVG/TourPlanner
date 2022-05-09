@@ -4,14 +4,16 @@ import lombok.Data;
 
 @Data
 public class Log {
-    public String date;
-    public String time;
-    public String comment;
-    public int difficulty;
-    public String totaltime;
-    public int rating;
+    private int id;
+    private String date;
+    private String time;
+    private String comment;
+    private int difficulty;
+    private String totaltime;
+    private int rating;
 
-    public Log(String date, String time, String comment, int difficulty, String totalTime, int rating){
+    public Log(int id, String date, String time, String comment, int difficulty, String totalTime, int rating){
+        this.id = id;
         this.date = date;
         this.time = time;
         this.comment = comment;
