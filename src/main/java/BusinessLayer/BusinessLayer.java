@@ -3,6 +3,7 @@ package BusinessLayer;
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.Database;
 import DataAccessLayer.IDataAccessLayer;
+import Models.Log;
 import Models.Tour;
 
 import java.util.List;
@@ -18,7 +19,6 @@ public class BusinessLayer implements IBusinessLayer {
     @Override
     public void addTour(Tour newTour) {
         dataAccessLayer.addTour(newTour);
-        System.out.println(newTour.getName());
     }
 
     @Override
@@ -43,5 +43,13 @@ public class BusinessLayer implements IBusinessLayer {
     @Override
     public void updateTour(Tour tour) {
         dataAccessLayer.updateTour(tour);
+    }
+
+    @Override
+    public void addLog(Tour tour, Log log) {
+        //TODO check if tourId exists in DB
+        //TODO check Log data
+        dataAccessLayer.addLog(tour.getId(), log);
+
     }
 }

@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import Models.Log;
 import Models.Tour;
 
 import java.sql.Connection;
@@ -199,6 +200,25 @@ public class Database {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    public static void addLog(int TourId, Log log) {
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                INSERT INTO log
+                (tour_id, date_time, comment, difficulty, rating, total_time)
+                VALUES (?, ?, ?, ?, ?, ?);
+                """ )
+        ) {
+            statement.setInt(1, TourId);
+            statement.setString(2, log.getDate());
+            statement.setString(3, log.getComment());
+            statement.setInt(4, log.getDifficulty());
+            statement.setInt(5, log.getRating());
+            statement.setString(6, log.getTotaltime());
+            statement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
     ////comment
 }

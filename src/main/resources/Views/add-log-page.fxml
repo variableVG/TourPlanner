@@ -35,6 +35,6 @@
          <TextField fx:id="rating"/>
       </VBox>
 
-      <Button>Add new log</Button>
+      <Button fx:id="addButton" onAction="#addLogOnClick">Add new log</Button>
    </VBox>
 </HBox>

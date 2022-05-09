@@ -2,4 +2,4 @@
 /target/
 .idea/
 /src/main/java/DataAccessLayer/DbConfig.java
-src/main/resources/app.properties
+/src/main/resources/app.properties

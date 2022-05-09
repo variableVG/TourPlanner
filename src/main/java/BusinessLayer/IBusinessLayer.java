@@ -1,5 +1,6 @@
 package BusinessLayer;
 
+import Models.Log;
 import Models.Tour;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface IBusinessLayer {
     Tour getTourById(int id);//**
 
     void updateTour(Tour tour);
+
+    void addLog(Tour tour, Log log);
 }

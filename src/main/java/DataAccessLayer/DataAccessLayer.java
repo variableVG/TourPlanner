@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import Models.Log;
 import Models.Tour;
 
 import java.sql.PreparedStatement;
@@ -82,4 +83,9 @@ public class DataAccessLayer implements IDataAccessLayer {
     public Tour getTourById(int id) {
         return Database.getTourById(id);
     }//**
+
+    @Override
+    public void addLog(int id, Log log) {
+        Database.addLog(id, log);
+    }
 }
