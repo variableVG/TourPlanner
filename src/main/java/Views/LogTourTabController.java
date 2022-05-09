@@ -2,6 +2,8 @@ package Views;
 
 import Models.Log;
 import Models.Tour;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,10 +40,20 @@ public class LogTourTabController {
 
     public void updateLogs(Tour tour) {
         this.tour = tour;
-
-        tableViewLogs.setItems(tour.getLogs());
-        tableViewLogs.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        tableViewLogs.getColumns().addAll(log_id, date, time, comment, difficulty, total_time, rating);
+        ObservableList<String> logs = FXCollections.observableArrayList();
+        // Source: https://www.tutorialspoint.com/how-to-add-data-to-a-tableview-in-javafx
+        for(Log l : tour.getLogs()) {
+            System.out.println("Hi?");
+            logs.add(String.valueOf(l.getId()));
+            logs.add(l.getDate());
+            logs.add(l.getTime());
+            logs.add(l.getComment());
+            logs.add(String.valueOf(l.getDifficulty()));
+            logs.add(l.getTotaltime());
+            logs.add(String.valueOf(l.getRating()));
+            tableViewLogs.setItems(logs);
+            logs.clear();
+        }
 
 
      }
