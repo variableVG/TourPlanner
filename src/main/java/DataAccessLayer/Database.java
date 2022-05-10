@@ -210,11 +210,11 @@ public class Database {
                 """ )
         ) {
             statement.setInt(1, tourId);
-            statement.setString(2, log.getDate());
-            statement.setString(3, log.getComment());
-            statement.setInt(4, log.getDifficulty());
-            statement.setInt(5, log.getRating());
-            statement.setString(6, log.getTotaltime());
+            statement.setString(2, log.getDate().getValue());
+            statement.setString(3, log.getComment().getValue());
+            statement.setInt(4, log.getDifficulty().getValue());
+            statement.setInt(5, log.getRating().getValue());
+            statement.setString(6, log.getTotaltime().getValue());
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
