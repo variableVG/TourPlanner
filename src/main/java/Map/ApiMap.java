@@ -11,6 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.Buffer;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.Data;
 
 @Data
@@ -34,9 +36,12 @@ public class ApiMap {
     private String value;
     BufferedImage bufferedImageMap;
 
-    public ApiMap(BufferedImage map) {
-        this.bufferedImageMap = map;
+
+    public ApiMap(BufferedImage bufferedImageMap) {
+        this.bufferedImageMap = bufferedImageMap;
     }
+
+
 
 
 }

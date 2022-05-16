@@ -1,43 +1,50 @@
 package Models;
 
-import Map.ApiMap;
+import BusinessLayer.BusinessLayer;
+import BusinessLayer.IBusinessLayer;
 import Map.MapRequest;
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.Property;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import lombok.Data;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import javafx.embed.swing.SwingFXUtils;
-
-import javax.imageio.ImageIO;
 
 
 @Data
 public class RouterTourTabModel {
 
-    MapRequest mapRequest;
 
-    private Property<Image> propertyApiMap;
-
-    private CompletableFuture<ApiMap> completableFutureApiMap;
-    private Image mapImage;
+    IBusinessLayer business;
+    //private CompletableFuture<ApiMap> completableFutureApiMap;
+    Tour tour;
 
     public RouterTourTabModel() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         //this.setInitialMapImage();
-        mapRequest = new MapRequest();
-        completableFutureApiMap =  mapRequest.getMap();
+        business = new BusinessLayer();
+        this.tour = null;
+
+    }
+
+    public void requestRouteAPI(Tour tour) {
+        if(tour == null) {
+            System.out.println("please select a tour");
+            return;
+        }
+        this.tour = tour;
+        if(tour.getStaticMap() == null) {
+            try {
+                System.out.println("In the model I am calling hte businnes");
+                business.getMap(tour);
+            }catch (Exception e) {
+                System.out.println("There is an exception in requestRouteAPI in RouterTourTabModel");
+                System.out.println(e);
+            }
+        }
+
 
     }
 

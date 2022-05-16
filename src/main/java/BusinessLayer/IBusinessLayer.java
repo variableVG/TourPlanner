@@ -3,7 +3,10 @@ package BusinessLayer;
 import Models.Log;
 import Models.Tour;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface IBusinessLayer {
     void addTour(Tour tourName);
@@ -20,4 +23,6 @@ public interface IBusinessLayer {
     void addLog(Tour tour, Log log);
 
     List<Log> getLogs(int tourId);
+
+    void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
 }

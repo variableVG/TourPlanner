@@ -2,6 +2,7 @@ package Views;
 
 import Map.ApiMap;
 import Models.RouterTourTabModel;
+import Models.Tour;
 import javafx.beans.property.Property;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -17,23 +18,45 @@ import java.util.concurrent.ExecutionException;
 public class RouteTourTabController {
 
     RouterTourTabModel model;
-    private final CompletableFuture<ApiMap> completableFutureApiMap;
+    Tour tour;
+   //private CompletableFuture<ApiMap> completableFutureApiMap;
 
     @FXML
     public ImageView apiMapImageView;
 
     public RouteTourTabController() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         model = new RouterTourTabModel();
-        completableFutureApiMap = model.getCompletableFutureApiMap();
+        //completableFutureApiMap = model.getCompletableFutureApiMap();
     }
 
     @FXML
     public void initialize() {
         //this.apiMapImageView.imageProperty().bindBidirectional(model.getPropertyApiMap());
         // I could not bring bindBiderectional to work
-        this.apiMapImageView.setImage(model.getMapImage());
 
-        completableFutureApiMap.thenApply(
+
+    }
+
+    public void update(Tour tour)  {
+        this.tour = tour;
+        if(tour.getStaticMap() == null) {
+            System.out.println("I am in update - RouteTourController, getStaticMap() is null");
+            model.requestRouteAPI(tour);
+        }
+        else {
+            System.out.println("static map was already in update for RouteTourController");
+            tour.getStaticMap().thenApply(
+                    futureMap -> {
+                        BufferedImage mapBufferedImage = futureMap;
+                        Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
+                        this.apiMapImageView.setImage(mapImage);
+                        return null;
+                    }
+            );
+        }
+
+
+        /*model.getCompletableFutureApiMap().thenApply(
                 futureApiMap -> {
                     BufferedImage mapBufferedImage = futureApiMap.getBufferedImageMap();
                     Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
@@ -41,8 +64,7 @@ public class RouteTourTabController {
                     this.apiMapImageView.setImage(mapImage);
                     return null;
                 }
-        );
+        );*/
 
     }
-
 }

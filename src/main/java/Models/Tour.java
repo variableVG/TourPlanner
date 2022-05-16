@@ -1,16 +1,20 @@
 package Models;
 
+import java.awt.image.BufferedImage;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import lombok.*;
 
 
@@ -27,6 +31,8 @@ public class Tour {
     private StringProperty time;
     private StringProperty popularity;
     private StringProperty childFriendliness;
+    private CompletableFuture<String> staticMapUrl;
+    private CompletableFuture<BufferedImage> staticMap;
 
     private ObservableList<Log> logs =  FXCollections.observableArrayList();
 
@@ -79,4 +85,6 @@ public class Tour {
             logs.add(l);
         }
     }
+
+
 }

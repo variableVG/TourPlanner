@@ -3,17 +3,28 @@ package BusinessLayer;
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.Database;
 import DataAccessLayer.IDataAccessLayer;
+import Map.ApiDirections;
+import Map.MapRequest;
 import Models.Log;
 import Models.Tour;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class BusinessLayer implements IBusinessLayer {
 
     IDataAccessLayer dataAccessLayer = null;
+    MapRequest mapRequest;
 
     public BusinessLayer() {
         dataAccessLayer = DataAccessLayer.getInstance();
+        mapRequest = new MapRequest();
     }
 
     @Override
@@ -57,5 +68,24 @@ public class BusinessLayer implements IBusinessLayer {
     public List<Log> getLogs(int tourId) {
         List<Log> logs = dataAccessLayer.getLogs(tourId);
         return logs;
+    }
+
+    @Override
+    public void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+        System.out.println("I am in the business");
+        CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
+        directions.thenApply(
+                futureDirections -> {
+                    try {
+                        System.out.println("Map for tour" + tour.getName() + " is about to be set");
+                        tour.setStaticMap(mapRequest.getStaticMap(futureDirections));
+                    } catch (URISyntaxException e) {
+
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+        );
+
     }
 }

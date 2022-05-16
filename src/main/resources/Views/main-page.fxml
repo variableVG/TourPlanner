@@ -76,7 +76,7 @@
                         <Tab text="Route">
                             <content>
                                 <AnchorPane>
-                                    <fx:include source="routeTourTab.fxml" />
+                                    <fx:include source="routeTourTab.fxml"  fx:id="routeTourTab"/>
                                 </AnchorPane>
                             </content>
                         </Tab>

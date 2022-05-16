@@ -19,12 +19,14 @@ public class TourPlannerController  {
     @FXML
     public ListView routeList;
     @FXML public AnchorPane logTourTab;
+    @FXML public AnchorPane routeTourTab;
     @FXML
     private DescriptionTourTabController descriptionTourTabController;
     @FXML
     private LogTourTabController logTourTabController;
     @FXML
     private DeleteTourPageController deleteTourPageController;
+    @FXML private RouteTourTabController routeTourTabController;
     //durch @FXML wird hier das DescController Objekt verwendet, dass ursprünglich beim
     //"starten" in TourApplication erzeugt wird -> sonst wird ein neues Object erzeugt und macht probleme
 
@@ -50,6 +52,7 @@ public class TourPlannerController  {
                 tabTourname.setText(tourName);
                 descriptionTourTabController.updateTourTab(model.getTourByName(tourName));
                 logTourTabController.updateLogs(model.getTourByName(tourName));
+                routeTourTabController.update(model.getTourByName(tourName));
                 //deleteTourPageController.updateDeleteTourname(model.getTourByName(tourName));
 
             }

@@ -1,34 +1,29 @@
 package Map;
 
+import Models.Tour;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import javafx.scene.effect.ImageInput;
-import org.w3c.dom.ls.LSOutput;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.json.JSONObject;
+
 
 public class MapRequest {
     static private String consumerKey = "qcJrJbF1oBJN4pGOFkbG3gNhqLHXPv06";
@@ -36,12 +31,149 @@ public class MapRequest {
 
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
-    public CompletableFuture<ApiMap>  getMap() throws IOException, URISyntaxException, InterruptedException, ExecutionException {
-        CompletableFuture<ApiMap> yieldFact = getStaticMap();
-        return yieldFact;
+    public CompletableFuture<ApiDirections> getMapDirections(Tour tour) throws IOException, URISyntaxException, InterruptedException, ExecutionException {
+        System.out.println("I am in getMapDirections in MapRequest");
+        CompletableFuture<ApiDirections> mapDirections = null;
+        if(tour != null) {
+            String request = "http://www.mapquestapi.com/directions/v2/route?key="
+                    + consumerKey
+                    + "&from="
+                    + tour.getOrigin().getValue()
+                    + "&to="
+                    + tour.getDestination().getValue();
+            mapDirections = getDirectionsAPIMap(request);
+        }
+        else {
+            System.out.println("Tour has not been selected. Please select a tour");
+            //If a tour is not set, a static picture will be sent back.
+
+        }
+
+        return mapDirections;
+
+        /*mapDirections.thenApply(
+                futureDirections -> {
+                    try {
+                        tour.setStaticMap(getStaticMap(futureDirections));
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                });*/
+
     }
 
-    private static CompletableFuture<ApiMap> getStaticMap() throws URISyntaxException {
+    private CompletableFuture<ApiDirections> getDirectionsAPIMap(String url) {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest httpRequest;
+        try {
+            httpRequest = HttpRequest.newBuilder().uri(new URI(url)).build();
+        }
+        catch(Exception e) {
+            System.out.println("Exception has occured in getDirectionsAPIMap");
+            System.out.println(e);
+            return null;
+        }
+        //send request
+        return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
+                .thenApply(
+                        stringHttpResponse -> {
+                            try {
+                                return parseResponseJSON(stringHttpResponse.body());
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        });
+
+    }
+
+    private ApiDirections parseResponseJSON(String toParse) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.addHandler(new DeserializationProblemHandler() {
+            @Override
+            public boolean handleUnknownProperty(
+                    DeserializationContext ctxt,
+                    JsonParser p,
+                    JsonDeserializer<?> deserializer,
+                    Object beanOrClass,
+                    String propertyName) throws IOException {
+                if(beanOrClass.getClass().equals(ApiMap.class)) {
+                    p.skipChildren();
+                    System.out.println("it returns true");
+                    return true;
+                } else {
+                    System.out.println("It returns false");
+                    return false;
+                }
+
+            }
+        });
+
+        JSONObject o = new JSONObject(toParse);
+        JSONObject o2 = new JSONObject(o.get("route").toString());
+        JSONObject o3 = new JSONObject(o2.get("boundingBox").toString());
+
+        String jsonString = "{ " +
+                "boundingBox : " + o2.get("boundingBox") + ", " +
+                "distance : " + o2.get("distance") + ", " +
+                "routeError : " + o2.get("routeError") + ", " +
+                "sessionId : " + o2.get("sessionId") + ", " +
+                "legs : " + o2.get("legs") + " , " +
+                "}";
+
+        // objectMapper.readValue(jsonString, ApiMap.class);
+        //I did not manage to make Object Mapper work, so I just created the class like this:
+        ApiDirections apidirections = new ApiDirections();
+        apidirections.setDistance(Float.parseFloat(o2.get("distance").toString()));
+        apidirections.setBoundingBox(o2.get("boundingBox"));
+        apidirections.setRouteError(o2.get("routeError"));
+        apidirections.setSessionId(o2.get("sessionId").toString());
+        apidirections.setLegs(o2.get("legs").toString());
+
+        return apidirections;
+    }
+
+    public CompletableFuture<BufferedImage> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
+        String url = "https://www.mapquestapi.com/staticmap/v5/map?key="
+                + consumerKey
+                + "&session="
+                + apiMap.getSessionId() +
+                "";
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest httpRequest= HttpRequest.newBuilder().uri(new URI(url)).build();
+
+        //send request
+        return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofByteArray())
+                .thenApply(
+                        stringHttpResponse -> {
+                            //System.out.println("Response for map is ");
+                            //System.out.println(stringHttpResponse.body());
+                            //ByteArrayInputStream inputStream = new ByteArrayInputStream(stringHttpResponse.body());
+                            //BufferedImage map = ImageIO.read(inputStream);
+                            try {
+                                System.out.printf("I am in getStaticMap() in MapRequest");
+                                return parseResponseImage(stringHttpResponse.body());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        });
+
+    }
+
+    private BufferedImage parseResponseImage(byte[] httpBodyResponse) throws IOException {
+        // I convert the response in a image. To do so, the read() function just take a file or Stream, so
+        // I have to convert first the httpBodyResponse in a stream.
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
+        BufferedImage map = ImageIO.read(inputStream);
+        return map;
+    }
+
+
+   /* OLD getStaticMap() function
+   private static CompletableFuture<ApiMap> getStaticMap() throws URISyntaxException {
         String url = HTTPS_API_MAP;
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(new URI(url)).build();
@@ -68,40 +200,9 @@ public class MapRequest {
                             }
                             return null;
                         });
-    }
+    }*/
 
-    private static ApiMap parseResponseImage(byte[] httpBodyResponse) throws IOException {
-        // I convert the response in a image. To do so, the read() function just take a file or Stream, so
-        // I have to convert first the httpBodyResponse in a stream.
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
-        BufferedImage map = ImageIO.read(inputStream);
-        return new ApiMap(map);
-    }
 
-    private static ApiMap parseResponseJSON(String toParse) throws JsonProcessingException {
-        ApiMap response;
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.addHandler(new DeserializationProblemHandler() {
-            @Override
-            public boolean handleUnknownProperty(
-                    DeserializationContext ctxt,
-                    JsonParser p,
-                    JsonDeserializer<?> deserializer,
-                    Object beanOrClass,
-                    String propertyName) throws IOException {
-                if(beanOrClass.getClass().equals(ApiMap.class)) {
-                    p.skipChildren();
-                    System.out.println("it returns true");
-                    return true;
-                } else {
-                    System.out.println("It returns false");
-                    return false;
-                }
 
-            }
-        });
-        System.out.println(objectMapper.readValue(toParse, ApiMap.class));
-        return null;
-        //return objectMapper.readValue(toParse, ApiMap.class);
-    }
+
 }

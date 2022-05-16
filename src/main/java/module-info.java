@@ -13,6 +13,7 @@ module main.tourplanner {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires javafx.swing;
+    requires org.json;
 
     opens Views to javafx.fxml;
     exports Views;
