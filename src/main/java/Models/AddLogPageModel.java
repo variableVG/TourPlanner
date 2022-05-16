@@ -28,9 +28,12 @@ public class AddLogPageModel {
                 Integer.parseInt(this.difficulty.getValue()), this.totalTime.getValue(),
                 Integer.parseInt(this.rating.getValue()));
 
+        this.tour.getLogs().add(log);
+        TourPlannerModel.getInstance().updateTour(tour);
+
         business.addLog(this.tour, log);
 
-        //TODO: Actualize the frontend in TourPlannerModel
-
     }
+
+
 }

@@ -47,6 +47,9 @@ public class LogTourTabController {
     }
 
     public void updateLogs(Tour tour) {
+        //SET THE NEW TOUR
+        this.tour = tour;
+
         VBox.getChildren().clear();
         String labelTitleStyle = "-fx-font-weight: bold;";
         String cssLayout = "-fx-border-color: grey;\n" +

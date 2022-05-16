@@ -40,7 +40,6 @@ public class AddLogPageController {
 
     public void addLogOnClick(ActionEvent actionEvent) {
         model.addLog();
-
         Stage stage = (Stage) addButton.getScene().getWindow();
         stage.close();
     }
