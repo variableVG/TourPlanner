@@ -6,9 +6,12 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.LogTourTabController">
     <!--<Label />-->
-    <VBox alignment="CENTER" VBox.vgrow="ALWAYS" fx:id="VBox">
 
-    </VBox>
+    <ScrollPane vbarPolicy="ALWAYS" >
+        <VBox alignment="CENTER" VBox.vgrow="ALWAYS" fx:id="VBox">
+        </VBox>
+    </ScrollPane>
+
 
     <!--
    <TableView fx:id="tableViewLogs" layoutX="30.0" layoutY="100.0" prefHeight="200.0" prefWidth="547.0">

@@ -7,11 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -43,19 +46,21 @@ public class LogTourTabController {
 
     @FXML
     public void initialize(){
-
     }
 
     public void updateLogs(Tour tour) {
         //SET THE NEW TOUR
         this.tour = tour;
 
+        //DISPLAY TOURS
         VBox.getChildren().clear();
+
         String labelTitleStyle = "-fx-font-weight: bold;";
         String cssLayout = "-fx-border-color: grey;\n" +
                 "-fx-border-insets: 5;\n" +
                 "-fx-border-width: 2;\n" +
                 "-fx-border-style: dashed;\n";
+
 
         for (Log l : tour.getLogs()) {
             VBox logBox = new VBox();
