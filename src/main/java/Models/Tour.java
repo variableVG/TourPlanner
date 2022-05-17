@@ -34,6 +34,8 @@ public class Tour {
     private CompletableFuture<String> staticMapUrl;
     private CompletableFuture<BufferedImage> staticMap;
 
+    private boolean isAPIRequested;
+
     private ObservableList<Log> logs =  FXCollections.observableArrayList();
 
     /*public Tour (String name) {
@@ -61,6 +63,7 @@ public class Tour {
         this.time = new SimpleStringProperty(time);
         this.popularity = new SimpleStringProperty("...");
         this.childFriendliness = new SimpleStringProperty("...");
+        this.isAPIRequested = false;
     }
 
     //used when we know the id (from database)
@@ -77,6 +80,7 @@ public class Tour {
         this.time = new SimpleStringProperty(time);
         this.popularity = new SimpleStringProperty("...");
         this.childFriendliness = new SimpleStringProperty("...");
+        this.isAPIRequested = false;
         getLogsFromDb();
     }
 
@@ -87,4 +91,11 @@ public class Tour {
     }
 
 
+    public boolean getIsAPIrequested() {
+        return this.isAPIRequested;
+    }
+
+    public void setIsAPIrequested(boolean b) {
+        this.isAPIRequested =b;
+    }
 }

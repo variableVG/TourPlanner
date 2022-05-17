@@ -5,6 +5,7 @@ import BusinessLayer.IBusinessLayer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lombok.Data;
@@ -24,24 +25,39 @@ public class AddTourPageModel {
     private StringProperty time = new SimpleStringProperty();
     private StringProperty description = new SimpleStringProperty();
 
-    public void addTour(){
-        Tour newTour = new Tour(
-                tourName.getValue(),
-                description.getValue(),
-                origin.getValue(),
-                destination.getValue(),
-                transportType.getValue(),
-                distance.getValue(),
-                time.getValue()
-                //popularity.getValue()
-                //childFriendliness.getValue()
-        );
-        // tourPlannerModel.addTour(newTour);
-        businessLayer.addTour(newTour);
-        //businessLayer.addTourReturnId(newTour);
-        //maybe we need the id back before we add it to the ObsList,
-        // so we have the id when we want to edit a tour
-        TourPlannerModel.getInstance().addTour(newTour);
+    public boolean addTour(){
+        if(validateFields()) {
+            Tour newTour = new Tour(
+                    tourName.getValue(),
+                    description.getValue(),
+                    origin.getValue(),
+                    destination.getValue(),
+                    transportType.getValue(),
+                    distance.getValue(),
+                    time.getValue()
+            );
+            //TODO: Check if a tour with the same name already exists
+            businessLayer.addTour(newTour);
+            TourPlannerModel.getInstance().addTour(newTour);
+            return true;
+        }
+
+        return false;
+
+    }
+
+    private boolean validateFields() {
+        /** This function validates that the inputs for "TourName", "Origin" and "Destination" are not left empty
+         * */
+        if((tourName.getValue() == null)| (origin.getValue() == null )| (destination.getValue() == null)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setContentText("The fields Tour Name, Origin and Destination cannot be empty. Please" +
+                    "fill those fields. ");
+            alert.show();
+            return false;
+        }
+        return true;
     }
 
 }

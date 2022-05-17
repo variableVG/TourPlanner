@@ -37,15 +37,10 @@ public class AddTourPageController {
     }
 
     public void addTourOnClick(ActionEvent actionEvent){
-        model.addTour();
-
-        /*
-        some valid input checking
-        */
-
         Stage stage = (Stage) addButton.getScene().getWindow();
-        stage.close();
-
+        if(model.addTour()) {
+            stage.close();
+        }
     }
 
 }

@@ -35,10 +35,11 @@ public class RouterTourTabModel {
             return;
         }
         this.tour = tour;
-        if(tour.getStaticMap() == null) {
+        if(tour.getStaticMap() == null && !tour.getIsAPIrequested()) {
             try {
                 System.out.println("In the model I am calling hte businnes");
                 business.getMap(tour);
+                tour.setIsAPIrequested(true);
             }catch (Exception e) {
                 System.out.println("There is an exception in requestRouteAPI in RouterTourTabModel");
                 System.out.println(e);

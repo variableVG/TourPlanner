@@ -6,6 +6,7 @@ import Models.Tour;
 import javafx.beans.property.Property;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -31,7 +32,7 @@ public class RouteTourTabController {
 
     @FXML
     public void initialize() {
-        //this.apiMapImageView.imageProperty().bindBidirectional(model.getPropertyApiMap());
+
         // I could not bring bindBiderectional to work
 
 
@@ -39,32 +40,27 @@ public class RouteTourTabController {
 
     public void update(Tour tour)  {
         this.tour = tour;
-        if(tour.getStaticMap() == null) {
+        if(tour == null) {
+            System.out.println("please select a Tour");
+            return;
+        }
+        if(!tour.getIsAPIrequested() && tour.getStaticMap() == null) {
             System.out.println("I am in update - RouteTourController, getStaticMap() is null");
             model.requestRouteAPI(tour);
         }
         else {
-            System.out.println("static map was already in update for RouteTourController");
             tour.getStaticMap().thenApply(
                     futureMap -> {
                         BufferedImage mapBufferedImage = futureMap;
                         Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
                         this.apiMapImageView.setImage(mapImage);
                         return null;
-                    }
-            );
+                    });
         }
 
-
-        /*model.getCompletableFutureApiMap().thenApply(
-                futureApiMap -> {
-                    BufferedImage mapBufferedImage = futureApiMap.getBufferedImageMap();
-                    Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
-                    // Source: https://stackoverflow.com/questions/30970005/bufferedimage-to-javafx-image
-                    this.apiMapImageView.setImage(mapImage);
-                    return null;
-                }
-        );*/
-
     }
+
+
+
+
 }
