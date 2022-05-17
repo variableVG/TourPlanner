@@ -34,10 +34,21 @@ public class AddTourPageModel {
                     destination.getValue(),
                     transportType.getValue(),
                     distance.getValue(),
-                    time.getValue()
-            );
-            //TODO: Check if a tour with the same name already exists
-            businessLayer.addTour(newTour);
+                    time.getValue());
+
+            //Add newTour to the DB
+            int tourId;
+            try { tourId = businessLayer.addTour(newTour);
+            }  catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validate Fields");
+                alert.setContentText(e.toString());
+                alert.show();
+                return false;
+            }
+
+            //Add tour id to tour and update the frontend
+            newTour.setId(tourId);
             TourPlannerModel.getInstance().addTour(newTour);
             return true;
         }

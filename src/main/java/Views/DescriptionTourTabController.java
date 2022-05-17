@@ -1,5 +1,6 @@
 package Views;
 
+import Models.DescriptionTourTabModel;
 import Models.Tour;
 import Models.TourPlannerModel;
 import javafx.fxml.FXML;
@@ -17,56 +18,30 @@ public class DescriptionTourTabController {
     @FXML public Label transportTypeLabel;
     @FXML public Label tourPopularityLabel;
     @FXML public Label childFriendlinessLabel;
-    Tour tour;
+
+    DescriptionTourTabModel model;
 
     public DescriptionTourTabController(Tour tour) {
         //we need this, because otherwise tour would be null when we inizialize() -> error
-        if (tour == null) {
-            tour = new Tour(
-                    "no tour selected...",
-                    "no tour selected...",
-                    "no tour selected...",
-                    "no tour selected...",
-                    "no tour selected...",
-                    "no tour selected...",
-                    "no tour selected..."
-            );
-        }
-        this.tour = tour;
-        /*tour = new Tour(
-                "no tour selected...",
-                "no tour selected...",
-                "no tour selected...",
-                "no tour selected...",
-                "no tour selected...",
-                "no tour selected...",
-                "no tour selected..."
-        );*/
+        model = new DescriptionTourTabModel();
+
     }
-    //description tour tab model
+
 
     @FXML
     public void initialize() {
-        this.tourDescriptionLabel.textProperty().bindBidirectional(tour.getDescription());
-        this.originTourLabel.textProperty().bindBidirectional(tour.getOrigin());
-        this.destinationTourLabel.textProperty().bindBidirectional(tour.getDestination());
-        this.tourDistanceLabel.textProperty().bindBidirectional(tour.getDistance());
-        this.estimatedTimeLabel.textProperty().bindBidirectional(tour.getTime());
-        this.transportTypeLabel.textProperty().bindBidirectional(tour.getTransportType());
-        this.tourPopularityLabel.textProperty().bindBidirectional(tour.getPopularity());
-        this.childFriendlinessLabel.textProperty().bindBidirectional(tour.getChildFriendliness());
+        this.tourDescriptionLabel.textProperty().bindBidirectional(model.getDescription());
+        this.originTourLabel.textProperty().bindBidirectional(model.getOrigin());
+        this.destinationTourLabel.textProperty().bindBidirectional(model.getDestination());
+        this.tourDistanceLabel.textProperty().bindBidirectional(model.getDistance());
+        this.estimatedTimeLabel.textProperty().bindBidirectional(model.getTime());
+        this.transportTypeLabel.textProperty().bindBidirectional(model.getTransportType());
+
     }
 
     public void updateTourTab(Tour tour) {
-        this.tour = tour;
-        this.tourDescriptionLabel.setText(tour.getDescription().getValue());
-        this.originTourLabel.setText(tour.getOrigin().getValue());
-        this.destinationTourLabel.setText(tour.getDestination().getValue());
-        this.tourDistanceLabel.setText(tour.getDistance().getValue());
-        this.estimatedTimeLabel.setText(tour.getTime().getValue());
-        this.transportTypeLabel.setText(tour.getTransportType().getValue());
-        this.tourPopularityLabel.setText(tour.getPopularity().getValue());
-        this.childFriendlinessLabel.setText(tour.getChildFriendliness().getValue());
+        model.updateTour(tour);
+
     }
 
 

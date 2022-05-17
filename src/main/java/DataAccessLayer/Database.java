@@ -92,13 +92,13 @@ public class Database {
                 VALUES (?, ?, ?, ?, ?, ?, ?);
                 """ )
         ) {
-            statement.setString(1, newTour.getName().get());
-            statement.setString(2, newTour.getDescription().get());
-            statement.setString(3, newTour.getOrigin().get());
-            statement.setString(4, newTour.getDestination().get());
-            statement.setString(5, newTour.getTransportType().get());
-            statement.setString(6, newTour.getDistance().get());
-            statement.setString(7, newTour.getTime().get());
+            statement.setString(1, newTour.getName());
+            statement.setString(2, newTour.getDescription());
+            statement.setString(3, newTour.getOrigin());
+            statement.setString(4, newTour.getDestination());
+            statement.setString(5, newTour.getTransportType());
+            statement.setString(6, newTour.getDistance());
+            statement.setString(7, newTour.getTime());
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -159,14 +159,14 @@ public class Database {
                 """ )
         ) {
             //statement.setString(1, newTour.getId().get());
-            statement.setString(1, newTour.getName().get());
-            statement.setString(2, newTour.getDescription().get());
-            statement.setString(3, newTour.getOrigin().get());
-            statement.setString(4, newTour.getDestination().get());
-            statement.setString(5, newTour.getTransportType().get());
-            statement.setString(6, newTour.getDistance().get());
-            statement.setString(7, newTour.getTime().get());
-            statement.setString(8, newTour.getName().get());
+            statement.setString(1, newTour.getName());
+            statement.setString(2, newTour.getDescription());
+            statement.setString(3, newTour.getOrigin());
+            statement.setString(4, newTour.getDestination());
+            statement.setString(5, newTour.getTransportType());
+            statement.setString(6, newTour.getDistance());
+            statement.setString(7, newTour.getTime());
+            statement.setString(8, newTour.getName());
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -248,6 +248,24 @@ public class Database {
             throwables.printStackTrace();
         }
         return logs;
+    }
+
+    public static int getTourIdByName(String name) {
+        int answer = -1;
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT id FROM tour WHERE name = ?;
+                """)
+        ) {
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next() ) {
+                answer = resultSet.getInt("id");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return answer;
     }
 
     ////comment

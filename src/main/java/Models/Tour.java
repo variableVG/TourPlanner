@@ -22,15 +22,15 @@ import lombok.*;
 public class Tour {
     private IBusinessLayer business = new BusinessLayer();
     private int id;
-    private StringProperty name;
-    private StringProperty description;
-    private StringProperty origin;
-    private StringProperty destination;
-    private StringProperty transportType;
-    private StringProperty distance;
-    private StringProperty time;
-    private StringProperty popularity;
-    private StringProperty childFriendliness;
+    private String name;
+    private String description;
+    private String origin;
+    private String destination;
+    private String transportType;
+    private String distance;
+    private String time;
+    private String popularity;
+    private String childFriendliness;
     private CompletableFuture<String> staticMapUrl;
     private CompletableFuture<BufferedImage> staticMap;
 
@@ -38,31 +38,17 @@ public class Tour {
 
     private ObservableList<Log> logs =  FXCollections.observableArrayList();
 
-    /*public Tour (String name) {
-        this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty("no tour selected...");//data from database
-        this.origin = new SimpleStringProperty("no tour selected...");
-        this.destination = new SimpleStringProperty("no tour selected...");
-        this.transportType = new SimpleStringProperty("no tour selected...");
-        this.distance = new SimpleStringProperty("no tour selected...");
-        this.time = new SimpleStringProperty("no tour selected...");
-        this.popularity = new SimpleStringProperty("no tour selected...");
-        this.childFriendliness = new SimpleStringProperty("no tour selected...");
-    }*/
-
     //used when we create a tour but we don't know the id yet
     public Tour (String name, String description, String origin,
                  String destination, String transportType, String distance,
                  String time) {
-        this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty(description);//data from database
-        this.origin = new SimpleStringProperty(origin);
-        this.destination = new SimpleStringProperty(destination);
-        this.transportType = new SimpleStringProperty(transportType);
-        this.distance = new SimpleStringProperty(distance);
-        this.time = new SimpleStringProperty(time);
-        this.popularity = new SimpleStringProperty("...");
-        this.childFriendliness = new SimpleStringProperty("...");
+        this.name = name;
+        this.description = description;//data from database
+        this.origin = origin;
+        this.destination = destination;
+        this.transportType = transportType;
+        this.distance = distance;
+        this.time = time;
         this.isAPIRequested = false;
     }
 
@@ -71,15 +57,13 @@ public class Tour {
                  String destination, String transportType, String distance,
                  String time) {
         this.id = id;
-        this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty(description);//data from database
-        this.origin = new SimpleStringProperty(origin);
-        this.destination = new SimpleStringProperty(destination);
-        this.transportType = new SimpleStringProperty(transportType);
-        this.distance = new SimpleStringProperty(distance);
-        this.time = new SimpleStringProperty(time);
-        this.popularity = new SimpleStringProperty("...");
-        this.childFriendliness = new SimpleStringProperty("...");
+        this.name = name;
+        this.description = description;//data from database
+        this.origin = origin;
+        this.destination = destination;
+        this.transportType = transportType;
+        this.distance = distance;
+        this.time = time;
         this.isAPIRequested = false;
         getLogsFromDb();
     }

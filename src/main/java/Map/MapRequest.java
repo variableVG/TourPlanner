@@ -38,9 +38,9 @@ public class MapRequest {
             String request = "http://www.mapquestapi.com/directions/v2/route?key="
                     + consumerKey
                     + "&from="
-                    + tour.getOrigin().getValue()
+                    + tour.getOrigin()
                     + "&to="
-                    + tour.getDestination().getValue();
+                    + tour.getDestination();
             mapDirections = getDirectionsAPIMap(request);
         }
         else {

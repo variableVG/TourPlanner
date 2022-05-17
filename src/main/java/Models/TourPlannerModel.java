@@ -37,7 +37,7 @@ public class TourPlannerModel {
         List<Tour> toursDb = business.getAllTours();
         for(Tour t: toursDb){
             tours.add(t);
-            tourNames.add(t.getName().getValue());
+            tourNames.add(t.getName());
         }
     }
 
@@ -82,7 +82,7 @@ public class TourPlannerModel {
     public Tour getTourByName(String name) {
         Tour tour = null;
         for (Tour t : tours) {
-            if(t.getName().getValue().equals(name)) {
+            if(t.getName().equals(name)) {
                 tour = t;
             }
         }
@@ -93,7 +93,7 @@ public class TourPlannerModel {
         //business.addTour(tour.getName().getValue());
         //TODO: When adding a new Tour in the tours, we need to check that the ID has been actualised.
         tours.add(tour);
-        tourNames.add(tour.getName().getValue());
+        tourNames.add(tour.getName());
     }
 
     public void deleteTour(String tourName) {

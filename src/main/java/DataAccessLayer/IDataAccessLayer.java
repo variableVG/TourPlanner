@@ -2,13 +2,12 @@ package DataAccessLayer;
 
 import Models.Log;
 import Models.Tour;
-import Models.TourPlannerModel;
 
 import java.util.List;
 
 public interface IDataAccessLayer {
 
-    void addTour(Tour newTour);
+    void addTour(Tour newTour) throws Exception;
 
     List<Tour> getTours();
 
@@ -22,4 +21,6 @@ public interface IDataAccessLayer {
     void addLog(int id, Log log);
 
     List<Log> getLogs(int tourId);
+
+    int getTourIdByName(String name) throws Exception;
 }

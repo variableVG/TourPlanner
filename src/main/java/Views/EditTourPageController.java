@@ -34,13 +34,13 @@ public class EditTourPageController {
 
     @FXML
     public void initialize(){
-        tourName.textProperty().bindBidirectional(tour.getName());
-        origin.textProperty().bindBidirectional(tour.getOrigin());
-        destination.textProperty().bindBidirectional(tour.getDestination());
-        transportType.textProperty().bindBidirectional(tour.getTransportType());
-        distance.textProperty().bindBidirectional(tour.getDistance());
-        time.textProperty().bindBidirectional(tour.getTime());;
-        description.textProperty().bindBidirectional(tour.getDescription());
+        tourName.textProperty().bindBidirectional(model.getTourName());
+        origin.textProperty().bindBidirectional(model.getOrigin());
+        destination.textProperty().bindBidirectional(model.getDestination());
+        transportType.textProperty().bindBidirectional(model.getTransportType());
+        distance.textProperty().bindBidirectional(model.getDistance());
+        time.textProperty().bindBidirectional(model.getTime());;
+        description.textProperty().bindBidirectional(model.getDescription());
     }
 
 

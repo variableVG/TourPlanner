@@ -1,16 +1,12 @@
 package BusinessLayer;
 
 import DataAccessLayer.DataAccessLayer;
-import DataAccessLayer.Database;
 import DataAccessLayer.IDataAccessLayer;
 import Map.ApiDirections;
 import Map.MapRequest;
 import Models.Log;
 import Models.Tour;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -28,8 +24,18 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void addTour(Tour newTour) {
+    public int addTour(Tour newTour) throws Exception {
+        //Check if the tour has set name, destination and origin
+        if(newTour.getName().isEmpty() | newTour.getDestination().isEmpty() | newTour.getOrigin().isEmpty()) {
+            throw new Exception("Tour Name or Destination or Origin are empty");
+        }
+
+        //Add new Tour to the database
         dataAccessLayer.addTour(newTour);
+
+        //return back the new Id so it can be assigned in the frontend
+        int id =  dataAccessLayer.getTourIdByName(newTour.getName());
+        return id;
     }
 
     @Override

@@ -3,10 +3,6 @@ package DataAccessLayer;
 import Models.Log;
 import Models.Tour;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataAccessLayer implements IDataAccessLayer {
@@ -46,18 +42,15 @@ public class DataAccessLayer implements IDataAccessLayer {
 
 
     @Override
-    public void addTour(Tour newTour) {
+    public void addTour(Tour newTour) throws Exception {
         //Check if TourName is already present:
-        Tour dbTour = Database.getTour(newTour.getName().get());
+        Tour dbTour = Database.getTour(newTour.getName());
         if(dbTour == null) {
-            //.get() is used because newTour.getName() is type StringProperty, we need to cast to string.
             Database.addTour(newTour);
         }
         else {
-            //throw exception: THe tour already exist.
-            System.out.println("The tour cannot be added because a tour with the same name is already present in the DB.");
+            throw new Exception("The tour cannot be added because a tour with the same name is already present in the DB.");
         }
-
     }
 
     @Override
@@ -93,5 +86,11 @@ public class DataAccessLayer implements IDataAccessLayer {
     public List<Log> getLogs(int tourId) {
         List<Log> logs = Database.getLogs(tourId);
         return logs;
+    }
+
+    @Override
+    public int getTourIdByName(String name) {
+        //If returns -1, it could not find the tour.
+        return Database.getTourIdByName(name);
     }
 }

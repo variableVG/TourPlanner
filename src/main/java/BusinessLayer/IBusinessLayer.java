@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface IBusinessLayer {
-    void addTour(Tour tourName);
+    int addTour(Tour tourName) throws Exception;
 
     List<Tour> getAllTours();
 
