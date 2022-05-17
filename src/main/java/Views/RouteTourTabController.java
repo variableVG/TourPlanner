@@ -44,7 +44,7 @@ public class RouteTourTabController {
             System.out.println("please select a Tour");
             return;
         }
-        if(!tour.getIsAPIrequested() && tour.getStaticMap() == null) {
+        if(tour.getStaticMap() == null) {
             System.out.println("I am in update - RouteTourController, getStaticMap() is null");
             model.requestRouteAPI(tour);
         }

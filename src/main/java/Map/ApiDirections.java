@@ -10,4 +10,6 @@ public class ApiDirections {
     String sessionId;
     Object routeError;
     String legs;
+    Object messages;
+    int statuscode;
 }

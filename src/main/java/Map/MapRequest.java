@@ -32,7 +32,6 @@ public class MapRequest {
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
     public CompletableFuture<ApiDirections> getMapDirections(Tour tour) throws IOException, URISyntaxException, InterruptedException, ExecutionException {
-        System.out.println("I am in getMapDirections in MapRequest");
         CompletableFuture<ApiDirections> mapDirections = null;
         if(tour != null) {
             String request = "http://www.mapquestapi.com/directions/v2/route?key="
@@ -46,20 +45,9 @@ public class MapRequest {
         else {
             System.out.println("Tour has not been selected. Please select a tour");
             //If a tour is not set, a static picture will be sent back.
-
         }
 
         return mapDirections;
-
-        /*mapDirections.thenApply(
-                futureDirections -> {
-                    try {
-                        tour.setStaticMap(getStaticMap(futureDirections));
-                    } catch (URISyntaxException e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                });*/
 
     }
 
@@ -78,6 +66,8 @@ public class MapRequest {
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
                 .thenApply(
                         stringHttpResponse -> {
+                            System.out.println("Directions response is ");
+                            System.out.println(stringHttpResponse.body());
                             try {
                                 return parseResponseJSON(stringHttpResponse.body());
 
@@ -114,6 +104,7 @@ public class MapRequest {
         JSONObject o = new JSONObject(toParse);
         JSONObject o2 = new JSONObject(o.get("route").toString());
         JSONObject o3 = new JSONObject(o2.get("boundingBox").toString());
+        JSONObject o4 = new JSONObject(o.get("info").toString());
 
         String jsonString = "{ " +
                 "boundingBox : " + o2.get("boundingBox") + ", " +
@@ -131,7 +122,8 @@ public class MapRequest {
         apidirections.setRouteError(o2.get("routeError"));
         apidirections.setSessionId(o2.get("sessionId").toString());
         apidirections.setLegs(o2.get("legs").toString());
-
+        apidirections.setMessages(o4.get("messages"));
+        apidirections.setStatuscode(Integer.parseInt(o4.get("statuscode").toString()));
         return apidirections;
     }
 
@@ -148,10 +140,8 @@ public class MapRequest {
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofByteArray())
                 .thenApply(
                         stringHttpResponse -> {
-                            //System.out.println("Response for map is ");
-                            //System.out.println(stringHttpResponse.body());
-                            //ByteArrayInputStream inputStream = new ByteArrayInputStream(stringHttpResponse.body());
-                            //BufferedImage map = ImageIO.read(inputStream);
+                            System.out.println("Response for map is ");
+                            System.out.println(stringHttpResponse.body().toString());
                             try {
                                 System.out.printf("I am in getStaticMap() in MapRequest");
                                 return parseResponseImage(stringHttpResponse.body());
