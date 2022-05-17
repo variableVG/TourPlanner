@@ -1,8 +1,8 @@
 package BusinessLayer;
 
+import Map.ApiMap;
 import Models.Log;
 import Models.Tour;
-import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -26,5 +26,5 @@ public interface IBusinessLayer {
 
     List<Log> getLogs(int tourId);
 
-    CompletableFuture<Image> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
+    CompletableFuture<ApiMap> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
 }

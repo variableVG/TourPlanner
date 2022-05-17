@@ -31,8 +31,8 @@ public class RouterTourTabModel {
 
     }
 
-    public CompletableFuture<Image> requestRouteAPI(Tour tour) throws Exception {
-        CompletableFuture<Image> mapImage = null;
+    public CompletableFuture<ApiMap> requestRouteAPI(Tour tour) throws Exception {
+        CompletableFuture<ApiMap> mapImage = null;
         if(tour == null) {
             throw new Exception("please select a tour");
         }
@@ -40,14 +40,12 @@ public class RouterTourTabModel {
             this.tour = tour;
         }
 
-        if(!tour.getIsAPIrequested()) {
-            try {
-                mapImage = business.getMap(tour);
-                tour.setIsAPIrequested(true);
-            }catch (Exception e) {
-                System.out.println("There is an exception in requestRouteAPI in RouterTourTabModel");
-                System.out.println(e);
-            }
+        try {
+            mapImage = business.getMap(tour);
+
+        }catch (Exception e) {
+            System.out.println("There is an exception in requestRouteAPI in RouterTourTabModel");
+            System.out.println(e);
         }
 
         return mapImage;

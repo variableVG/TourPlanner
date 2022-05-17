@@ -129,7 +129,7 @@ public class MapRequest {
         return apidirections;
     }
 
-    public CompletableFuture<Image> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
+    public CompletableFuture<ApiMap> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
         String url = "https://www.mapquestapi.com/staticmap/v5/map?key="
                 + consumerKey
                 + "&session="
@@ -145,7 +145,6 @@ public class MapRequest {
                             System.out.println("Response for map is ");
                             System.out.println(stringHttpResponse.body().toString());
                             try {
-                                System.out.printf("I am in getStaticMap() in MapRequest");
                                 return parseResponseImage(stringHttpResponse.body());
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -155,13 +154,12 @@ public class MapRequest {
 
     }
 
-    private Image parseResponseImage(byte[] httpBodyResponse) throws IOException {
+    private ApiMap parseResponseImage(byte[] httpBodyResponse) throws IOException {
         // I convert the response in a image. To do so, the read() function just take a file or Stream, so
         // I have to convert first the httpBodyResponse in a stream.
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
         BufferedImage map = ImageIO.read(inputStream);
-        Image mapImage = SwingFXUtils.toFXImage(map, null);
-        return mapImage;
+        return new ApiMap(map);
     }
 
 

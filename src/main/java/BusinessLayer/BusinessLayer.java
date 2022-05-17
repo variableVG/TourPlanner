@@ -3,16 +3,17 @@ package BusinessLayer;
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.IDataAccessLayer;
 import Map.ApiDirections;
+import Map.ApiMap;
 import Map.MapRequest;
 import Models.Log;
 import Models.Tour;
-import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class BusinessLayer implements IBusinessLayer {
 
@@ -86,29 +87,23 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public CompletableFuture<Image> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public CompletableFuture<ApiMap> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
+        AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
         directions.thenApply(
                 futureDirections -> {
                     try {
-                        //TODO Check if the answer to the request directions has a valid address:
-                        if (futureDirections.getStatuscode() != 0) {
-                            try {
-                                throw new Exception("Directions could not be sent " + futureDirections.getMessages().toString());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            System.out.println("Map for tour" + tour.getName() + " is about to be set");
-                            return mapRequest.getStaticMap(futureDirections);
-                        }
-                    } catch (Exception e) {
+                        System.out.println("vor getStaticMap()");
+                        apiMap.set(mapRequest.getStaticMap(futureDirections));
+
+                    } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
-                    return null;
-                });
+                    return apiMap;
+                }
+                );
 
-            return null;
+            return apiMap.get();
         }
 
 

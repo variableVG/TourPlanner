@@ -43,16 +43,19 @@ public class RouteTourTabController {
         }
 
         if(tour.getImageMap() == null) {
-            CompletableFuture<Image> completableFutureApiMap = null;
+            CompletableFuture<ApiMap> completableFutureApiMap = new CompletableFuture<>();
             try {
                 completableFutureApiMap = model.requestRouteAPI(tour);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             completableFutureApiMap.thenApply(
                     futureImage -> {
-                        this.apiMapImageView.setImage(futureImage);
-                        tour.setImageMap(futureImage);
+                        BufferedImage mapBufferedImage = futureImage.getBufferedImageMap();
+                        Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
+                        this.apiMapImageView.setImage(mapImage);
+                        tour.setImageMap(mapImage);
                         return null;
                     }
             );
