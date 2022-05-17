@@ -31,8 +31,8 @@ public class Tour {
     private String time;
     private String popularity;
     private String childFriendliness;
-    private CompletableFuture<String> staticMapUrl;
-    private CompletableFuture<BufferedImage> staticMap;
+    private Image imageMap;
+    //private CompletableFuture<BufferedImage> futureMap;
 
     private boolean isAPIRequested;
 
@@ -82,4 +82,6 @@ public class Tour {
     public void setIsAPIrequested(boolean b) {
         this.isAPIRequested =b;
     }
+
+
 }

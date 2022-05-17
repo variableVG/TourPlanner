@@ -2,6 +2,7 @@ package Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
+import Map.ApiMap;
 import Map.MapRequest;
 import javafx.beans.property.Property;
 import javafx.embed.swing.SwingFXUtils;
@@ -11,6 +12,7 @@ import lombok.Data;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 
@@ -22,23 +24,25 @@ public class RouterTourTabModel {
     //private CompletableFuture<ApiMap> completableFutureApiMap;
     Tour tour;
 
-    public RouterTourTabModel() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public RouterTourTabModel() {
         //this.setInitialMapImage();
         business = new BusinessLayer();
         this.tour = null;
 
     }
 
-    public void requestRouteAPI(Tour tour) {
+    public CompletableFuture<Image> requestRouteAPI(Tour tour) throws Exception {
+        CompletableFuture<Image> mapImage = null;
         if(tour == null) {
-            System.out.println("please select a tour");
-            return;
+            throw new Exception("please select a tour");
         }
-        this.tour = tour;
-        if(tour.getStaticMap() == null && !tour.getIsAPIrequested()) {
+        else {
+            this.tour = tour;
+        }
+
+        if(!tour.getIsAPIrequested()) {
             try {
-                System.out.println("In the model I am calling hte businnes");
-                business.getMap(tour);
+                mapImage = business.getMap(tour);
                 tour.setIsAPIrequested(true);
             }catch (Exception e) {
                 System.out.println("There is an exception in requestRouteAPI in RouterTourTabModel");
@@ -46,6 +50,7 @@ public class RouterTourTabModel {
             }
         }
 
+        return mapImage;
 
     }
 

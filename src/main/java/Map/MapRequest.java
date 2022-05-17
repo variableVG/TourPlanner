@@ -22,6 +22,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicReference;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import org.json.JSONObject;
 
 
@@ -32,7 +34,7 @@ public class MapRequest {
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
     public CompletableFuture<ApiDirections> getMapDirections(Tour tour) throws IOException, URISyntaxException, InterruptedException, ExecutionException {
-        CompletableFuture<ApiDirections> mapDirections = null;
+        CompletableFuture<ApiDirections> mapDirections = new CompletableFuture<ApiDirections>();
         if(tour != null) {
             String request = "http://www.mapquestapi.com/directions/v2/route?key="
                     + consumerKey
@@ -127,7 +129,7 @@ public class MapRequest {
         return apidirections;
     }
 
-    public CompletableFuture<BufferedImage> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
+    public CompletableFuture<Image> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
         String url = "https://www.mapquestapi.com/staticmap/v5/map?key="
                 + consumerKey
                 + "&session="
@@ -153,12 +155,13 @@ public class MapRequest {
 
     }
 
-    private BufferedImage parseResponseImage(byte[] httpBodyResponse) throws IOException {
+    private Image parseResponseImage(byte[] httpBodyResponse) throws IOException {
         // I convert the response in a image. To do so, the read() function just take a file or Stream, so
         // I have to convert first the httpBodyResponse in a stream.
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
         BufferedImage map = ImageIO.read(inputStream);
-        return map;
+        Image mapImage = SwingFXUtils.toFXImage(map, null);
+        return mapImage;
     }
 
 

@@ -45,9 +45,11 @@ public class EditTourPageController {
 
 
     public void editTourOnClick(ActionEvent actionEvent) {
-        model.updateTour();
         Stage stage = (Stage) editButton.getScene().getWindow();
-        stage.close();
-        descriptionTourTabController.updateTourTab(tour);
+        if(model.updateTour()){
+            stage.close();
+            descriptionTourTabController.updateTourTab(tour);
+        }
+
     }
 }

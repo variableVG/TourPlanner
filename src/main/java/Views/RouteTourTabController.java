@@ -20,47 +20,47 @@ public class RouteTourTabController {
 
     RouterTourTabModel model;
     Tour tour;
-   //private CompletableFuture<ApiMap> completableFutureApiMap;
+    //private CompletableFuture<Image> completableFutureApiMap;
 
-    @FXML
-    public ImageView apiMapImageView;
+    @FXML public ImageView apiMapImageView;
 
     public RouteTourTabController() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         model = new RouterTourTabModel();
-        //completableFutureApiMap = model.getCompletableFutureApiMap();
+
     }
 
     @FXML
     public void initialize() {
-
         // I could not bring bindBiderectional to work
-
 
     }
 
-    public void update(Tour tour)  {
+    public void update(Tour tour) {
         this.tour = tour;
         if(tour == null) {
             System.out.println("please select a Tour");
             return;
         }
-        if(tour.getStaticMap() == null) {
-            System.out.println("I am in update - RouteTourController, getStaticMap() is null");
-            model.requestRouteAPI(tour);
+
+        if(tour.getImageMap() == null) {
+            CompletableFuture<Image> completableFutureApiMap = null;
+            try {
+                completableFutureApiMap = model.requestRouteAPI(tour);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            completableFutureApiMap.thenApply(
+                    futureImage -> {
+                        this.apiMapImageView.setImage(futureImage);
+                        tour.setImageMap(futureImage);
+                        return null;
+                    }
+            );
         }
         else {
-            tour.getStaticMap().thenApply(
-                    futureMap -> {
-                        BufferedImage mapBufferedImage = futureMap;
-                        Image mapImage = SwingFXUtils.toFXImage(mapBufferedImage, null);
-                        this.apiMapImageView.setImage(mapImage);
-                        return null;
-                    });
+            this.apiMapImageView.setImage(tour.getImageMap());
         }
 
     }
-
-
-
 
 }

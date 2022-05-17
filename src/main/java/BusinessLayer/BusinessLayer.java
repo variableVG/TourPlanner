@@ -6,10 +6,10 @@ import Map.ApiDirections;
 import Map.MapRequest;
 import Models.Log;
 import Models.Tour;
+import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.spec.ECField;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -31,13 +31,13 @@ public class BusinessLayer implements IBusinessLayer {
             throw new Exception("Tour Name or Destination or Origin are empty");
         }
 
+        //TODO
         //We ask for the map when the Tour is created, so we can store it already and it can upload faster.
-
         try { getMap(newTour);}
         catch (Exception e){
-            System.out.println("Is it printed?");
             System.out.println(e);
         }
+        ////////
 
         //Add new Tour to the database
         dataAccessLayer.addTour(newTour);
@@ -86,24 +86,31 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public CompletableFuture<Image> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
         directions.thenApply(
                 futureDirections -> {
                     try {
                         //TODO Check if the answer to the request directions has a valid address:
-                        if(futureDirections.getStatuscode() != 0) {
-                            throw new Exception( "Directions could not be sent " + futureDirections.getMessages().toString());
+                        if (futureDirections.getStatuscode() != 0) {
+                            try {
+                                throw new Exception("Directions could not be sent " + futureDirections.getMessages().toString());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         } else {
                             System.out.println("Map for tour" + tour.getName() + " is about to be set");
-                            tour.setStaticMap(mapRequest.getStaticMap(futureDirections));
+                            return mapRequest.getStaticMap(futureDirections);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     return null;
-                }
-        );
+                });
 
-    }
+            return null;
+        }
+
+
+
 }
