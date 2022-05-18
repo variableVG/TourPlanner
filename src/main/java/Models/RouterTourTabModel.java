@@ -42,6 +42,8 @@ public class RouterTourTabModel {
 
         try {
             mapImage = business.getMap(tour);
+            System.out.println("Map Image in The model is ");
+            System.out.println(mapImage);
 
         }catch (Exception e) {
             System.out.println("There is an exception in requestRouteAPI in RouterTourTabModel");

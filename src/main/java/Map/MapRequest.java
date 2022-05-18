@@ -143,7 +143,7 @@ public class MapRequest {
                 .thenApply(
                         stringHttpResponse -> {
                             System.out.println("Response for map is ");
-                            System.out.println(stringHttpResponse.body().toString());
+                            System.out.println(stringHttpResponse.toString());
                             try {
                                 return parseResponseImage(stringHttpResponse.body());
                             } catch (IOException e) {

@@ -5,12 +5,15 @@ import Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.ZoneId;
+
 public class AddLogPageController {
 
-    @FXML public TextField date;
+    @FXML public DatePicker date;
     @FXML public TextField time;
     @FXML public TextField comment;
     @FXML public TextField difficulty;
@@ -29,7 +32,7 @@ public class AddLogPageController {
     }
     @FXML
     public void initialize(){
-        this.date.textProperty().bindBidirectional(model.getDate());
+        this.date.valueProperty().bindBidirectional(model.getDate());
         this.time.textProperty().bindBidirectional(model.getTime());
         this.comment.textProperty().bindBidirectional(model.getComment());
         this.difficulty.textProperty().bindBidirectional(model.getDifficulty());

@@ -27,6 +27,9 @@ public class BusinessLayer implements IBusinessLayer {
 
     @Override
     public int addTour(Tour newTour) throws Exception {
+        /** This function add a tour to the database and gives back the in the database generated Id for that tour.
+         * */
+
         //Check if the tour has set name, destination and origin
         if(newTour.getName().isEmpty() | newTour.getDestination().isEmpty() | newTour.getOrigin().isEmpty()) {
             throw new Exception("Tour Name or Destination or Origin are empty");
@@ -90,11 +93,15 @@ public class BusinessLayer implements IBusinessLayer {
     public CompletableFuture<ApiMap> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
         AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
+
         directions.thenApply(
                 futureDirections -> {
                     try {
                         System.out.println("vor getStaticMap()");
                         apiMap.set(mapRequest.getStaticMap(futureDirections));
+                        System.out.println("apiMap in getMap is ");
+                        System.out.println(apiMap);
+                        return apiMap;
 
                     } catch (URISyntaxException e) {
                         e.printStackTrace();

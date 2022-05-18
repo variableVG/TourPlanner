@@ -82,7 +82,7 @@ public class LogTourTabController {
             dateLabel.setText("Date: ");
             dateLabel.setStyle(labelTitleStyle);
             Label dateLabelContent = new Label();
-            dateLabelContent.setText(" " + l.getDate().getValue());
+            dateLabelContent.setText(" " + l.getDate());
             Label timeLabel = new Label();
             timeLabel.setText(" at " + l.getTime().getValue() + " hours ");
             dateBox.getChildren().addAll(dateLabel, dateLabelContent, timeLabel);

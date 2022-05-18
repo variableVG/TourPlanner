@@ -5,6 +5,7 @@ import Models.Tour;
 
 import java.sql.Connection;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class Database {
@@ -36,11 +37,13 @@ public class Database {
                         CREATE TABLE IF NOT EXISTS log (
                         id SERIAL PRIMARY KEY,
                         tour_id INT REFERENCES tour (id) ON UPDATE CASCADE ON DELETE CASCADE,
-                        date_time VARCHAR(50),
-                        comment VARCHAR(50),
+                        date DATE,
+                        time TIME,
+                        total_time TIME, 
                         difficulty NUMERIC,
                         rating NUMERIC,
-                        total_time DATE
+                        comment VARCHAR(50)
+                        
                     )
                     """);
         }
@@ -205,16 +208,18 @@ public class Database {
     public static void addLog(int tourId, Log log) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 INSERT INTO log
-                (tour_id, date_time, comment, difficulty, rating, total_time)
-                VALUES (?, ?, ?, ?, ?, ?);
+                (tour_id, date, difficulty, rating, comment)
+                VALUES (?, ?, ?, ?, ?);
                 """ )
         ) {
+            System.out.println("Date in DB is " + log.getDate().toString());
             statement.setInt(1, tourId);
-            statement.setString(2, log.getDate().getValue());
-            statement.setString(3, log.getComment().getValue());
-            statement.setInt(4, log.getDifficulty().getValue());
-            statement.setInt(5, log.getRating().getValue());
-            statement.setString(6, log.getTotaltime().getValue());
+            statement.setDate(2, Date.valueOf(log.getDate()));
+            //statement.setTime(3, log.getComment().getValue());
+            //statement.setTime(4, log.getDifficulty().getValue());
+            statement.setInt(3, log.getDifficulty().getValue());
+            statement.setInt(4, log.getRating().getValue());
+            statement.setString(5, log.getComment().getValue());
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -234,8 +239,8 @@ public class Database {
                 logs.add(
                         new Log(
                                 resultSet.getInt("id"),
-                                resultSet.getString("date_time"),
-                                resultSet.getString("date_time"),
+                                resultSet.getDate("date").toLocalDate(),
+                                resultSet.getString("time"),
                                 resultSet.getString("comment"),
                                 resultSet.getInt("difficulty"),
                                 resultSet.getString("total_time"),
