@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.Rating?>
 
 <HBox alignment="CENTER" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddLogPageController">
    <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
@@ -19,8 +20,8 @@
       </VBox>
 
       <VBox>
-         <Label>Comment:</Label>
-         <TextField fx:id="comment" />
+         <Label>Total time:</Label>
+         <TextField fx:id="totalTime" />
       </VBox>
 
       <VBox>
@@ -29,14 +30,22 @@
       </VBox>
 
       <VBox>
-         <Label>Total time:</Label>
-         <TextField fx:id="totalTime" />
+         <Label>Rating:</Label>
+         <Rating fx:id="rating"></Rating>
+         <HBox></HBox>
+         <!-- <TextField fx:id="rating" /> !-->
       </VBox>
 
       <VBox>
-         <Label>Rating:</Label>
-         <TextField fx:id="rating" />
+         <Label>Comment:</Label>
+         <TextField fx:id="comment" />
       </VBox>
+
+
+
+
+
+
 
       <Button fx:id="addButton" onAction="#addLogOnClick">Add new log</Button>
    </VBox>

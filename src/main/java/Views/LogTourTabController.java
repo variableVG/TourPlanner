@@ -114,7 +114,7 @@ public class LogTourTabController {
             ratingLabel.setText("Rating: ");
             ratingLabel.setStyle(labelTitleStyle);
             Label ratingLabelContent = new Label();
-            ratingLabelContent.setText("  " + String.valueOf(l.getRating().getValue()));
+            ratingLabelContent.setText("  " + String.valueOf(l.getRating()));
             ratingBox.getChildren().addAll(ratingLabel, ratingLabelContent);
             logBox.getChildren().addAll(ratingBox);
 

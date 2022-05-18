@@ -9,6 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 import java.time.ZoneId;
 
@@ -19,7 +20,7 @@ public class AddLogPageController {
     @FXML public TextField comment;
     @FXML public TextField difficulty;
     @FXML public TextField totalTime;
-    @FXML public TextField rating;
+    @FXML public Rating rating;
     @FXML public Button addButton;
     @FXML public Label info;
     //add log page model
@@ -39,17 +40,20 @@ public class AddLogPageController {
         this.comment.textProperty().bindBidirectional(model.getComment());
         this.difficulty.textProperty().bindBidirectional(model.getDifficulty());
         this.totalTime.textProperty().bindBidirectional(model.getTotalTime());
-        this.rating.textProperty().bindBidirectional(model.getRating());
+        this.rating.ratingProperty().bindBidirectional(model.getRating());
         this.info.textProperty().bindBidirectional(model.getInfo());
     }
 
 
     public void addLogOnClick(ActionEvent actionEvent) {
         Stage stage = (Stage) addButton.getScene().getWindow();
-        if(model.addLog()) {
-            stage.close();
+        try {
+            if(model.addLog()) {
+                stage.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
 
     }
 }

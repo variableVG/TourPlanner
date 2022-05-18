@@ -211,18 +211,24 @@ public class Database {
     public static void addLog(int tourId, Log log) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 INSERT INTO log
-                (tour_id, date, difficulty, rating, comment)
-                VALUES (?, ?, ?, ?, ?);
+                (tour_id, date, time, difficulty, rating, comment)
+                VALUES (?, ?, ?, ?, ?, ?);
                 """ )
         ) {
-            System.out.println("Date in DB is " + log.getDate().toString());
+            //Check for date and Time:
+            Date date = null;
+            if(log.getDate() != null) { date = Date.valueOf(log.getDate()); }
+            Time time = null;
+            if(log.getTime() != null) { time = Time.valueOf(log.getTime()); }
+
             statement.setInt(1, tourId);
-            statement.setDate(2, Date.valueOf(log.getDate()));
+            statement.setDate(2, date);
+            statement.setTime(3, time);
             //statement.setTime(3, log.getComment().getValue());
             //statement.setTime(4, log.getDifficulty().getValue());
-            statement.setInt(3, log.getDifficulty().getValue());
-            statement.setInt(4, log.getRating().getValue());
-            statement.setString(5, log.getComment().getValue());
+            statement.setInt(4, log.getDifficulty().getValue());
+            statement.setInt(5, log.getRating());
+            statement.setString(6, log.getComment().getValue());
             statement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -22,7 +22,7 @@ public interface IBusinessLayer {
 
     void updateTour(Tour tour);
 
-    void addLog(Tour tour, Log log);
+    void addLog(Tour tour, Log log) throws Exception;
 
     List<Log> getLogs(int tourId);
 

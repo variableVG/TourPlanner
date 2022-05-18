@@ -2,10 +2,7 @@ package Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.scene.control.Alert;
 import lombok.Data;
 
@@ -26,7 +23,7 @@ public class AddLogPageModel {
     private StringProperty comment = new SimpleStringProperty();
     private StringProperty difficulty = new SimpleStringProperty();
     private StringProperty totalTime = new SimpleStringProperty();
-    private StringProperty rating = new SimpleStringProperty();
+    private IntegerProperty rating = new SimpleIntegerProperty();
     private StringProperty info = new SimpleStringProperty();
 
     public AddLogPageModel(Tour tour) {
@@ -34,13 +31,14 @@ public class AddLogPageModel {
     }
 
 
-    public boolean addLog() {
+    public boolean addLog() throws Exception {
         if(validateFields()) {
             LocalTime timeLog = validateTime();
-
+            System.out.println("rating is ");
+            System.out.println(this.rating.getValue());
             Log log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
                     Integer.parseInt(this.difficulty.getValue()), this.totalTime.getValue(),
-                    Integer.parseInt(this.rating.getValue()));
+                    this.rating.getValue());
 
             this.tour.getLogs().add(log);
             TourPlannerModel.getInstance().updateTour(tour);
@@ -61,6 +59,7 @@ public class AddLogPageModel {
             message = "All the fields are empty. At least one field must contain information.";
             hasPassedValidation = false;
         }
+
 
         if(!hasPassedValidation) {
             this.info.set(message);

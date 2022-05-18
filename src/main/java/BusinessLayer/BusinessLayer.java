@@ -76,9 +76,20 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void addLog(Tour tour, Log log) {
-        //TODO check if tourId exists in DB
-        //TODO check Log data
+    public void addLog(Tour tour, Log log) throws Exception {
+        //check if tourId exists in DB
+        Tour tourCheck = dataAccessLayer.getTourById(tour.getId());
+        if(tourCheck.getId() != tour.getId()) {
+            throw new Exception("Tour does not match with tour in DB");
+
+        }
+
+        //check Log data
+        //Check rating: Rating should be between 0 and 5
+        if(log.getRating() < 0 | log.getRating() > 5) {
+            throw new Exception("Log-Rating has not valid value");
+        }
+
         dataAccessLayer.addLog(tour.getId(), log);
 
     }

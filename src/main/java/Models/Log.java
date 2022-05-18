@@ -17,7 +17,7 @@ public class Log {
     private StringProperty comment;
     private IntegerProperty difficulty;
     private StringProperty totaltime;
-    private IntegerProperty rating;
+    private Integer rating;
 
     public Log(int id, LocalDate date, LocalTime time, String comment, int difficulty, String totalTime, int rating){
         this.id = new SimpleIntegerProperty(id);
@@ -26,7 +26,7 @@ public class Log {
         this.comment = new SimpleStringProperty(comment);
         this.difficulty = new SimpleIntegerProperty(difficulty);
         this.totaltime = new SimpleStringProperty(totalTime);
-        this.rating = new SimpleIntegerProperty(rating);
+        this.rating = rating;
     }
 
 }
