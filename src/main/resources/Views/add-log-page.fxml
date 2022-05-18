@@ -6,13 +6,16 @@
 <HBox alignment="CENTER" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddLogPageController">
    <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
       <VBox>
+         <Label fx:id="info" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+      </VBox>
+      <VBox>
          <Label>Date:</Label>
          <DatePicker promptText="Enter Date" fx:id="date"/>
       </VBox>
 
       <VBox>
          <Label>Time:</Label>
-         <TextField fx:id="time" />
+         <TextField fx:id="time" promptText="HH:MM"/>
       </VBox>
 
       <VBox>

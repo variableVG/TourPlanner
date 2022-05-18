@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,6 +21,7 @@ public class AddLogPageController {
     @FXML public TextField totalTime;
     @FXML public TextField rating;
     @FXML public Button addButton;
+    @FXML public Label info;
     //add log page model
     //constructor
     Tour tour;
@@ -38,12 +40,15 @@ public class AddLogPageController {
         this.difficulty.textProperty().bindBidirectional(model.getDifficulty());
         this.totalTime.textProperty().bindBidirectional(model.getTotalTime());
         this.rating.textProperty().bindBidirectional(model.getRating());
+        this.info.textProperty().bindBidirectional(model.getInfo());
     }
 
 
     public void addLogOnClick(ActionEvent actionEvent) {
-        model.addLog();
         Stage stage = (Stage) addButton.getScene().getWindow();
-        stage.close();
+        if(model.addLog()) {
+            stage.close();
+        }
+
     }
 }
