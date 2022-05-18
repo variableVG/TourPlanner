@@ -105,7 +105,6 @@ public class TourPlannerModel {
     public void updateTour(Tour tour) {
         for(Tour t: tours) {
             if(t.getId() == tour.getId()) {
-
                 tours.remove(t);
                 tours.add(tour);
             }

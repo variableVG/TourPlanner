@@ -97,9 +97,7 @@ public class BusinessLayer implements IBusinessLayer {
         directions.thenApply(
                 futureDirections -> {
                     try {
-                        System.out.println("vor getStaticMap()");
                         apiMap.set(mapRequest.getStaticMap(futureDirections));
-                        System.out.println("apiMap in getMap is ");
                         System.out.println(apiMap);
                         return apiMap;
 

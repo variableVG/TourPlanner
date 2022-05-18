@@ -36,8 +36,20 @@ public class EditTourPageModel {
     }
 
     public boolean updateTour() {
+
         if(validateFields()) {
-            business.updateTour(tour);
+
+            //set new Values for the tour
+            this.tour.setName(tourName.getValue());
+            this.tour.setOrigin(origin.getValue());
+            this.tour.setDestination(destination.getValue());
+            this.tour.setTransportType(transportType.getValue());
+            this.tour.setDistance(distance.getValue());
+            this.tour.setTime(time.getValue());
+            this.tour.setDescription(description.getValue());
+
+            //Update tour in the database
+            business.updateTour(this.tour);
             TourPlannerModel.getInstance().updateTour(tour);
             return true;
         }

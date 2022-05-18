@@ -24,7 +24,7 @@ public class Database {
             DatabaseConnection.getInstance().executeSql("""
                         CREATE TABLE IF NOT EXISTS tour (
                         id SERIAL PRIMARY KEY,                        
-                        name VARCHAR(50) NOT NULL,
+                        name VARCHAR(50) NOT NULL UNIQUE,
                         description VARCHAR(50),
                         origin VARCHAR(50),
                         destination VARCHAR(50),
@@ -158,7 +158,7 @@ public class Database {
                 UPDATE tour 
                 SET name = ?, description = ?, origin = ?, destination = ?, transport_type = ?, 
                 distance = ?, estimated_time = ?
-                WHERE name = ?;
+                WHERE id = ?;
                 """ )
         ) {
             //statement.setString(1, newTour.getId().get());
@@ -169,12 +169,12 @@ public class Database {
             statement.setString(5, newTour.getTransportType());
             statement.setString(6, newTour.getDistance());
             statement.setString(7, newTour.getTime());
-            statement.setString(8, newTour.getName());
+            statement.setInt(8, newTour.getId());
             statement.execute();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
 
     }
 
