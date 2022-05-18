@@ -129,7 +129,7 @@ public class MapRequest {
         return apidirections;
     }
 
-    public CompletableFuture<ApiMap> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
+    public CompletableFuture<BufferedImage> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
         String url = "https://www.mapquestapi.com/staticmap/v5/map?key="
                 + consumerKey
                 + "&session="
@@ -154,12 +154,12 @@ public class MapRequest {
 
     }
 
-    private ApiMap parseResponseImage(byte[] httpBodyResponse) throws IOException {
+    private BufferedImage parseResponseImage(byte[] httpBodyResponse) throws IOException {
         // I convert the response in a image. To do so, the read() function just take a file or Stream, so
         // I have to convert first the httpBodyResponse in a stream.
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpBodyResponse);
         BufferedImage map = ImageIO.read(inputStream);
-        return new ApiMap(map);
+        return  map;
     }
 
 

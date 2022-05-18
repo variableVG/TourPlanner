@@ -3,7 +3,6 @@ package BusinessLayer;
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.IDataAccessLayer;
 import Map.ApiDirections;
-import Map.ApiMap;
 import Map.MapRequest;
 import Models.Log;
 import Models.Tour;
@@ -13,7 +12,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class BusinessLayer implements IBusinessLayer {
 
@@ -107,25 +105,27 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public CompletableFuture<ApiMap> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
-        AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
+        //AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
 
         directions.thenApply(
                 futureDirections -> {
                     try {
-                        apiMap.set(mapRequest.getStaticMap(futureDirections));
-                        System.out.println(apiMap);
-                        return apiMap;
+                        System.out.println("futureDirection in getMap/Business is ");
+                        System.out.println(futureDirections);
+                        tour.setFutureImageMap(mapRequest.getStaticMap(futureDirections));
+                        //return apiMap;
 
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
-                    return apiMap;
+                    //return apiMap;
+                    return tour;
                 }
                 );
 
-            return apiMap.get();
+            //return apiMap.get();
         }
 
 

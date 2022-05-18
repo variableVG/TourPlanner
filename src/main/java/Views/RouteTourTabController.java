@@ -20,14 +20,13 @@ public class RouteTourTabController {
 
     RouterTourTabModel model;
     Tour tour;
-    //private CompletableFuture<Image> completableFutureApiMap;
+    private CompletableFuture<BufferedImage> completableFutureApiMap;
 
 
     @FXML public ImageView apiMapImageView;
 
     public RouteTourTabController() throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         model = new RouterTourTabModel();
-
     }
 
     @FXML
@@ -42,7 +41,20 @@ public class RouteTourTabController {
             System.out.println("please select a Tour");
             return;
         }
+        try {
+            model.requestRouteAPI(tour);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        completableFutureApiMap = tour.getFutureImageMap();
+        completableFutureApiMap.thenApply(futureImage -> {
 
+            Image mapImage = SwingFXUtils.toFXImage(futureImage, null);
+            this.apiMapImageView.setImage(mapImage);
+            return null;
+        });
+
+        /*
         if(tour.getImageMap() == null) {
             CompletableFuture<ApiMap> completableFutureApiMap = null;
             try {
@@ -65,7 +77,7 @@ public class RouteTourTabController {
         }
         else {
             this.apiMapImageView.setImage(tour.getImageMap());
-        }
+        }*/
 
     }
 

@@ -1,13 +1,11 @@
 package BusinessLayer;
 
-import Map.ApiMap;
 import Models.Log;
 import Models.Tour;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public interface IBusinessLayer {
@@ -26,5 +24,5 @@ public interface IBusinessLayer {
 
     List<Log> getLogs(int tourId);
 
-    CompletableFuture<ApiMap> getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
+    void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
 }

@@ -31,10 +31,11 @@ public class Tour {
     private String time;
     private String popularity;
     private String childFriendliness;
-    private Image imageMap;
+    private BufferedImage imageMap;
     //private CompletableFuture<BufferedImage> futureMap;
 
     private boolean isAPIRequested;
+    CompletableFuture<BufferedImage> futureImageMap;
 
     private ObservableList<Log> logs =  FXCollections.observableArrayList();
 
@@ -74,6 +75,11 @@ public class Tour {
         }
     }
 
+    public void setFutureImageMap(CompletableFuture<BufferedImage> m) {
+        this.futureImageMap = m;
+        System.out.println("m in Tour setter is ");
+        System.out.println(m);
+    }
 
     public boolean getIsAPIrequested() {
         return this.isAPIRequested;
