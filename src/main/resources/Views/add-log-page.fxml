@@ -2,21 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.controlsfx.control.Rating?>
+<?import org.controlsfx.control.*?>
 
 <HBox alignment="CENTER" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AddLogPageController">
    <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
       <VBox>
-         <Label fx:id="info" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+         <Label fx:id="info" style="-fx-font-weight: bold; -fx-font-size: 14;" />
       </VBox>
       <VBox>
          <Label>Date:</Label>
-         <DatePicker promptText="Enter Date" fx:id="date"/>
+         <DatePicker fx:id="date" promptText="Enter Date" />
       </VBox>
 
       <VBox>
          <Label>Time:</Label>
-         <TextField fx:id="time" promptText="HH:MM"/>
+         <TextField fx:id="time" promptText="HH:MM" />
       </VBox>
 
       <VBox>
@@ -26,19 +26,36 @@
 
       <VBox>
          <Label>Difficulty:</Label>
-         <TextField fx:id="difficulty" />
+         <HBox>
+            <RadioButton fx:id="easyDiff" text="easy" style="-fx-padding: 5 20 5 20">
+               <toggleGroup>
+                  <ToggleGroup fx:id="difficulty"/>
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="mediumDiff" text="medium" style="-fx-padding: 5 20 5 20">
+               <toggleGroup>
+                  <fx:reference source="difficulty"/>
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="hardDiff" text="hard" style="-fx-padding: 5 20 5 20">
+               <toggleGroup>
+                  <fx:reference source="difficulty" />
+               </toggleGroup>
+            </RadioButton>
+         </HBox>
+
       </VBox>
 
       <VBox>
          <Label>Rating:</Label>
-         <Rating fx:id="rating"></Rating>
-         <HBox></HBox>
+         <Rating fx:id="rating" prefHeight="18.0" prefWidth="144.0" />
+         <HBox />
          <!-- <TextField fx:id="rating" /> !-->
       </VBox>
 
       <VBox>
          <Label>Comment:</Label>
-         <TextField fx:id="comment" />
+         <TextArea fx:id="comment" />
       </VBox>
 
 

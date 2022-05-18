@@ -66,7 +66,6 @@ public class TourPlannerApplication extends Application {
                         new JavaFXBuilderFactory(),
                         controller -> {
                             try {
-                                System.out.println(controller.toString());
                                 return factory.create(controller);
                             } catch (Exception e) {
                                 e.printStackTrace();

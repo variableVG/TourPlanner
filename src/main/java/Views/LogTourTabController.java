@@ -94,7 +94,7 @@ public class LogTourTabController {
             difficultyLabel.setText("Difficulty: ");
             difficultyLabel.setStyle(labelTitleStyle);
             Label difficultyLabelContent = new Label();
-            difficultyLabelContent.setText("  " + String.valueOf(l.getDifficulty().getValue()));
+            difficultyLabelContent.setText("  " + l.getDifficulty());
             difficultyBox.getChildren().addAll(difficultyLabel, difficultyLabelContent);
             logBox.getChildren().addAll(difficultyBox);
 

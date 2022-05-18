@@ -28,7 +28,7 @@ public class Database {
                         CREATE TABLE IF NOT EXISTS tour (
                         id SERIAL PRIMARY KEY,                        
                         name VARCHAR(50) NOT NULL UNIQUE,
-                        description VARCHAR(50),
+                        description VARCHAR(500),
                         origin VARCHAR(50),
                         destination VARCHAR(50),
                         transport_type VARCHAR(50),
@@ -45,7 +45,7 @@ public class Database {
                         total_time TIME, 
                         difficulty NUMERIC,
                         rating NUMERIC,
-                        comment VARCHAR(50)
+                        comment VARCHAR(500)
                         
                     )
                     """);
@@ -226,7 +226,7 @@ public class Database {
             statement.setTime(3, time);
             //statement.setTime(3, log.getComment().getValue());
             //statement.setTime(4, log.getDifficulty().getValue());
-            statement.setInt(4, log.getDifficulty().getValue());
+            statement.setInt(4, log.getDifficulty());
             statement.setInt(5, log.getRating());
             statement.setString(6, log.getComment().getValue());
             statement.execute();

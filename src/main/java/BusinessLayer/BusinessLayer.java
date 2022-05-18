@@ -86,8 +86,12 @@ public class BusinessLayer implements IBusinessLayer {
 
         //check Log data
         //Check rating: Rating should be between 0 and 5
-        if(log.getRating() < 0 | log.getRating() > 5) {
+        if(log.getRating() < 0 | log.getRating() > 6) {
             throw new Exception("Log-Rating has not valid value");
+        }
+        //Check difficulty: Difficulty should have a value between 0 and 3
+        if(log.getDifficulty() < 0 | log.getDifficulty() > 4) {
+            throw new Exception("Difficulty has not valid value");
         }
 
         dataAccessLayer.addLog(tour.getId(), log);

@@ -21,7 +21,7 @@ public class AddLogPageModel {
     private Property<LocalDate> date = new SimpleObjectProperty<>();
     private StringProperty time = new SimpleStringProperty();
     private StringProperty comment = new SimpleStringProperty();
-    private StringProperty difficulty = new SimpleStringProperty();
+    private IntegerProperty difficulty = new SimpleIntegerProperty();
     private StringProperty totalTime = new SimpleStringProperty();
     private IntegerProperty rating = new SimpleIntegerProperty();
     private StringProperty info = new SimpleStringProperty();
@@ -34,10 +34,9 @@ public class AddLogPageModel {
     public boolean addLog() throws Exception {
         if(validateFields()) {
             LocalTime timeLog = validateTime();
-            System.out.println("rating is ");
-            System.out.println(this.rating.getValue());
+
             Log log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
-                    Integer.parseInt(this.difficulty.getValue()), this.totalTime.getValue(),
+                    this.difficulty.getValue(), this.totalTime.getValue(),
                     this.rating.getValue());
 
             this.tour.getLogs().add(log);
