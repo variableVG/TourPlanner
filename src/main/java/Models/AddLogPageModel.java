@@ -35,12 +35,10 @@ public class AddLogPageModel {
 
 
     public boolean addLog() {
-        System.out.println("Add log");
-
         if(validateFields()) {
-            LocalTime timeLog = LocalTime.parse(this.time.getValue());
-            System.out.println("TIme is " + timeLog.toString());
-            Log log = new Log(-1, date.getValue(), this.time.getValue(), this.comment.getValue(),
+            LocalTime timeLog = validateTime();
+
+            Log log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
                     Integer.parseInt(this.difficulty.getValue()), this.totalTime.getValue(),
                     Integer.parseInt(this.rating.getValue()));
 
@@ -63,20 +61,29 @@ public class AddLogPageModel {
             message = "All the fields are empty. At least one field must contain information.";
             hasPassedValidation = false;
         }
-        else if(!this.time.getValue().isEmpty()) {
-            try {
-                LocalTime time = LocalTime.parse(this.time.getValue());
-            } catch (Exception e) {
-                message = e.getMessage();
-            }
-            hasPassedValidation = false;
-        }
 
         if(!hasPassedValidation) {
             this.info.set(message);
             return false;
         }
         return true;
+    }
+
+    private LocalTime validateTime() {
+        LocalTime time = null;
+        //Check if time is null, if it is null it must not be validated, since the time is not strictily required.
+        if(this.time.getValue() == null){
+            return null;
+        }
+
+        //If time has been entered, control that it has a valid format.
+        try {
+            time = LocalTime.parse(this.time.getValue());
+        } catch (Exception e) {
+            this.info.set(e.getMessage());
+        }
+
+        return time;
     }
 
 

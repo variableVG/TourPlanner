@@ -6,6 +6,9 @@ import Models.Tour;
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Database {
@@ -236,11 +239,21 @@ public class Database {
             statement.setInt(1, tourId);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
+                //validate Data
+                int id = resultSet.getInt("id");
+                LocalDate date = null;
+                if(resultSet.getDate("date")!= null) {
+                    date = resultSet.getDate("date").toLocalDate();
+                }
+                LocalTime time = null;
+                if(resultSet.getTime("time") != null) {
+                    time = resultSet.getTime("time").toLocalTime();
+                }
+
+                //create log
                 logs.add(
                         new Log(
-                                resultSet.getInt("id"),
-                                resultSet.getDate("date").toLocalDate(),
-                                resultSet.getString("time"),
+                                resultSet.getInt("id"), date, time,
                                 resultSet.getString("comment"),
                                 resultSet.getInt("difficulty"),
                                 resultSet.getString("total_time"),
