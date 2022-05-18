@@ -42,7 +42,7 @@ public class Database {
                         tour_id INT REFERENCES tour (id) ON UPDATE CASCADE ON DELETE CASCADE,
                         date DATE,
                         time TIME,
-                        total_time TIME, 
+                        total_time VARCHAR(50), 
                         difficulty NUMERIC,
                         rating NUMERIC,
                         comment VARCHAR(500)
@@ -208,11 +208,13 @@ public class Database {
         return null;
     }
 
-    public static void addLog(int tourId, Log log) {
+    public static int addLog(int tourId, Log log) {
+        int id = -1;
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 INSERT INTO log
-                (tour_id, date, time, difficulty, rating, comment)
-                VALUES (?, ?, ?, ?, ?, ?);
+                (tour_id, date, time, total_time, difficulty, rating, comment)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                RETURNING id;
                 """ )
         ) {
             //Check for date and Time:
@@ -224,15 +226,19 @@ public class Database {
             statement.setInt(1, tourId);
             statement.setDate(2, date);
             statement.setTime(3, time);
-            //statement.setTime(3, log.getComment().getValue());
-            //statement.setTime(4, log.getDifficulty().getValue());
-            statement.setInt(4, log.getDifficulty());
-            statement.setInt(5, log.getRating());
-            statement.setString(6, log.getComment().getValue());
-            statement.execute();
-        } catch (SQLException throwables) {
+            statement.setString(4, log.getTotaltime());
+            statement.setInt(5, log.getDifficulty());
+            statement.setInt(6, log.getRating());
+            statement.setString(7, log.getComment());
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next() ) {
+                id = resultSet.getInt("id");
+            }
+        }
+        catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return id;
     }
 
     public static List<Log> getLogs(int tourId){

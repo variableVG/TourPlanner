@@ -76,7 +76,7 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void addLog(Tour tour, Log log) throws Exception {
+    public int addLog(Tour tour, Log log) throws Exception {
         //check if tourId exists in DB
         Tour tourCheck = dataAccessLayer.getTourById(tour.getId());
         if(tourCheck.getId() != tour.getId()) {
@@ -93,8 +93,10 @@ public class BusinessLayer implements IBusinessLayer {
         if(log.getDifficulty() < 0 | log.getDifficulty() > 4) {
             throw new Exception("Difficulty has not valid value");
         }
+        int logId = -1;
+        logId = dataAccessLayer.addLog(tour.getId(), log);
 
-        dataAccessLayer.addLog(tour.getId(), log);
+        return logId;
 
     }
 

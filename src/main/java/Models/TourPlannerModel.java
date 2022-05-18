@@ -90,8 +90,6 @@ public class TourPlannerModel {
     }
 
     public void addTour(Tour tour) {
-        //business.addTour(tour.getName().getValue());
-        //TODO: When adding a new Tour in the tours, we need to check that the ID has been actualised.
         tours.add(tour);
         tourNames.add(tour.getName());
     }

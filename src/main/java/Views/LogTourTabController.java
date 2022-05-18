@@ -72,7 +72,7 @@ public class LogTourTabController {
             idLabel.setText("Log id:");
             idLabel.setStyle(labelTitleStyle);
             Label idLabelContent = new Label();
-            idLabelContent.setText("  " + String.valueOf(l.getId().getValue()));
+            idLabelContent.setText("  " + l.getId());
             idBox.getChildren().addAll(idLabel, idLabelContent);
             logBox.getChildren().addAll(idBox);
 
@@ -104,7 +104,7 @@ public class LogTourTabController {
             totalTimeLabel.setText("Total time: ");
             totalTimeLabel.setStyle(labelTitleStyle);
             Label totalTimeLabelContent = new Label();
-            totalTimeLabelContent.setText("  " + String.valueOf(l.getTotaltime().getValue()));
+            totalTimeLabelContent.setText("  " + String.valueOf(l.getTotaltime()));
             totalTimeBox.getChildren().addAll(totalTimeLabel, totalTimeLabelContent);
             logBox.getChildren().addAll(totalTimeBox);
 
@@ -124,7 +124,7 @@ public class LogTourTabController {
             commentLabel.setText("Comments: ");
             commentLabel.setStyle(labelTitleStyle);
             Label commentLabelContent = new Label();
-            commentLabelContent.setText("  " + String.valueOf(l.getComment().getValue()));
+            commentLabelContent.setText("  " + String.valueOf(l.getComment()));
             commentBox.getChildren().addAll(commentLabel, commentLabelContent);
             logBox.getChildren().addAll(commentBox);
 

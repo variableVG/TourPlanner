@@ -78,8 +78,8 @@ public class DataAccessLayer implements IDataAccessLayer {
     }//**
 
     @Override
-    public void addLog(int id, Log log) {
-        Database.addLog(id, log);
+    public int addLog(int id, Log log) {
+        return Database.addLog(id, log);
     }
 
     @Override

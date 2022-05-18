@@ -39,9 +39,11 @@ public class AddLogPageModel {
                     this.difficulty.getValue(), this.totalTime.getValue(),
                     this.rating.getValue());
 
+
+            int logId = business.addLog(this.tour, log);
+            log.setId(logId);
             this.tour.getLogs().add(log);
             TourPlannerModel.getInstance().updateTour(tour);
-            business.addLog(this.tour, log);
             return true;
         }
         return false;

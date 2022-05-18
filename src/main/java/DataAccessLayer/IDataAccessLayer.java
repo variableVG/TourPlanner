@@ -18,7 +18,7 @@ public interface IDataAccessLayer {
     Tour getTourByName(String tourName);
     Tour getTourById(int id);//**
 
-    void addLog(int id, Log log);
+    int addLog(int id, Log log);
 
     List<Log> getLogs(int tourId);
 
