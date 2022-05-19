@@ -2,6 +2,8 @@ package Views;
 
 import DataAccessLayer.Database;
 import DataAccessLayer.DatabaseConnection;
+import Logger.ILoggerWrapper;
+import Logger.LoggerFactory;
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TourPlannerApplication extends Application {
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
     ControllerFactory factory = new ControllerFactory();
 
     @Override
@@ -76,6 +79,7 @@ public class TourPlannerApplication extends Application {
     }
 
     public static void main(String[] args) {
+        logger.debug("Program start");
         launch();
         DatabaseConnection.getInstance().close();
     }

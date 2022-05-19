@@ -14,6 +14,7 @@ module main.tourplanner {
     requires com.fasterxml.jackson.databind;
     requires javafx.swing;
     requires org.json;
+    requires org.apache.logging.log4j;
 
     opens Views to javafx.fxml;
     exports Views;
