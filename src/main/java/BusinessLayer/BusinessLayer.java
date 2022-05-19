@@ -71,6 +71,11 @@ public class BusinessLayer implements IBusinessLayer {
     @Override
     public void updateTour(Tour tour) {
         dataAccessLayer.updateTour(tour);
+        try {
+            getMap(tour);
+        } catch (URISyntaxException | IOException | ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -105,7 +110,16 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
+    public void getMap(Tour tour) throws URISyntaxException, IOException, ExecutionException, InterruptedException {
+        /** this function makes a REST request for a given tour (which contains origin and destination) using the
+         * MapQuest Directions and Static Map APIs.
+         *
+         * The function is called:
+         *      * When starting the main window of the program (at the beginning of the programm) for the tours already
+         *          present in the database.
+         *      * When adding a new Tour
+         *      * When editing Origin or destination of a tour
+         * */
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
         //AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
 

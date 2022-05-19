@@ -7,9 +7,12 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TourPlannerModel {
 
@@ -29,6 +32,14 @@ public class TourPlannerModel {
     private  TourPlannerModel () {
         business = new BusinessLayer();
         getAllTours();
+        // When starting the application for first time, we want to call all the Maps for each tour
+        for(Tour t: tours) {
+            try {
+                business.getMap(t);
+            } catch (IOException | URISyntaxException | ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void getAllTours(){

@@ -41,11 +41,11 @@ public class RouteTourTabController {
             System.out.println("please select a Tour");
             return;
         }
-        try {
+        /*try {
             model.requestRouteAPI(tour);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         completableFutureApiMap = tour.getFutureImageMap();
         completableFutureApiMap.thenApply(futureImage -> {
 
