@@ -1,19 +1,11 @@
-package Models;
+package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
 import Map.ApiMap;
-import Map.MapRequest;
-import javafx.beans.property.Property;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
 import lombok.Data;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 
 @Data

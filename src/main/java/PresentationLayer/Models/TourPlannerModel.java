@@ -1,16 +1,11 @@
-package Models;
+package PresentationLayer.Models;
 
 import BusinessLayer.*;
-import DataAccessLayer.DataAccessLayer;
-import Views.DescriptionTourTabController;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 

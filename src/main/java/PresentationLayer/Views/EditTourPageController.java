@@ -1,7 +1,7 @@
-package Views;
+package PresentationLayer.Views;
 
-import Models.EditTourPageModel;
-import Models.Tour;
+import PresentationLayer.Models.EditTourPageModel;
+import PresentationLayer.Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

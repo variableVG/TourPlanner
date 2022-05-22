@@ -1,11 +1,8 @@
-package Models;
+package PresentationLayer.Models;
 
-import Views.DescriptionTourTabController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Data;
-
-import java.util.AbstractMap;
 
 @Data
 public class DescriptionTourTabModel {

@@ -1,20 +1,12 @@
-package Models;
+package PresentationLayer.Models;
 
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 import lombok.*;
 
 

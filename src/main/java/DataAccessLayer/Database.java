@@ -1,13 +1,12 @@
 package DataAccessLayer;
 
-import Models.Log;
-import Models.Tour;
+import PresentationLayer.Models.Log;
+import PresentationLayer.Models.Tour;
 
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 

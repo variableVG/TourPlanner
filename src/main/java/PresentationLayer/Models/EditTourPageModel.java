@@ -1,4 +1,4 @@
-package Models;
+package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;

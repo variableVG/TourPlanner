@@ -1,9 +1,6 @@
-package Views;
+package PresentationLayer.Views;
 
-import Models.AddLogPageModel;
-import Models.AddTourPageModel;
-import Models.Tour;
-import Models.TourPlannerModel;
+import PresentationLayer.Models.TourPlannerModel;
 import lombok.Data;
 
 @Data

@@ -1,14 +1,12 @@
-package Views;
+package PresentationLayer.Views;
 
-import Models.AddLogPageModel;
-import Models.Tour;
+import PresentationLayer.Models.AddLogPageModel;
+import PresentationLayer.Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
-
-import java.time.ZoneId;
 
 public class AddLogPageController {
 

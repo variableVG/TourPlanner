@@ -1,10 +1,8 @@
-package Models;
+package PresentationLayer.Models;
 
-import javafx.beans.property.*;
 import lombok.Data;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

@@ -1,23 +1,13 @@
-package Views;
+package PresentationLayer.Views;
 
-import Models.Log;
-import Models.Tour;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import PresentationLayer.Models.Log;
+import PresentationLayer.Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;

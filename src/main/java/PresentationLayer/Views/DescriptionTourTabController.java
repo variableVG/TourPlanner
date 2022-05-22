@@ -1,8 +1,7 @@
-package Views;
+package PresentationLayer.Views;
 
-import Models.DescriptionTourTabModel;
-import Models.Tour;
-import Models.TourPlannerModel;
+import PresentationLayer.Models.DescriptionTourTabModel;
+import PresentationLayer.Models.Tour;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package DataAccessLayer;
 
-import Models.Log;
-import Models.Tour;
+import PresentationLayer.Models.Log;
+import PresentationLayer.Models.Tour;
 
 import java.util.List;
 

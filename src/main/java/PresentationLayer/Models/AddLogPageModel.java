@@ -1,17 +1,13 @@
-package Models;
+package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
 import javafx.beans.property.*;
-import javafx.scene.control.Alert;
 import lombok.Data;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Optional;
 
 
 @Data

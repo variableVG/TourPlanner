@@ -1,6 +1,6 @@
 package Map;
 
-import Models.Tour;
+import PresentationLayer.Models.Tour;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -17,13 +17,9 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicReference;
 
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
 import org.json.JSONObject;
 
 
