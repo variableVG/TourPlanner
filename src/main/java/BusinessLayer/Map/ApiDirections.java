@@ -1,4 +1,4 @@
-package Map;
+package BusinessLayer.Map;
 
 
 import lombok.Data;

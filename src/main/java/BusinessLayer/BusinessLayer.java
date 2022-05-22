@@ -2,8 +2,8 @@ package BusinessLayer;
 
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.IDataAccessLayer;
-import Map.ApiDirections;
-import Map.MapRequest;
+import BusinessLayer.Map.ApiDirections;
+import BusinessLayer.Map.MapRequest;
 import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 
@@ -112,7 +112,7 @@ public class BusinessLayer implements IBusinessLayer {
     @Override
     public void getMap(Tour tour) throws URISyntaxException, IOException, ExecutionException, InterruptedException {
         /** this function makes a REST request for a given tour (which contains origin and destination) using the
-         * MapQuest Directions and Static Map APIs.
+         * MapQuest Directions and Static BusinessLayer.Map APIs.
          *
          * The function is called:
          *      * When starting the main window of the program (at the beginning of the programm) for the tours already

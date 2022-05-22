@@ -1,4 +1,4 @@
-package Map;
+package BusinessLayer.Map;
 
 import PresentationLayer.Models.Tour;
 import com.fasterxml.jackson.core.JsonParser;

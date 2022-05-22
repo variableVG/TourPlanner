@@ -2,7 +2,7 @@ package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
-import Map.ApiMap;
+import BusinessLayer.Map.ApiMap;
 import lombok.Data;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,7 +36,7 @@ public class RouterTourTabModel {
 
         try {
             //business.getMap(tour);
-            //System.out.println("Map Image in The model is ");
+            //System.out.println("BusinessLayer.Map Image in The model is ");
             //System.out.println(mapImage);
 
         }catch (Exception e) {
