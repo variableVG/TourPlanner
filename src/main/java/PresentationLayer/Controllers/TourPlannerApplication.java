@@ -19,6 +19,7 @@ public class TourPlannerApplication extends Application {
     public void start(Stage stage) throws IOException {
         factory = new ControllerFactory();//maybe as class variable
         //String fxmlFile = "main-page.fxml";
+
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "main-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(Factory.class.getResource("main-page.fxml"));
