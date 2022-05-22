@@ -33,7 +33,7 @@
         <Button contentDisplay="GRAPHIC_ONLY" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0">
-                    <Image url="@../Icons/loupe.png" />
+                    <Image url="@../../Icons/loupe.png" />
                 </ImageView>
             </graphic>
         </Button>
@@ -47,25 +47,25 @@
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER_RIGHT" onAction="#addTourOnButtonClick">+</Button>
                 </ToolBar>
-                <ListView VBox.vgrow="ALWAYS" fx:id="routeList" >
+                <ListView fx:id="routeList" VBox.vgrow="ALWAYS">
 
                 </ListView>
             </VBox>
             <VBox>
                 <ToolBar>
-                    <Label prefHeight="18.0" text="-tourname-" fx:id="tabTourname"/>
+                    <Label fx:id="tabTourname" prefHeight="18.0" text="-tourname-" />
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../Icons/edit.png" />
+                                <Image url="@../../Icons/edit.png" />
                             </ImageView>
                         </graphic>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#deleteTourOnButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../Icons/delete.png" />
+                                <Image url="@../../Icons/delete.png" />
                             </ImageView>
                         </graphic>
                     </Button>
@@ -76,21 +76,21 @@
                         <Tab text="Route">
                             <content>
                                 <AnchorPane>
-                                    <fx:include source="routeTourTab.fxml"  fx:id="routeTourTab"/>
+                                    <fx:include fx:id="routeTourTab" source="routeTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Description">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                        <fx:include source="descriptionTourTab.fxml" fx:id="descriptionTourTab"/>
+                                        <fx:include fx:id="descriptionTourTab" source="descriptionTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Logs">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <fx:include source="logTourTab.fxml" fx:id="logTourTab"/>
+                                    <fx:include fx:id="logTourTab" source="logTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
