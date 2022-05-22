@@ -1,4 +1,4 @@
-package Logger;
+package BusinessLayer.Logger;
 
 public interface ILoggerWrapper {
     void debug(String message);

@@ -1,4 +1,4 @@
-package Logger;
+package BusinessLayer.Logger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

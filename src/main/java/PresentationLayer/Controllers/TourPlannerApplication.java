@@ -1,8 +1,8 @@
 package PresentationLayer.Controllers;
 
 import DataAccessLayer.DatabaseConnection;
-import Logger.ILoggerWrapper;
-import Logger.LoggerFactory;
+import BusinessLayer.Logger.ILoggerWrapper;
+import BusinessLayer.Logger.LoggerFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;

@@ -1,4 +1,4 @@
-package Logger;
+package BusinessLayer.Logger;
 
 public class UninitializedState extends LoggerStateBase {
 
