@@ -16,6 +16,6 @@ module main.tourplanner {
     requires org.json;
     requires org.apache.logging.log4j;
 
-    opens PresentationLayer.Views to javafx.fxml;
-    exports PresentationLayer.Views;
+    opens PresentationLayer.Controllers to javafx.fxml;
+    exports PresentationLayer.Controllers;
 }

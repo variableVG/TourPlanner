@@ -1,4 +1,4 @@
-package PresentationLayer.Views;
+package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.AddLogPageModel;
 import PresentationLayer.Models.Tour;

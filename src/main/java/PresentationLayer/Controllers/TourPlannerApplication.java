@@ -1,4 +1,4 @@
-package PresentationLayer.Views;
+package PresentationLayer.Controllers;
 
 import DataAccessLayer.DatabaseConnection;
 import Logger.ILoggerWrapper;

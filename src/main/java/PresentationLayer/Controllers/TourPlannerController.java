@@ -1,4 +1,4 @@
-package PresentationLayer.Views;
+package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.TourPlannerModel;
 import javafx.beans.value.ChangeListener;

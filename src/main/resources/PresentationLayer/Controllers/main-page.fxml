@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Views.TourPlannerController">
+<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.TourPlannerController">
     <AnchorPane>
         <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
             <menus>

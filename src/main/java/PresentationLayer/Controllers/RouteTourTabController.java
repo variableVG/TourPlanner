@@ -1,4 +1,4 @@
-package PresentationLayer.Views;
+package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.RouterTourTabModel;
 import PresentationLayer.Models.Tour;

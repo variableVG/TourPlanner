@@ -1,4 +1,4 @@
-package PresentationLayer.Views;
+package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.EditTourPageModel;
 import PresentationLayer.Models.Tour;
