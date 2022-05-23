@@ -58,7 +58,7 @@
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generteReportButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../../Icons/edit.png" />
+                                <Image url="@../../Icons/pdf.png" />
                             </ImageView>
                         </graphic>
                     </Button>
