@@ -62,7 +62,7 @@ public class ReportGenerator implements IReportGenerator{
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
                 .setFontSize(14)
                 .setBold()
-                .setFontColor(ColorConstants.GRAY));
+                .setFontColor(ColorConstants.BLUE));
 
         Table logsTable = new Table(UnitValue.createPercentArray(4)).useAllAvailableWidth();
             logsTable.addHeaderCell(getHeaderCell("Date"));
