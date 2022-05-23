@@ -1,6 +1,8 @@
 package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.TourPlannerModel;
+import PresentationLayer.ReportGenerator.IReportGenerator;
+import PresentationLayer.ReportGenerator.ReportGenerator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -9,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TourPlannerController  {
@@ -111,7 +114,8 @@ public class TourPlannerController  {
         tpa.editRouteStage(stage, tourName, descriptionTourTabController);
     }
 
-    public void generteReportButtonClick(ActionEvent actionEvent) {
+    public void generteReportButtonClick(ActionEvent actionEvent) throws FileNotFoundException {
+        IReportGenerator reportGenerator = new ReportGenerator(model.getTourByName(tabTourname.getText()));
 
     }
 
