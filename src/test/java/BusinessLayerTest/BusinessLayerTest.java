@@ -5,6 +5,13 @@ import PresentationLayer.Models.Tour;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.math.BigInteger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -13,7 +20,14 @@ public class BusinessLayerTest {
     static private BusinessLayer business;
     @BeforeAll
     static public void setUp(){
-        tour = new Tour("tour1", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
+        //Simulate user input
+        //Source: https://www.logicbig.com/how-to/junit/java-test-user-command-line-input.html
+        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(byteArrayOutputStream);
+
+        
+        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
         business = new BusinessLayer();
 
     }
@@ -24,4 +38,6 @@ public class BusinessLayerTest {
 
 
     }
+
+
 }
