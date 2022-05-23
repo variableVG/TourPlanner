@@ -15,6 +15,8 @@ module main.tourplanner {
     requires javafx.swing;
     requires org.json;
     requires org.apache.logging.log4j;
+    requires layout;
+    requires kernel;
 
     opens PresentationLayer.Controllers to javafx.fxml;
     exports PresentationLayer.Controllers;
