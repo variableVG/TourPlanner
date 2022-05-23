@@ -42,6 +42,8 @@ public class ReportGenerator implements IReportGenerator{
         document.add(loremIpsumHeader);
         document.add(new Paragraph("Name: " + tour.getName()));
 
+        document.close();
+
     }
 
 }

@@ -3,3 +3,5 @@
 .idea/
 /src/main/java/DataAccessLayer/DbConfig.java
 /src/main/resources/app.properties
+*.pdf
+*.log

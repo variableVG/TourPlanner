@@ -116,7 +116,11 @@ public class TourPlannerController  {
 
     public void generteReportButtonClick(ActionEvent actionEvent) throws FileNotFoundException {
         IReportGenerator reportGenerator = new ReportGenerator(model.getTourByName(tabTourname.getText()));
-
+        try {
+            reportGenerator.generateReport();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /*@Override
