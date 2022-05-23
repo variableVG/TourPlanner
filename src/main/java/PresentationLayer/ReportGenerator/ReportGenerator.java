@@ -17,9 +17,8 @@ import com.itextpdf.layout.Document;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class ReportGenerator {
+public class ReportGenerator implements IReportGenerator{
     private Tour tour;
-
     private String filename;
     private PdfWriter writer;
     private PdfDocument pdf;
@@ -33,6 +32,7 @@ public class ReportGenerator {
         this.document = new Document(pdf);
 
     }
+
     public void generateReport() throws IOException {
         Paragraph loremIpsumHeader = new Paragraph("Lorem Ipsum header...")
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))

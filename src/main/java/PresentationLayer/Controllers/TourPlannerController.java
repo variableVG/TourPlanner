@@ -111,6 +111,10 @@ public class TourPlannerController  {
         tpa.editRouteStage(stage, tourName, descriptionTourTabController);
     }
 
+    public void generteReportButtonClick(ActionEvent actionEvent) {
+
+    }
+
     /*@Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-tour-page.fxml"));
