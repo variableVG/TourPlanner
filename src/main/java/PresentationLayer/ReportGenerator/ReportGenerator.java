@@ -1,5 +1,8 @@
 package PresentationLayer.ReportGenerator;
 
+import BusinessLayer.Map.ApiDirections;
+import BusinessLayer.Map.ApiMap;
+import BusinessLayer.Map.MapRequest;
 import PresentationLayer.Models.Log;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageData;
@@ -12,9 +15,11 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.UnitValue;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 public class ReportGenerator implements IReportGenerator{
     private Tour tour;
@@ -23,12 +28,15 @@ public class ReportGenerator implements IReportGenerator{
     private PdfDocument pdf;
     private Document document;
 
+
     public ReportGenerator(Tour tour) throws FileNotFoundException {
         this.tour = tour;
         this.filename = tour.getName() + ".pdf";
         this.writer = new PdfWriter(filename);
         this.pdf = new PdfDocument(writer);
         this.document = new Document(pdf);
+
+
     }
 
     public void generateReport() throws IOException {
@@ -54,7 +62,7 @@ public class ReportGenerator implements IReportGenerator{
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
                 .setFontSize(14)
                 .setBold()
-                .setFontColor(ColorConstants.BLACK));
+                .setFontColor(ColorConstants.GRAY));
 
         Table logsTable = new Table(UnitValue.createPercentArray(4)).useAllAvailableWidth();
             logsTable.addHeaderCell(getHeaderCell("Date"));
@@ -73,7 +81,16 @@ public class ReportGenerator implements IReportGenerator{
             logsTable.addCell(log.getComment());
         }
         document.add(logsTable);
-
+        /*
+        Paragraph imageHeader = new Paragraph("Image")
+                .setFont(PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN))
+                .setFontSize(18)
+                .setBold()
+                .setFontColor(ColorConstants.GREEN);
+        document.add(imageHeader);
+        ImageData imageData = ImageDataFactory.create();
+        document.add(new Image(imageData));
+        */
         document.close();
     }
 
