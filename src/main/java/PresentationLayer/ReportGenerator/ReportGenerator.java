@@ -41,6 +41,17 @@ public class ReportGenerator implements IReportGenerator{
                 .setFontColor(ColorConstants.RED);
         document.add(loremIpsumHeader);
         document.add(new Paragraph("Name: " + tour.getName()));
+        document.add(new Paragraph("Description: " + tour.getDescription()));
+        document.add(new Paragraph("Destination: " + tour.getDestination()));
+        document.add(new Paragraph("Origin: " + tour.getOrigin()));
+        document.add(new Paragraph("Distance: " + tour.getDistance()));
+        document.add(new Paragraph("Time: " + tour.getTime()));
+        document.add(new Paragraph("TransportType: " + tour.getTransportType()));
+        document.add(new Paragraph("Logs: " + tour.getLogs()));
+        document.add(new Paragraph("Id: " + tour.getId()));
+
+
+
 
         document.close();
 
