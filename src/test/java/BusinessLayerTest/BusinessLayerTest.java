@@ -24,19 +24,22 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BusinessLayerTest {
     static private Tour tour;
     static private BusinessLayer business;
-    @BeforeEach
-    public void setUp(){
+    @BeforeAll
+    public static void setUpAll(){
         //Simulate user input
         //Source: https://www.logicbig.com/how-to/junit/java-test-user-command-line-input.html
         System.setIn(new ByteArrayInputStream("0\n".getBytes()));
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(byteArrayOutputStream);
-
-
-        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
         business = new BusinessLayer();
 
     }
+    @BeforeEach
+    public void setUp() {
+        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
+
+    }
+
     @Test
     public void addTourTest() throws Exception {
         int answer = business.addTour(tour);
@@ -53,6 +56,7 @@ public class BusinessLayerTest {
     @DisplayName("Log testing")
     @Test
     public void editLogTest() {
+
         //Define log
         LocalDate date = LocalDate.parse("2019-09-04");
         LocalTime time = LocalTime.parse("21:00");
@@ -62,19 +66,27 @@ public class BusinessLayerTest {
         int rating = 5;
         Log log = new Log(-1, date, time, comment, difficulty, totalTime, rating );
 
+        //get Tour:
+        Tour checkTour = business.getTourByName(tour.getName());
+
         // Add log
         try {
-            business.addLog(tour, log);
+            int id = business.addLog(checkTour, log);
+            log.setId(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //Modify log
         log.setComment("This is another comment");
-        business.updateLog(log, tour.getId());
+        assertEquals("This is another comment", log.getComment(), "There is a problem with setters in Log Class. Variable comment is not set");
+        business.updateLog(log, checkTour.getId());
 
+        Log checkLog = business.getLogById(log.getId());
+
+        
         //assert
-        assertEquals("This is another comment", log.getComment(), "Comment was not updated");
+        assertEquals(checkLog.getComment(), log.getComment(), "Comment was not updated");
     }
 
 

@@ -44,7 +44,7 @@ public class DataAccessLayer implements IDataAccessLayer {
     @Override
     public void addTour(Tour newTour) throws Exception {
         //Check if TourName is already present:
-        Tour dbTour = Database.getTour(newTour.getName());
+        Tour dbTour = Database.getTourByName(newTour.getName());
         if(dbTour == null) {
             Database.addTour(newTour);
         }
@@ -70,7 +70,7 @@ public class DataAccessLayer implements IDataAccessLayer {
 
     @Override
     public Tour getTourByName(String tourName) {
-        return Database.getTour(tourName);
+        return Database.getTourByName(tourName);
     }
     @Override
     public Tour getTourById(int id) {
@@ -97,5 +97,10 @@ public class DataAccessLayer implements IDataAccessLayer {
     @Override
     public void updateLog(Log log, int tourId) {
         Database.updateLog(log, tourId);
+    }
+
+    @Override
+    public Log getLogById(int logId) {
+        return Database.getLogById(logId);
     }
 }

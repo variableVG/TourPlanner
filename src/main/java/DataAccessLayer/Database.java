@@ -64,7 +64,7 @@ public class Database {
         return false;
     }
 
-    public static Tour getTour(String tourName) {
+    public static Tour getTourByName(String tourName) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 SELECT * FROM tour WHERE name = ?;
                 """)
@@ -323,6 +323,32 @@ public class Database {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static Log getLogById(int logId) {
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT * FROM log WHERE id = ?;
+                """)
+        ) {
+            statement.setInt(1, logId);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next() ) {
+                return new Log(
+                        resultSet.getInt("id"),
+                        resultSet.getDate("date").toLocalDate(),
+                        resultSet.getTime("time").toLocalTime(),
+                        resultSet.getString("comment"),
+                        resultSet.getInt("difficulty"),
+                        resultSet.getString("total_time"),
+                        resultSet.getInt("rating")
+                );
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
     }
 
     ////comment
