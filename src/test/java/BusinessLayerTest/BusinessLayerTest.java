@@ -11,8 +11,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.math.BigInteger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class BusinessLayerTest {
@@ -36,8 +35,25 @@ public class BusinessLayerTest {
         int answer = business.addTour(tour);
         assertTrue(answer >= 0, "Tour id is not a vaild number");
 
+    }
+    @Test
+    public void deleteTourTest() throws Exception{
+        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
+        business.deleteTour("tour4");
+        assertEquals("tour4","tour4","Tour wurde nicht gelöscht");
 
     }
+  /*
+    public void deleteTour(String tourName) {
+        business.deleteTour(tourName);
+        tourNames.remove(tourName);
+        tours.remove(getTourByName(tourName));
+    }
 
+
+      public EditTourPageModel(String tourName) {
+        business = new BusinessLayer();
+        tour = business.getTourByName(tourName);
+*/
 
 }
