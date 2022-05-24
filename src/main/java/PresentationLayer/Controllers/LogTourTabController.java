@@ -1,13 +1,12 @@
 package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.Log;
+import PresentationLayer.Models.LogTourTabModel;
 import PresentationLayer.Models.Tour;
+import PresentationLayer.TourPlannerApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,7 +23,9 @@ public class LogTourTabController {
         @FXML public TableColumn date;
         @FXML public TableColumn time;*/
     @FXML private TourPlannerApplication tpa = new TourPlannerApplication();
+    @FXML public ListView logList;
     Tour tour;
+    LogTourTabModel model;
 
 
 
@@ -32,6 +33,7 @@ public class LogTourTabController {
 
     LogTourTabController(Tour tour) {
         this.tour = tour;
+        this.model = new LogTourTabModel(tour);
     }
 
     @FXML
@@ -41,9 +43,11 @@ public class LogTourTabController {
     public void updateLogs(Tour tour) {
         //SET THE NEW TOUR
         this.tour = tour;
+        model.setTour(tour);
+        this.logList.setItems(model.getLogs());
 
         //DISPLAY TOURS
-        VBox.getChildren().clear();
+        //VBox.getChildren().clear();
 
         String labelTitleStyle = "-fx-font-weight: bold;";
         String cssLayout = "-fx-border-color: grey;\n" +
@@ -53,7 +57,9 @@ public class LogTourTabController {
 
 
         for (Log l : tour.getLogs()) {
-            VBox logBox = new VBox();
+
+
+            /*VBox logBox = new VBox();
             logBox.setPadding(new Insets(10));
 
             //ID BOX
@@ -128,7 +134,7 @@ public class LogTourTabController {
             logBox.getChildren().addAll(buttonBox);
 
             logBox.setStyle(cssLayout);
-            VBox.getChildren().addAll(logBox);
+            VBox.getChildren().addAll(logBox);*/
         }
 
 

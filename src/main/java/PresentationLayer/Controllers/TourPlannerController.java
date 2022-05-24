@@ -3,6 +3,7 @@ package PresentationLayer.Controllers;
 import PresentationLayer.Models.TourPlannerModel;
 import PresentationLayer.ReportGenerator.IReportGenerator;
 import PresentationLayer.ReportGenerator.ReportGenerator;
+import PresentationLayer.TourPlannerApplication;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;

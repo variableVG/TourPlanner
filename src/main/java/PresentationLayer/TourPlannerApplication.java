@@ -1,8 +1,10 @@
-package PresentationLayer.Controllers;
+package PresentationLayer;
 
 import DataAccessLayer.DatabaseConnection;
 import BusinessLayer.Logger.ILoggerWrapper;
 import BusinessLayer.Logger.LoggerFactory;
+import PresentationLayer.Controllers.ControllerFactory;
+import PresentationLayer.Controllers.DescriptionTourTabController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -21,7 +23,8 @@ public class TourPlannerApplication extends Application {
         //String fxmlFile = "main-page.fxml";
 
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "main-page.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("main-page.fxml"));
+
+        //FXMLLoader fxmlLoader = new FXMLLoader(factory, TourPlannerApplication.class.getResource("main-page.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(Factory.class.getResource("main-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700,500);
         stage.setTitle("Tour Planner Application");

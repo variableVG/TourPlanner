@@ -21,4 +21,6 @@ module main.tourplanner {
 
     opens PresentationLayer.Controllers to javafx.fxml;
     exports PresentationLayer.Controllers;
+    exports PresentationLayer;
+    opens PresentationLayer to javafx.fxml;
 }
