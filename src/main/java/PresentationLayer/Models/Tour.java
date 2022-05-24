@@ -23,8 +23,7 @@ public class Tour {
     private String time;
     private String popularity;
     private String childFriendliness;
-    private BufferedImage imageMap;
-    //private CompletableFuture<BufferedImage> futureMap;
+    //private BufferedImage imageMap;
 
     private boolean isAPIRequested;
     CompletableFuture<BufferedImage> futureImageMap;

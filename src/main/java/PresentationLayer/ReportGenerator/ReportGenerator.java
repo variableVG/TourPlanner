@@ -51,12 +51,23 @@ public class ReportGenerator implements IReportGenerator{
         document.add(new Paragraph("TransportType: " + tour.getTransportType() + "\t(some more attributes: ...) "));
         document.add(new Paragraph("Description: " + tour.getDescription()));
 
-        //convert bufferedimage to bytearray
-        /*ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(tour.getImageMap(), "png", baos);
-        byte[] bytes = baos.toByteArray();
-        ImageData tourImage = ImageDataFactory.create(bytes);
-        document.add(new Image(tourImage));*/
+        //get Image Map
+        tour.getFutureImageMap().thenApply(
+                futureImage -> {
+                    //convert bufferedimage to bytearray
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    try {
+                        ImageIO.write(futureImage, "png", baos);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    byte[] bytes = baos.toByteArray();
+                    ImageData tourImage = ImageDataFactory.create(bytes);
+                    document.add(new Image(tourImage));
+                    return null;
+                }
+        );
+
 
         document.add(new Paragraph("Logs")
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
