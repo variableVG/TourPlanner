@@ -43,17 +43,6 @@ public class BusinessLayerTest {
         assertEquals("tour4","tour4","Tour wurde nicht gelöscht");
 
     }
-  /*
-    public void deleteTour(String tourName) {
-        business.deleteTour(tourName);
-        tourNames.remove(tourName);
-        tours.remove(getTourByName(tourName));
-    }
 
-
-      public EditTourPageModel(String tourName) {
-        business = new BusinessLayer();
-        tour = business.getTourByName(tourName);
-*/
 
 }
