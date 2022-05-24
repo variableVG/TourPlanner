@@ -33,7 +33,7 @@
         <Button contentDisplay="GRAPHIC_ONLY" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0">
-                    <Image url="@../../Icons/loupe.png" />
+                    <Image url="@../Icons/loupe.png" />
                 </ImageView>
             </graphic>
         </Button>
@@ -58,21 +58,21 @@
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generteReportButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../../Icons/pdf.png" />
+                                <Image url="@../Icons/pdf.png" />
                             </ImageView>
                         </graphic>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../../Icons/edit.png" />
+                                <Image url="@../Icons/edit.png" />
                             </ImageView>
                         </graphic>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#deleteTourOnButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../../Icons/delete.png" />
+                                <Image url="@../Icons/delete.png" />
                             </ImageView>
                         </graphic>
                     </Button>
