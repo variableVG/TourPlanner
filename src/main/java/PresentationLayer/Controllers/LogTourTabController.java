@@ -4,9 +4,14 @@ import PresentationLayer.Models.Log;
 import PresentationLayer.Models.LogTourTabModel;
 import PresentationLayer.Models.Tour;
 import PresentationLayer.TourPlannerApplication;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +30,8 @@ public class LogTourTabController {
     @FXML public ListView logList;
     Tour tour;
     LogTourTabModel model;
+    private ObservableList<VBox> logs =
+            FXCollections.observableArrayList();
 
 
 
@@ -44,26 +51,20 @@ public class LogTourTabController {
         this.tour = tour;
         model.setTour(tour);
         model.updateLogs();
-        this.logList.setItems(model.getLogs());
+        setObservableLogs();
+        this.logList.setItems(logs);
 
+    }
 
-
-        //DISPLAY TOURS
-        //VBox.getChildren().clear();
-
+    private void setObservableLogs() {
+        this.logs.clear();
         String labelTitleStyle = "-fx-font-weight: bold;";
         String cssLayout = "-fx-border-color: grey;\n" +
                 "-fx-border-insets: 5;\n" +
                 "-fx-border-width: 2;\n" +
                 "-fx-border-style: dashed;\n";
-
-
         for (Log l : tour.getLogs()) {
-
-
-            /*VBox logBox = new VBox();
-            logBox.setPadding(new Insets(10));
-
+            VBox logBox = new VBox();
             //ID BOX
             HBox idBox = new HBox();
             Label idLabel = new Label();
@@ -82,7 +83,7 @@ public class LogTourTabController {
             Label dateLabelContent = new Label();
             dateLabelContent.setText(" " + l.getDate());
             Label timeLabel = new Label();
-            timeLabel.setText(" at " + l.getTime()+ " hours ");
+            timeLabel.setText(" at " + l.getTime() + " hours ");
             dateBox.getChildren().addAll(dateLabel, dateLabelContent, timeLabel);
             logBox.getChildren().addAll(dateBox);
 
@@ -135,12 +136,11 @@ public class LogTourTabController {
             buttonBox.getChildren().addAll(editButton, deleteButton);
             logBox.getChildren().addAll(buttonBox);
 
-            logBox.setStyle(cssLayout);
-            VBox.getChildren().addAll(logBox);*/
+            logs.add(logBox);
         }
 
 
-     }
+    }
 
     public void addLogOnButtonClick(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -150,7 +150,18 @@ public class LogTourTabController {
         else {
             System.out.println("You cannot add a log to an empty tour");
         }
-
-
     }
+
+    public void editLogOnButtonClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Edit has been clicked");
+        Stage stage = new Stage();
+        if(tour != null) {
+            tpa.addLog(stage, tour.getName());
+        }
+        else {
+            System.out.println("You cannot add a log to an empty tour");
+        }
+    }
+
+
 }
