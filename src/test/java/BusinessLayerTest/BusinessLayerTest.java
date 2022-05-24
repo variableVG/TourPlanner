@@ -117,8 +117,11 @@ public class BusinessLayerTest {
         try {
             assertEquals(true, business.deleteLog(log), "business.DeleteLog() has failed");
             assertFalse(business.deleteLog(log), "The test gives back true but the log is not present in the DB");
+            // In the last assert we expect an Exception, we will also test for the exception:
+            assertTrue(false); // this line of code should not be run
         } catch (Exception e) {
             e.printStackTrace();
+            assertTrue(e instanceof Exception);
         }
 
 
