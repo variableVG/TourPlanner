@@ -35,7 +35,7 @@ public class TourPlannerApplication extends Application {
     }
 
     public void addRoute(Stage stage) throws IOException{
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "add-tour-page.fxml");
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/add-tour-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-tour-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,500);
         stage.setTitle("New Tour");

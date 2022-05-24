@@ -10,7 +10,7 @@ public class LogTourTabModel {
     Tour tour;
     IBusinessLayer business;
 
-    private ObservableList<Tour> logs =
+    private ObservableList<Log> logs =
             FXCollections.observableArrayList();
 
     public LogTourTabModel(Tour tour){
@@ -18,4 +18,10 @@ public class LogTourTabModel {
     }
 
 
+    public void updateLogs() {
+        this.logs.clear();
+        for (Log l : tour.getLogs()) {
+            logs.add(l);
+        }
+    }
 }

@@ -44,7 +44,9 @@ public class LogTourTabController {
         //SET THE NEW TOUR
         this.tour = tour;
         model.setTour(tour);
+        model.updateLogs();
         this.logList.setItems(model.getLogs());
+
 
         //DISPLAY TOURS
         //VBox.getChildren().clear();
