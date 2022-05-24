@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.LogTourTabController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"  xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.LogTourTabController">
     <!--<Label />-->
     <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <ListView fx:id="logList" prefHeight="293.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="logList" prefHeight="293.0" maxWidth="-Infinity"   VBox.vgrow="ALWAYS" />
         <Button alignment="CENTER_RIGHT" layoutX="284.0" layoutY="391.0" onAction="#addLogOnButtonClick">+</Button>
       <padding>
          <Insets bottom="5.0" left="5.0" right="5.0" />
@@ -21,8 +21,6 @@
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS" fx:id="VBox">
         </VBox>
     </ScrollPane>-->
-
-
     <!--
    <TableView fx:id="tableViewLogs" layoutX="30.0" layoutY="100.0" prefHeight="200.0" prefWidth="547.0">
         <columns>
