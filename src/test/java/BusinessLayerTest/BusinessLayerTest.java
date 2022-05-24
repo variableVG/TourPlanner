@@ -38,7 +38,6 @@ public class BusinessLayerTest {
     }
     @Test
     public void deleteTourTest() throws Exception{
-        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
         business.deleteTour("tour4");
         assertEquals("tour4","tour4","Tour wurde nicht gelöscht");
 
