@@ -297,6 +297,34 @@ public class Database {
         return answer;
     }
 
+    public static void updateLog(Log log, int tourId) {
+        Date date = null;
+        if(log.getDate()!= null) {date = Date.valueOf(log.getDate());}
+        Time time = null;
+        if(log.getTime() != null) { time = Time.valueOf(log.getTime());}
+
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                UPDATE log 
+                SET tour_id = ?, date = ?, time = ?, total_time = ?, difficulty = ?, rating = ?, comment = ?
+                WHERE id = ?;
+                """ )
+        ) {
+            //statement.setString(1, newTour.getId().get());
+            statement.setInt(1, tourId);
+            statement.setDate(2, date);
+            statement.setTime(3, time);
+            statement.setString(4, log.getTotaltime());
+            statement.setInt(5, log.getDifficulty());
+            statement.setInt(6, log.getRating());
+            statement.setString(7, log.getComment());
+            statement.setInt(8, log.getId());
+            statement.execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     ////comment
 }
 /*

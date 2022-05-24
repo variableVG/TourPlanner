@@ -16,11 +16,14 @@ public interface IDataAccessLayer {
     void updateTour(Tour tour);
 
     Tour getTourByName(String tourName);
-    Tour getTourById(int id);//**
+    Tour getTourById(int id);
 
     int addLog(int id, Log log);
 
     List<Log> getLogs(int tourId);
 
     int getTourIdByName(String name) throws Exception;
+
+
+    void updateLog(Log log, int tourId);
 }

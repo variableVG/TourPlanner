@@ -24,5 +24,7 @@ public interface IBusinessLayer {
 
     List<Log> getLogs(int tourId);
 
+    void updateLog(Log log, int tourId);
+
     void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
 }

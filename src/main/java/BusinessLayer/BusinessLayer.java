@@ -110,6 +110,11 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
+    public void updateLog(Log log, int tourId) {
+        dataAccessLayer.updateLog(log, tourId);
+    }
+
+    @Override
     public void getMap(Tour tour) throws URISyntaxException, IOException, ExecutionException, InterruptedException {
         /** this function makes a REST request for a given tour (which contains origin and destination) using the
          * MapQuest Directions and Static BusinessLayer.Map APIs.

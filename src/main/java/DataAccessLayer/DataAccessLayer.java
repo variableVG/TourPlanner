@@ -93,4 +93,9 @@ public class DataAccessLayer implements IDataAccessLayer {
         //If returns -1, it could not find the tour.
         return Database.getTourIdByName(name);
     }
+
+    @Override
+    public void updateLog(Log log, int tourId) {
+        Database.updateLog(log, tourId);
+    }
 }
