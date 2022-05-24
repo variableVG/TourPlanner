@@ -28,4 +28,7 @@ public interface IDataAccessLayer {
     void updateLog(Log log, int tourId);
 
     Log getLogById(int logId);
+
+
+    boolean deleteLog(int logId);
 }

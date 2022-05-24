@@ -351,6 +351,24 @@ public class Database {
         return null;
     }
 
+    public static boolean deleteLog(int logId) {
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                DELETE 
+                FROM log 
+                WHERE id=?;
+                """ )
+        ) {
+            statement.setInt(1, logId);
+            statement.execute();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
+
+    }
+
     ////comment
 }
 /*

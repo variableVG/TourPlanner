@@ -82,12 +82,49 @@ public class BusinessLayerTest {
         assertEquals("This is another comment", log.getComment(), "There is a problem with setters in Log Class. Variable comment is not set");
         business.updateLog(log, checkTour.getId());
 
+        //TODO check the other parameters for log
+
         Log checkLog = business.getLogById(log.getId());
 
-        
+
         //assert
         assertEquals(checkLog.getComment(), log.getComment(), "Comment was not updated");
     }
+
+    @Test
+    public void deleteLogTest() {
+        //Define log
+        LocalDate date = LocalDate.parse("2019-09-04");
+        LocalTime time = LocalTime.parse("21:00");
+        String comment = "This is a comment";
+        int difficulty = 1;
+        String totalTime = "3h";
+        int rating = 5;
+        Log log = new Log(-1, date, time, comment, difficulty, totalTime, rating );
+
+        //get Tour:
+        Tour checkTour = business.getTourByName(tour.getName());
+
+        // Add log
+        try {
+            int id = business.addLog(checkTour, log);
+            log.setId(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // asserts
+        try {
+            assertEquals(true, business.deleteLog(log), "business.DeleteLog() has failed");
+            assertFalse(business.deleteLog(log), "The test gives back true but the log is not present in the DB");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
 
 
 }

@@ -103,4 +103,9 @@ public class DataAccessLayer implements IDataAccessLayer {
     public Log getLogById(int logId) {
         return Database.getLogById(logId);
     }
+
+    @Override
+    public boolean deleteLog(int logId) {
+        return Database.deleteLog(logId);
+    }
 }

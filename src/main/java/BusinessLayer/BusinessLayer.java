@@ -115,6 +115,16 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
+    public boolean deleteLog(Log log) throws Exception {
+        //Check first if log is present in the DB:
+        Log checkLog = dataAccessLayer.getLogById(log.getId());
+        if(checkLog == null) {
+            throw new Exception("Log is not present in the database");
+        }
+        return dataAccessLayer.deleteLog(log.getId());
+    }
+
+    @Override
     public void getMap(Tour tour) throws URISyntaxException, IOException, ExecutionException, InterruptedException {
         /** this function makes a REST request for a given tour (which contains origin and destination) using the
          * MapQuest Directions and Static BusinessLayer.Map APIs.
