@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.LogTourTabController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.LogTourTabController">
     <!--<Label />-->
-    <ListView fx:id="logList" VBox.vgrow="ALWAYS">
+    <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ListView fx:id="logList" prefHeight="293.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+        <Button alignment="CENTER_RIGHT" layoutX="284.0" layoutY="391.0" onAction="#addLogOnButtonClick">+</Button>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" />
+      </padding>
+    </VBox>
 
-    </ListView>
+
+
 
     <!--<ScrollPane vbarPolicy="ALWAYS" >
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS" fx:id="VBox">
@@ -39,7 +46,7 @@
 
    </TableView>
    -->
-    <Button alignment="CENTER_RIGHT" layoutX="300.0" layoutY="352.0" onAction="#addLogOnButtonClick">+</Button>
+
 
    
 </AnchorPane>

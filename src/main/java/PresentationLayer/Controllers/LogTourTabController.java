@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class LogTourTabController {
 
-    public javafx.scene.layout.VBox VBox;
     /*@FXML public TableView<Log> tableViewLogs;
         @FXML public TableColumn comment;
         @FXML public TableColumn difficulty;
@@ -46,6 +45,7 @@ public class LogTourTabController {
         model.setTour(tour);
         model.updateLogs();
         this.logList.setItems(model.getLogs());
+
 
 
         //DISPLAY TOURS
