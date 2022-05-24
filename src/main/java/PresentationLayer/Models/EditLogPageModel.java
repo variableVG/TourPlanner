@@ -22,9 +22,11 @@ public class EditLogPageModel {
     private IntegerProperty rating;
     private StringProperty info;
     Log log;
+    Tour tour;
     IBusinessLayer business = new BusinessLayer();
 
-    public EditLogPageModel(int logId) {
+    public EditLogPageModel(int logId, String tourName) {
+        this.tour = business.getTourByName(tourName);
         this.log = business.getLogById(logId);
         this.id = new SimpleIntegerProperty(log.getId());
         this.date = new SimpleObjectProperty<>(log.getDate());
@@ -38,6 +40,19 @@ public class EditLogPageModel {
         this.totalTime = new SimpleStringProperty(log.getTotaltime());
         this.rating = new SimpleIntegerProperty(log.getRating());
         this.info = new SimpleStringProperty();
+
+    }
+
+    public void editLog() {
+        this.log.setDate(this.date.getValue());
+        //TODO time
+        this.log.setComment(this.comment.getValue());
+        this.log.setDifficulty(this.difficulty.getValue());
+        //TODO set correct difficulty value
+        this.log.setTotaltime(this.totalTime.getValue());
+        this.log.setRating(this.rating.getValue());
+
+        business.updateLog(log, tour.getId());
 
     }
 

@@ -7,6 +7,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
 public class EditLogPageController {
@@ -28,7 +29,7 @@ public class EditLogPageController {
     Log log;
 
     public EditLogPageController(String tourName, int logId) {
-        model = new EditLogPageModel(logId);
+        model = new EditLogPageModel(logId, tourName);
     }
 
     @FXML
@@ -64,5 +65,9 @@ public class EditLogPageController {
     }
 
     public void editLogOnClick(ActionEvent actionEvent) {
+        Stage stage = (Stage) editButton.getScene().getWindow();
+        model.editLog();
+        stage.close();
+
     }
 }
