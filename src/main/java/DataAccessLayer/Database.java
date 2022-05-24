@@ -333,10 +333,20 @@ public class Database {
             statement.setInt(1, logId);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next() ) {
+                //validate Data
+                int id = resultSet.getInt("id");
+                LocalDate date = null;
+                if(resultSet.getDate("date")!= null) {
+                    date = resultSet.getDate("date").toLocalDate();
+                }
+                LocalTime time = null;
+                if(resultSet.getTime("time") != null) {
+                    time = resultSet.getTime("time").toLocalTime();
+                }
                 return new Log(
                         resultSet.getInt("id"),
-                        resultSet.getDate("date").toLocalDate(),
-                        resultSet.getTime("time").toLocalTime(),
+                        date,
+                        time,
                         resultSet.getString("comment"),
                         resultSet.getInt("difficulty"),
                         resultSet.getString("total_time"),

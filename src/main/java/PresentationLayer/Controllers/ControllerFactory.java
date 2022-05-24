@@ -9,7 +9,7 @@ public class ControllerFactory {
     //all models that have a controller
     private final TourPlannerModel tourPlannerModel;
     private String tourName;
-    //**private int tourId;
+    private int logId;
     DescriptionTourTabController descriptionTourTabController;
 
     public ControllerFactory() {
@@ -37,6 +37,12 @@ public class ControllerFactory {
             return new EditTourPageController(tourName, descriptionTourTabController);
             //**return new EditTourPageController(tourId);
         }
+        else if(controllerClass == EditLogPageController.class) {
+            return new EditLogPageController(tourName, logId);
+        }
         return null;
     }
+
+
+
 }

@@ -131,6 +131,7 @@ public class LogTourTabController {
             HBox buttonBox = new HBox();
             Button editButton = new Button("Edit");
             editButton.setPadding(new Insets(5));
+            editButton.setOnAction(event -> editLogOnButtonClick(event, l.getId()));
             Button deleteButton = new Button("Delete");
             deleteButton.setPadding(new Insets(5));
             buttonBox.getChildren().addAll(editButton, deleteButton);
@@ -152,11 +153,15 @@ public class LogTourTabController {
         }
     }
 
-    public void editLogOnButtonClick(ActionEvent actionEvent) throws IOException {
-        System.out.println("Edit has been clicked");
+    public void editLogOnButtonClick(ActionEvent actionEvent, int logId)  {
+        System.out.println("Edit has been clicked for log " + logId);
         Stage stage = new Stage();
         if(tour != null) {
-            tpa.addLog(stage, tour.getName());
+            try {
+                tpa.editLog(stage, tour.getName(), logId);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         else {
             System.out.println("You cannot add a log to an empty tour");

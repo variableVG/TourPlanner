@@ -99,4 +99,19 @@ public class TourPlannerApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void editLog(Stage stage, String tourName, int logId) throws IOException {
+        factory.setTourName(tourName);
+        factory.setLogId(logId);
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editLogPage.fxml");
+        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 500,400);
+        stage.setTitle("New Log for Tour " + tourName);
+        stage.setMinHeight(400);
+        stage.setMinWidth(400);
+        stage.setX(600);
+        stage.setY(150);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -157,6 +157,7 @@ public class BusinessLayer implements IBusinessLayer {
             //return apiMap.get();
     }
 
+    @Override
     public Log getLogById(int logId) {
         Log log = null;
         log = dataAccessLayer.getLogById(logId);
