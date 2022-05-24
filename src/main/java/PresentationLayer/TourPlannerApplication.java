@@ -48,7 +48,7 @@ public class TourPlannerApplication extends Application {
     }
     public void addLog(Stage stage, String tourName) throws IOException{
         factory.setTourName(tourName);
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "add-log-page.fxml");
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/add-log-page.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,400);
         stage.setTitle("New Log for Tour " + tourName);
@@ -89,7 +89,7 @@ public class TourPlannerApplication extends Application {
         factory.setTourName(tourName);
         factory.setDescriptionTourTabController(descriptionTourTabController);
         //**factory.setTourId(tourId);
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "editTourPage.fxml");
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editTourPage.fxml");
         Scene scene = new Scene(fxmlLoader.load(), 500,500);
         stage.setTitle("Edit Tour: " + tourName);
         stage.setMinHeight(400);
