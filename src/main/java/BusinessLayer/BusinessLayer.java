@@ -110,8 +110,19 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public void updateLog(Log log, int tourId) {
-        dataAccessLayer.updateLog(log, tourId);
+    public boolean updateLog(Log log, int tourId) throws Exception {
+        if(log.getRating() > 5 || log.getRating() < 0) {
+            throw new Exception("Rating score is not a valid value. Valid values between 0 and 5");
+        }
+        else if(log.getDifficulty() > 3 || log.getDifficulty() < 0) {
+            throw new Exception("Difficulty store is not a valid value. Valid values between 0 and 3");
+        }
+
+        if(dataAccessLayer.updateLog(log, tourId)) {
+            return true;
+        }
+        return false;
+
     }
 
     @Override

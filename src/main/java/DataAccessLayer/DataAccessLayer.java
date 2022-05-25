@@ -95,8 +95,9 @@ public class DataAccessLayer implements IDataAccessLayer {
     }
 
     @Override
-    public void updateLog(Log log, int tourId) {
-        Database.updateLog(log, tourId);
+    public boolean updateLog(Log log, int tourId) {
+
+        return Database.updateLog(log, tourId);
     }
 
     @Override

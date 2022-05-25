@@ -6,8 +6,8 @@
 
 <HBox alignment="CENTER" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.EditLogPageController">
     <VBox alignment="CENTER" prefHeight="400" prefWidth="400">
-        <VBox>
-            <Label fx:id="info" style="-fx-font-weight: bold; -fx-font-size: 14;" />
+        <VBox VBox.vgrow="ALWAYS">
+            <Label fx:id="info" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
         </VBox>
         <VBox>
             <Label>Date:</Label>

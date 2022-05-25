@@ -64,6 +64,7 @@ public class AddLogPageController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            info.setText(e.toString());
         }
 
     }

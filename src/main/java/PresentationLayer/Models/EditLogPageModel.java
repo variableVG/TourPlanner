@@ -50,13 +50,23 @@ public class EditLogPageModel {
         this.log.setTotaltime(this.totalTime.getValue());
         this.log.setRating(this.rating.getValue());
 
-        //set time
-        LocalTime timeLog = validateTime();
+        //Validate and set the time
+        LocalTime timeLog = null;
+        if(this.time.getValue() != null) {
+            timeLog = validateTime();
+            if (timeLog == null) {
+                return false;
+            }
+        }
         this.log.setTime(timeLog);
 
         if(validateFields()) {
-            business.updateLog(log, tour.getId());
-            return true;
+            try {
+                return business.updateLog(log, tour.getId());
+            } catch (Exception e) {
+                e.printStackTrace();
+                this.info.setValue(e.toString());
+            }
         }
 
         return false;
@@ -72,7 +82,6 @@ public class EditLogPageModel {
             message = "All the fields are empty. At least one field must contain information.";
             hasPassedValidation = false;
         }
-
 
         if(!hasPassedValidation) {
             this.info.set(message);

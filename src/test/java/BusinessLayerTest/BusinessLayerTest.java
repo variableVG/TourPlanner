@@ -80,9 +80,12 @@ public class BusinessLayerTest {
         //Modify log
         log.setComment("This is another comment");
         assertEquals("This is another comment", log.getComment(), "There is a problem with setters in Log Class. Variable comment is not set");
-        business.updateLog(log, checkTour.getId());
 
-        //TODO check the other parameters for log
+        try {
+            business.updateLog(log, checkTour.getId());
+        }catch (Exception e) {
+            System.out.println(e);
+        }
 
         Log checkLog = business.getLogById(log.getId());
 

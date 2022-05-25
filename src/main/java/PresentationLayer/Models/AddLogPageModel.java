@@ -27,7 +27,7 @@ public class AddLogPageModel {
     }
 
 
-    public boolean addLog() throws Exception {
+    public boolean addLog() {
         if(validateFields()) {
 
             //Validate and set the time
@@ -43,8 +43,13 @@ public class AddLogPageModel {
                     this.difficulty.getValue(), this.totalTime.getValue(),
                     this.rating.getValue());
 
-
-            int logId = business.addLog(this.tour, log);
+            int logId = 0;
+            try {
+                logId = business.addLog(this.tour, log);
+            } catch (Exception e) {
+                e.printStackTrace();
+                this.info.setValue(e.toString());
+            }
             log.setId(logId);
             this.tour.getLogs().add(log);
             TourPlannerModel.getInstance().updateTour(tour);

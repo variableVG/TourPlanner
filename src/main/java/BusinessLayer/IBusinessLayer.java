@@ -24,7 +24,7 @@ public interface IBusinessLayer {
 
     List<Log> getLogs(int tourId);
 
-    void updateLog(Log log, int tourId);
+    boolean updateLog(Log log, int tourId) throws Exception;
 
     boolean deleteLog(Log log) throws Exception;
 

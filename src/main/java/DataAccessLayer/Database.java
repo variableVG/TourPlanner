@@ -297,7 +297,7 @@ public class Database {
         return answer;
     }
 
-    public static void updateLog(Log log, int tourId) {
+    public static boolean updateLog(Log log, int tourId) {
         Date date = null;
         if(log.getDate()!= null) {date = Date.valueOf(log.getDate());}
         Time time = null;
@@ -319,10 +319,12 @@ public class Database {
             statement.setString(7, log.getComment());
             statement.setInt(8, log.getId());
             statement.execute();
+            return true;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return false;
     }
 
     public static Log getLogById(int logId) {
