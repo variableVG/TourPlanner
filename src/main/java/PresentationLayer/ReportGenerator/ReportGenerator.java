@@ -84,12 +84,23 @@ public class ReportGenerator implements IReportGenerator{
             logsTable.addHeaderCell(getHeaderCell("Comment"));
 
         for(Log log : tour.getLogs()){
-            logsTable.addCell(log.getDate().toString());
-            //logsTable.addCell(log.getTime().toString());
-            logsTable.addCell(log.getTotaltime());
-            logsTable.addCell(log.getRating().toString());
-            //logsTable.addCell(log.getDifficulty());
-            logsTable.addCell(log.getComment());
+            //check date and time
+            String date = ""; String time = ""; String totalTime = ""; String rating = ""; String difficulty ="";
+            String comment ="";
+
+            if(log.getDate() != null) { date = log.getDate().toString(); }
+            if(log.getTime() != null) { time = log.getTime().toString(); }
+            if(log.getTotaltime() != null) { totalTime = log.getTotaltime(); }
+            if(log.getRating() != null) { rating = log.getRating().toString(); }
+            if(log.getDifficulty() != null) {difficulty = log.getDifficulty().toString(); }
+            if(log.getComment() != null) {comment = log.getComment(); }
+
+            logsTable.addCell(date);
+            logsTable.addCell(time);
+            logsTable.addCell(totalTime);
+            logsTable.addCell(rating);
+            logsTable.addCell(difficulty);
+            logsTable.addCell(comment);
         }
         document.add(logsTable);
         /*

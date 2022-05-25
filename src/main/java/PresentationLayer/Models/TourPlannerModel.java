@@ -37,16 +37,6 @@ public class TourPlannerModel {
         }
     }
 
-    private void getAllTours(){
-        tours.clear();
-        tourNames.clear();
-        List<Tour> toursDb = business.getAllTours();
-        for(Tour t: toursDb){
-            tours.add(t);
-            tourNames.add(t.getName());
-        }
-    }
-
     public static synchronized TourPlannerModel getInstance() {
         /** When I need the class I access to it through getInstance. With the lazy
          * method it delays the creation of an object until the first time is needed.
@@ -68,6 +58,16 @@ public class TourPlannerModel {
 
         }
         return tourPlannerModel;
+    }
+
+    private void getAllTours(){
+        tours.clear();
+        tourNames.clear();
+        List<Tour> toursDb = business.getAllTours();
+        for(Tour t: toursDb){
+            tours.add(t);
+            tourNames.add(t.getName());
+        }
     }
 
     public ObservableList<Tour> getTours() {
@@ -107,10 +107,24 @@ public class TourPlannerModel {
     }
 
     public void updateTour(Tour tour) {
+        //getAllTours();
         for(Tour t: tours) {
             if(t.getId() == tour.getId()) {
+                //This approach was creating some Exceptions and problems with the threads (completableFuture)
                 tours.remove(t);
                 tours.add(tour);
+
+                /*t.setDescription(tour.getDescription());
+                t.setOrigin(tour.getOrigin());
+                t.setDescription(tour.getDestination());
+                t.setTransportType(tour.getTransportType());
+                t.setDistance(tour.getDistance());
+                t.setTransportType(tour.getTransportType());
+                t.setTime(tour.getTime());
+                t.setPopularity(tour.getPopularity());
+                t.setChildFriendliness(tour.getChildFriendliness());
+                t.setLogs(tour.getLogs());*/
+
             }
         }
 

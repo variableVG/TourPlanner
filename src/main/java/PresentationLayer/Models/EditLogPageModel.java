@@ -62,7 +62,12 @@ public class EditLogPageModel {
 
         if(validateFields()) {
             try {
-                return business.updateLog(log, tour.getId());
+                if(business.updateLog(log, tour.getId())) {
+                    //Update in the frontend:
+                    updateLogFrontend();
+                    return true;
+                }
+                return false;
             } catch (Exception e) {
                 e.printStackTrace();
                 this.info.setValue(e.toString());
@@ -104,6 +109,11 @@ public class EditLogPageModel {
         }
 
         return time;
+    }
+
+    private void updateLogFrontend() {
+        TourPlannerModel.getInstance().updateTour(tour);
+
     }
 
 

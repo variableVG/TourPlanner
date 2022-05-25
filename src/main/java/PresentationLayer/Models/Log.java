@@ -13,7 +13,7 @@ public class Log {
     private LocalDate date;
     private LocalTime time;
     private String comment;
-    private int difficulty;
+    private Integer difficulty;
     private String totaltime;
     private Integer rating;
 
