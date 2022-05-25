@@ -11,6 +11,7 @@ public class ControllerFactory {
     private String tourName;
     private int logId;
     DescriptionTourTabController descriptionTourTabController;
+    LogTourTabController logTourTabController;
 
     public ControllerFactory() {
         this.tourPlannerModel = TourPlannerModel.getInstance();
@@ -38,7 +39,7 @@ public class ControllerFactory {
             //**return new EditTourPageController(tourId);
         }
         else if(controllerClass == EditLogPageController.class) {
-            return new EditLogPageController(tourName, logId);
+            return new EditLogPageController(tourName, logId, logTourTabController);
         }
         return null;
     }

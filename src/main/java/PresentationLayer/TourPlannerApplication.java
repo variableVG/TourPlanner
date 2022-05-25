@@ -5,6 +5,7 @@ import BusinessLayer.Logger.ILoggerWrapper;
 import BusinessLayer.Logger.LoggerFactory;
 import PresentationLayer.Controllers.ControllerFactory;
 import PresentationLayer.Controllers.DescriptionTourTabController;
+import PresentationLayer.Controllers.LogTourTabController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -100,9 +101,10 @@ public class TourPlannerApplication extends Application {
         stage.show();
     }
 
-    public void editLog(Stage stage, String tourName, int logId) throws IOException {
+    public void editLog(Stage stage, String tourName, int logId, LogTourTabController logTourTabController) throws IOException {
         factory.setTourName(tourName);
         factory.setLogId(logId);
+        factory.setLogTourTabController(logTourTabController);
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editLogPage.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500,400);

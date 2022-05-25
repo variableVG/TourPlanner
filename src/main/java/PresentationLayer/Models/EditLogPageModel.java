@@ -24,6 +24,7 @@ public class EditLogPageModel {
     Log log;
     Tour tour;
     IBusinessLayer business = new BusinessLayer();
+    LogTourTabModel logTourTabModel;
 
     public EditLogPageModel(int logId, String tourName) {
         this.tour = business.getTourByName(tourName);
@@ -113,6 +114,8 @@ public class EditLogPageModel {
 
     private void updateLogFrontend() {
         TourPlannerModel.getInstance().updateLogs(tour, log);
+        logTourTabModel = new LogTourTabModel(tour);
+        logTourTabModel.updateLogs(log);
 
     }
 
