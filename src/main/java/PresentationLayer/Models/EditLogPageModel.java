@@ -43,18 +43,60 @@ public class EditLogPageModel {
 
     }
 
-    public void editLog() {
+    public boolean editLog() {
         this.log.setDate(this.date.getValue());
-        //TODO time
         this.log.setComment(this.comment.getValue());
         this.log.setDifficulty(this.difficulty.getValue());
-        //TODO set correct difficulty value
         this.log.setTotaltime(this.totalTime.getValue());
         this.log.setRating(this.rating.getValue());
 
-        business.updateLog(log, tour.getId());
+        //set time
+        LocalTime timeLog = validateTime();
+        this.log.setTime(timeLog);
 
+        if(validateFields()) {
+            business.updateLog(log, tour.getId());
+            return true;
+        }
+
+        return false;
     }
+
+    private boolean validateFields() {
+        /**
+         * */
+        boolean hasPassedValidation = true;
+        String message = "";
+        if(this.date.getValue() == null & this.time.getValue() == null & this.comment.getValue() == null
+                & this.difficulty.getValue() == 0 & this.rating.getValue() == 0 & this.totalTime.getValue() == null) {
+            message = "All the fields are empty. At least one field must contain information.";
+            hasPassedValidation = false;
+        }
+
+
+        if(!hasPassedValidation) {
+            this.info.set(message);
+        }
+        return hasPassedValidation;
+    }
+
+    private LocalTime validateTime() {
+        LocalTime time = null;
+        //Check if time is null, if it is null it must not be validated, since the time is not strictily required.
+        if(this.time.getValue() == null){
+            return null;
+        }
+
+        //If time has been entered, control that it has a valid format.
+        try {
+            time = LocalTime.parse(this.time.getValue());
+        } catch (Exception e) {
+            this.info.set(e.getMessage());
+        }
+
+        return time;
+    }
+
 
 
 

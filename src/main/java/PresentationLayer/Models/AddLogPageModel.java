@@ -49,10 +49,11 @@ public class AddLogPageModel {
     private boolean validateFields() {
         /**
          * */
+
         boolean hasPassedValidation = true;
         String message = "";
         if(this.date.getValue() == null & this.time.getValue() == null & this.comment.getValue() == null
-            & this.difficulty.getValue() == null & this.rating.getValue() == null & this.totalTime.getValue() == null) {
+            & this.difficulty.getValue() == 0 & this.rating.getValue() == 0 & this.totalTime.getValue() == null) {
             message = "All the fields are empty. At least one field must contain information.";
             hasPassedValidation = false;
         }
@@ -60,9 +61,8 @@ public class AddLogPageModel {
 
         if(!hasPassedValidation) {
             this.info.set(message);
-            return false;
         }
-        return true;
+        return hasPassedValidation;
     }
 
     private LocalTime validateTime() {

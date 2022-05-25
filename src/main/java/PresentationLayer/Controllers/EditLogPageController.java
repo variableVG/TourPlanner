@@ -34,7 +34,7 @@ public class EditLogPageController {
 
     @FXML
     public void initialize(){
-        info.textProperty().bindBidirectional(model.getInfo());
+        this.info.textProperty().bindBidirectional(model.getInfo());
         this.date.valueProperty().bindBidirectional(model.getDate());
         this.time.textProperty().bindBidirectional(model.getTime());
         this.comment.textProperty().bindBidirectional(model.getComment());
@@ -65,9 +65,24 @@ public class EditLogPageController {
     }
 
     public void editLogOnClick(ActionEvent actionEvent) {
+        //get which difficulty has been selected
+        if(easyDiff.isSelected()) {
+            model.getDifficulty().setValue(1);
+        }
+        else if(mediumDiff.isSelected()) {
+            model.getDifficulty().setValue(2);
+        }
+        else if(hardDiff.isSelected()) {
+            model.getDifficulty().setValue(3);
+        }
+        else {
+            model.getDifficulty().setValue(0);
+        }
+
         Stage stage = (Stage) editButton.getScene().getWindow();
-        model.editLog();
-        stage.close();
+        if(model.editLog()) {
+            stage.close();
+        }
 
     }
 }
