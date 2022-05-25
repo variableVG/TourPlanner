@@ -29,7 +29,15 @@ public class AddLogPageModel {
 
     public boolean addLog() throws Exception {
         if(validateFields()) {
-            LocalTime timeLog = validateTime();
+
+            //Validate and set the time
+            LocalTime timeLog = null;
+            if(this.time.getValue() != null) {
+                timeLog = validateTime();
+                if (timeLog == null) {
+                    return false;
+                }
+            }
 
             Log log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
                     this.difficulty.getValue(), this.totalTime.getValue(),
@@ -49,7 +57,6 @@ public class AddLogPageModel {
     private boolean validateFields() {
         /**
          * */
-
         boolean hasPassedValidation = true;
         String message = "";
         if(this.date.getValue() == null & this.time.getValue() == null & this.comment.getValue() == null
@@ -57,7 +64,6 @@ public class AddLogPageModel {
             message = "All the fields are empty. At least one field must contain information.";
             hasPassedValidation = false;
         }
-
 
         if(!hasPassedValidation) {
             this.info.set(message);
@@ -67,10 +73,6 @@ public class AddLogPageModel {
 
     private LocalTime validateTime() {
         LocalTime time = null;
-        //Check if time is null, if it is null it must not be validated, since the time is not strictily required.
-        if(this.time.getValue() == null){
-            return null;
-        }
 
         //If time has been entered, control that it has a valid format.
         try {
