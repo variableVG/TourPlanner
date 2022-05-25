@@ -30,6 +30,8 @@ public class LogTourTabModel {
     public void deleteLog(int logId) {
         try {
             business.deleteLog(logId);
+            //delete Log in the frontend
+            TourPlannerModel.getInstance().deleteLog(tour, logId);
         } catch (Exception e) {
             e.printStackTrace();
         }

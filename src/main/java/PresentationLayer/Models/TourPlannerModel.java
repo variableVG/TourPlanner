@@ -107,28 +107,43 @@ public class TourPlannerModel {
     }
 
     public void updateTour(Tour tour) {
-        //getAllTours();
-        for(Tour t: tours) {
-            if(t.getId() == tour.getId()) {
-                //This approach was creating some Exceptions and problems with the threads (completableFuture)
-                tours.remove(t);
+        // We have a lot of problems with exceptions here.
+        //Solution to exception:
+        //https://rollbar.com/blog/java-concurrentmodificationexception/#
+        for(int i = 0; i < tours.size(); i++) {
+            if(tours.get(i).getId() == tour.getId()) {
+                //This approach is creating some Exceptions and problems with the threads (completableFuture)
+                tours.remove(tours.get(i));
                 tours.add(tour);
+            }
+        }
 
-                /*t.setDescription(tour.getDescription());
-                t.setOrigin(tour.getOrigin());
-                t.setDescription(tour.getDestination());
-                t.setTransportType(tour.getTransportType());
-                t.setDistance(tour.getDistance());
-                t.setTransportType(tour.getTransportType());
-                t.setTime(tour.getTime());
-                t.setPopularity(tour.getPopularity());
-                t.setChildFriendliness(tour.getChildFriendliness());
-                t.setLogs(tour.getLogs());*/
+    }
 
+    public void updateLogs(Tour tour, Log log) {
+        for(int i = 0; i < tours.size(); i++) {
+            if (tours.get(i).getId() == tour.getId()) {
+                for(int j = 0; j < tours.get(i).getLogs().size(); j++) {
+                    if(tours.get(i).getLogs().get(j).getId() == log.getId()) {
+                        tours.get(i).getLogs().remove(tours.get(i).getLogs().get(j));
+                        tours.get(i).getLogs().add(log);
+                    }
+                }
             }
         }
 
     }
 
 
+    public void deleteLog(Tour tour, int logId) {
+        for(int i = 0; i < tours.size(); i++) {
+            if (tours.get(i).getId() == tour.getId()) {
+                for(int j = 0; j < tours.get(i).getLogs().size(); j++) {
+                    if(tours.get(i).getLogs().get(j).getId() == logId) {
+                        tours.get(i).getLogs().remove(tours.get(i).getLogs().get(j));
+                    }
+                }
+            }
+        }
+    }
 }

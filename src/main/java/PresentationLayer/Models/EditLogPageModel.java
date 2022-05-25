@@ -112,7 +112,7 @@ public class EditLogPageModel {
     }
 
     private void updateLogFrontend() {
-        TourPlannerModel.getInstance().updateTour(tour);
+        TourPlannerModel.getInstance().updateLogs(tour, log);
 
     }
 
