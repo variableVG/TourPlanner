@@ -134,6 +134,7 @@ public class LogTourTabController {
             editButton.setOnAction(event -> editLogOnButtonClick(event, l.getId()));
             Button deleteButton = new Button("Delete");
             deleteButton.setPadding(new Insets(5));
+            deleteButton.setOnAction(event -> deleteLogOnButtonClick(event, l.getId()));
             buttonBox.getChildren().addAll(editButton, deleteButton);
             logBox.getChildren().addAll(buttonBox);
 
@@ -142,6 +143,8 @@ public class LogTourTabController {
 
 
     }
+
+
 
     public void addLogOnButtonClick(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -166,6 +169,18 @@ public class LogTourTabController {
         else {
             System.out.println("You cannot add a log to an empty tour");
         }
+    }
+
+    private void deleteLogOnButtonClick(ActionEvent event, int logId) {
+        System.out.println("delete log " + logId);
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Do you want to delete log " +  logId + "?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                model.deleteLog(logId);
+            }
+        });
     }
 
 

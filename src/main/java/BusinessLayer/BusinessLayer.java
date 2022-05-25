@@ -126,13 +126,13 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public boolean deleteLog(Log log) throws Exception {
+    public boolean deleteLog(int logId) throws Exception {
         //Check first if log is present in the DB:
-        Log checkLog = dataAccessLayer.getLogById(log.getId());
+        Log checkLog = dataAccessLayer.getLogById(logId);
         if(checkLog == null) {
             throw new Exception("Log is not present in the database");
         }
-        return dataAccessLayer.deleteLog(log.getId());
+        return dataAccessLayer.deleteLog(logId);
     }
 
     @Override

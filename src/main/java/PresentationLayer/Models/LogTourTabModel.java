@@ -1,5 +1,6 @@
 package PresentationLayer.Models;
 
+import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,9 +20,18 @@ public class LogTourTabModel {
 
     public LogTourTabModel(Tour tour){
         this.tour = tour;
+        business = new BusinessLayer();
     }
 
 
     public void updateLogs() {
+    }
+
+    public void deleteLog(int logId) {
+        try {
+            business.deleteLog(logId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
