@@ -103,16 +103,7 @@ public class ReportGenerator implements IReportGenerator{
             logsTable.addCell(comment);
         }
         document.add(logsTable);
-        /*
-        Paragraph imageHeader = new Paragraph("Image")
-                .setFont(PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN))
-                .setFontSize(18)
-                .setBold()
-                .setFontColor(ColorConstants.GREEN);
-        document.add(imageHeader);
-        ImageData imageData = ImageDataFactory.create();
-        document.add(new Image(imageData));
-        */
+
         document.close();
     }
 
