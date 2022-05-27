@@ -112,7 +112,7 @@ public class TourPlannerController  {
         //**we need the tourId here
         String tourName = tabTourname.getText();
         Stage stage = new Stage();
-        tpa.editRouteStage(stage, tourName, descriptionTourTabController);
+        tpa.editRoute(stage, tourName, descriptionTourTabController);
     }
 
     public void generteReportButtonClick(ActionEvent actionEvent) throws FileNotFoundException {

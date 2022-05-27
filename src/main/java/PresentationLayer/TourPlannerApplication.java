@@ -15,52 +15,49 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TourPlannerApplication extends Application {
+
     private static final ILoggerWrapper logger = LoggerFactory.getLogger();
     ControllerFactory factory = new ControllerFactory();
+
+    public static void main(String[] args) {
+        logger.debug("Program start");
+        launch();
+        DatabaseConnection.getInstance().close();
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
         factory = new ControllerFactory();//maybe as class variable
-        //String fxmlFile = "main-page.fxml";
-
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "main-page.fxml");
-
-        //FXMLLoader fxmlLoader = new FXMLLoader(factory, TourPlannerApplication.class.getResource("main-page.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(Factory.class.getResource("main-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700,500);
-        stage.setTitle("Tour Planner Application");
-        stage.setMinHeight(400);
-        stage.setMinWidth(400);
-        stage.setScene(scene);
-        stage.show();
+        startScene(fxmlLoader,stage,"Tour Planner Application",700,500,400,400);
     }
 
     public void addRoute(Stage stage) throws IOException{
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/add-tour-page.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-tour-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500,500);
-        stage.setTitle("New Tour");
-        stage.setMinHeight(400);
-        stage.setMinWidth(400);
-        stage.setX(600);
-        stage.setY(150);
-        stage.setScene(scene);
-        stage.show();
+        startScene(fxmlLoader,stage,"New Tour",500,500,400,400);
     }
+
+    public void editRoute(Stage stage, String tourName, DescriptionTourTabController descriptionTourTabController) throws IOException {
+        factory.setTourName(tourName);
+        factory.setDescriptionTourTabController(descriptionTourTabController);
+        //**factory.setTourId(tourId);
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editTourPage.fxml");
+        startScene(fxmlLoader,stage,"Edit Tour \"" + tourName + "\"",500,500,400,400);
+    }
+
     public void addLog(Stage stage, String tourName) throws IOException{
         factory.setTourName(tourName);
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/add-log-page.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500,400);
-        stage.setTitle("New Log for Tour " + tourName);
-        stage.setMinHeight(400);
-        stage.setMinWidth(400);
-        stage.setX(600);
-        stage.setY(150);
-        stage.setScene(scene);
-        stage.show();
+        startScene(fxmlLoader,stage,"New Tour Log",500,400,400,400);
     }
 
+    public void editLog(Stage stage, String tourName, int logId, LogTourTabController logTourTabController) throws IOException {
+        factory.setTourName(tourName);
+        factory.setLogId(logId);
+        factory.setLogTourTabController(logTourTabController);
+        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editLogPage.fxml");
+        startScene(fxmlLoader,stage,"Edit Log in Tour \"" + tourName + "\"",500,400,400,400);
+    }
 
     private FXMLLoader getFxmlLoader(ControllerFactory factory, String fxmlFile ) {
         FXMLLoader fxmlLoader =
@@ -79,40 +76,11 @@ public class TourPlannerApplication extends Application {
         return fxmlLoader;
     }
 
-    public static void main(String[] args) {
-        logger.debug("Program start");
-        launch();
-        DatabaseConnection.getInstance().close();
-    }
-
-
-    public void editRouteStage(Stage stage, String tourName, DescriptionTourTabController descriptionTourTabController) throws IOException {
-        factory.setTourName(tourName);
-        factory.setDescriptionTourTabController(descriptionTourTabController);
-        //**factory.setTourId(tourId);
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editTourPage.fxml");
-        Scene scene = new Scene(fxmlLoader.load(), 500,500);
-        stage.setTitle("Edit Tour: " + tourName);
-        stage.setMinHeight(400);
-        stage.setMinWidth(400);
-        stage.setX(600);
-        stage.setY(150);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void editLog(Stage stage, String tourName, int logId, LogTourTabController logTourTabController) throws IOException {
-        factory.setTourName(tourName);
-        factory.setLogId(logId);
-        factory.setLogTourTabController(logTourTabController);
-        FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/editLogPage.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(TourPlannerApplication.class.getResource("add-log-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500,400);
-        stage.setTitle("New Log for Tour " + tourName);
-        stage.setMinHeight(400);
-        stage.setMinWidth(400);
-        stage.setX(600);
-        stage.setY(150);
+    private void startScene(FXMLLoader fxmlLoader, Stage stage, String stageName, int height, int width, int minHeight, int minWidth) throws IOException {
+        Scene scene = new Scene(fxmlLoader.load(), height, width);
+        stage.setTitle(stageName);
+        stage.setMinHeight(minHeight);
+        stage.setMinWidth(minWidth);
         stage.setScene(scene);
         stage.show();
     }
