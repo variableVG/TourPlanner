@@ -11,17 +11,10 @@ import java.util.concurrent.ExecutionException;
 
 public class TourPlannerModel {
 
-    // I have converted the TourPlannerModel in a single ton class, since by now we just want to keep one instance of
-    // the tour planner model.
-
     private static TourPlannerModel tourPlannerModel = null;
-    //public BusinessLayer businessLayer = new BusinessLayer();
     private static Object mutex = new Object();
-
-    private ObservableList<Tour> tours =
-            FXCollections.observableArrayList();
-    private ObservableList<String> tourNames =
-            FXCollections.observableArrayList();
+    private ObservableList<Tour> tours = FXCollections.observableArrayList();
+    private ObservableList<String> tourNames = FXCollections.observableArrayList();
     private IBusinessLayer business;
 
     private  TourPlannerModel () {
@@ -51,11 +44,9 @@ public class TourPlannerModel {
          * */
         if (tourPlannerModel == null) {
             synchronized (mutex) {
-
                 if (tourPlannerModel == null)
                     tourPlannerModel = new TourPlannerModel();
             }
-
         }
         return tourPlannerModel;
     }
@@ -75,7 +66,6 @@ public class TourPlannerModel {
     }
 
     public ObservableList<String> getTourNames() {
-
        /* MISTAKE was here!
        for(Tour tour : tours) {
             tourNames.add(tour.getName().getValue());

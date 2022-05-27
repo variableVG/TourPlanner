@@ -31,14 +31,12 @@ public class ControllerFactory {
             return new RouteTourTabController();
         }else if(controllerClass == LogTourTabController.class){
             return new LogTourTabController(tourPlannerModel.getTourByName(tourName));
-        }else if(controllerClass == DeleteTourPageController.class){
+        }/*else if(controllerClass == DeleteTourPageController.class){
             return new DeleteTourPageController();
-        }
-        else if(controllerClass == EditTourPageController.class){
+        }*/else if(controllerClass == EditTourPageController.class){
             return new EditTourPageController(tourName, descriptionTourTabController);
             //**return new EditTourPageController(tourId);
-        }
-        else if(controllerClass == EditLogPageController.class) {
+        }else if(controllerClass == EditLogPageController.class) {
             return new EditLogPageController(tourName, logId, logTourTabController);
         }
         return null;

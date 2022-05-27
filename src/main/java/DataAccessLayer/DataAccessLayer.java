@@ -6,11 +6,8 @@ import PresentationLayer.Models.Tour;
 import java.util.List;
 
 public class DataAccessLayer implements IDataAccessLayer {
-    //TODO thread safe
 
-    //private Database database;
     private static DataAccessLayer dataAccessLayer = null;
-    //
     private static Object mutex = new Object();
 
     private DataAccessLayer() {
@@ -31,11 +28,9 @@ public class DataAccessLayer implements IDataAccessLayer {
          * */
         if (dataAccessLayer == null) {
             synchronized (mutex) {
-
                 if (dataAccessLayer == null)
                     dataAccessLayer = new DataAccessLayer();
             }
-
         }
         return dataAccessLayer;
     }

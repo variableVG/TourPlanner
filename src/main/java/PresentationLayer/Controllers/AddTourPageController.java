@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public class AddTourPageController {
 
     @FXML public Button addButton;
-
     @FXML public TextField tourName;
     @FXML public TextField origin;
     @FXML public TextField destination;

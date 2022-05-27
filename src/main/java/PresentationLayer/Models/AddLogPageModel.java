@@ -12,6 +12,7 @@ import java.time.LocalTime;
 
 @Data
 public class AddLogPageModel {
+
     Tour tour;
     private IBusinessLayer business = new BusinessLayer();
     private Property<LocalDate> date = new SimpleObjectProperty<>();

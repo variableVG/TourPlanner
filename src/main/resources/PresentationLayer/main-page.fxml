@@ -55,14 +55,14 @@
                 <ToolBar>
                     <Label fx:id="tabTourname" prefHeight="18.0" text="-tourname-" />
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generteReportButtonClick">
+                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generateReportOnButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/pdf.png" />
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourButtonClick">
+                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourOnButtonClick">
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/edit.png" />

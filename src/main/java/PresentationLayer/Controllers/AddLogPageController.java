@@ -21,7 +21,6 @@ public class AddLogPageController {
     @FXML public RadioButton easyDiff;
     @FXML public RadioButton mediumDiff;
     @FXML public RadioButton hardDiff;
-
     Tour tour;
     AddLogPageModel model;
 
@@ -30,6 +29,7 @@ public class AddLogPageController {
         model = new AddLogPageModel(tour);
 
     }
+
     @FXML
     public void initialize(){
         this.date.valueProperty().bindBidirectional(model.getDate());
@@ -56,7 +56,6 @@ public class AddLogPageController {
             model.getDifficulty().setValue(0);
         }
 
-
         Stage stage = (Stage) addButton.getScene().getWindow();
         try {
             if(model.addLog()) {
@@ -66,6 +65,5 @@ public class AddLogPageController {
             e.printStackTrace();
             info.setText(e.toString());
         }
-
     }
 }

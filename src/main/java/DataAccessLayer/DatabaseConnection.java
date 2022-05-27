@@ -7,16 +7,14 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DatabaseConnection implements Closeable {
+
     private static DatabaseConnection instance;
     private Connection connection;
-    //private DbConfig dbConfig;
     private String username;
     private String password;
     private String database;
 
     public DatabaseConnection(){
-        //dbConfig = new DbConfig();
-
         try {
             loadDatabaseConfiguration();
         } catch (IOException e){
@@ -47,7 +45,6 @@ public class DatabaseConnection implements Closeable {
     }
 
     public Connection connect() throws SQLException{
-        //return connect(this.database);
         return connect(this.database);
     }
 
@@ -86,7 +83,6 @@ public class DatabaseConnection implements Closeable {
     }
 
     public void close() {
-
         if(connection != null){
             try {
                 System.out.println("I am closing");
@@ -97,7 +93,6 @@ public class DatabaseConnection implements Closeable {
             }
             connection = null;
         }
-
     }
 
     public static DatabaseConnection getInstance(){

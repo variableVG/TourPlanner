@@ -18,8 +18,6 @@ public class RouteTourTabController {
     RouterTourTabModel model;
     Tour tour;
     private CompletableFuture<BufferedImage> completableFutureApiMap;
-
-
     @FXML public ImageView apiMapImageView;
 
     public RouteTourTabController() throws IOException, URISyntaxException, ExecutionException, InterruptedException {

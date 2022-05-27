@@ -27,7 +27,7 @@ public class TourPlannerApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        factory = new ControllerFactory();//maybe as class variable
+        //factory = new ControllerFactory();//maybe as class variable
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "main-page.fxml");
         startScene(fxmlLoader,stage,"Tour Planner Application",700,500,400,400);
     }
