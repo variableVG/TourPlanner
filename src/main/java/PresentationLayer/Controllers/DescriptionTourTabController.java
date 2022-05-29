@@ -2,9 +2,20 @@ package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.DescriptionTourTabModel;
 import PresentationLayer.Models.Tour;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import lombok.Data;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 
 @Data
 public class DescriptionTourTabController {
@@ -35,7 +46,7 @@ public class DescriptionTourTabController {
         this.tourDistanceLabel.textProperty().bindBidirectional(model.getDistance());
         this.estimatedTimeLabel.textProperty().bindBidirectional(model.getTime());
         this.transportTypeLabel.textProperty().bindBidirectional(model.getTransportType());
-
+        this.tourPopularityLabel.textProperty().bindBidirectional(model.getPopularity());
 
     }
 

@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane stylesheets="@descriptionTourTab.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.DescriptionTourTabController">
     <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
         <HBox alignment="BOTTOM_LEFT" HBox.hgrow="ALWAYS">
@@ -30,7 +32,9 @@
 
         <HBox>
             <Label styleClass="labelClass">Popularity: </Label>
-            <Label fx:id="tourPopularityLabel" prefHeight="18.0" prefWidth="50.0" styleClass="contentClass" text="* * *" />
+            <Label fx:id="tourPopularityLabel" styleClass="contentClass" text="" />
+            <HBox fx:id="heartBox">
+            </HBox>
 
             <Label styleClass="labelClass">Child Friendliness: </Label>
             <Label fx:id="childFriendlinessLabel" styleClass="contentClass" text="* *" />

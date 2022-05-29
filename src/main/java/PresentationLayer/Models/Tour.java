@@ -63,7 +63,7 @@ public class Tour {
         setPopularityFromNumberOfLogs();
     }
 
-    private void setPopularityFromNumberOfLogs() {
+    public void setPopularityFromNumberOfLogs() {
         //Popularity can be set from 1 to 5: 1 not popular - 5 very popular
         int numberOfLogs = logs.size();
         if(numberOfLogs > 10) { this.popularity = 5; }

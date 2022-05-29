@@ -54,8 +54,10 @@ public class AddLogPageModel {
             }
             log.setId(logId);
             this.tour.getLogs().add(log);
+            tour.setPopularityFromNumberOfLogs();
             TourPlannerModel.getInstance().updateTour(tour);
         }
+
         return log;
 
     }

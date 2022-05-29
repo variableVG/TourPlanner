@@ -27,3 +27,14 @@ Label {
     -fx-font-size: 14px;
 }
 
+#heartBox {
+    -fx-padding: 1px, 1px, 1px, 1px;
+    -fx-alignment: BOTTOM_LEFT;
+}
+
+#tourPopularityLabel {
+    -fx-text-fill: red;
+    -fx-text-inner-color: red;
+    -fx-font-size: 16;
+}
+
