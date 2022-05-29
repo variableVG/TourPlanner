@@ -58,18 +58,23 @@ public class ReportGenerator implements IReportGenerator{
             document.add(new Paragraph("Tour: " + tour.getName()).setBold());
             //distance
             document.add(new Paragraph("Distance: " + tour.getDistance()));
+            //total logs:
+            document.add(new Paragraph("Number of logs: " + tour.getLogs().size()));
             //rating & time
             var rating = 0;
-            int count = 0;
+            int ratingCount = 0;
+            int timeCount = 0;
             var time = 0;
             for(Log log: tour.getLogs()){
-                rating += log.getRating();
-                time += Integer.parseInt(log.getTotaltime());
-                count++;
+                if(log.getRating() != null) { rating += log.getRating();  ratingCount++;}
+                if(log.getTotaltime() != null) {
+                    time += Integer.parseInt(log.getTotaltime());
+                    timeCount++;
+                }
             }
-            double rating2 = (double)rating/(double)count;
-            document.add(new Paragraph("Rating: " + rating2));
-            double time2 = (double)time/(double)count;
+            double ratingFinal = (double)rating/(double)ratingCount;
+            document.add(new Paragraph("Rating: " + ratingFinal));
+            double time2 = (double)time/(double)timeCount;
             document.add(new Paragraph("Time: " + time2));
         }
 

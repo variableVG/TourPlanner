@@ -21,7 +21,7 @@
 
       <VBox>
          <Label>Total time:</Label>
-         <TextField fx:id="totalTime" />
+         <TextField fx:id="totalTime" promptText="HH:MM"/>
       </VBox>
 
       <VBox>
