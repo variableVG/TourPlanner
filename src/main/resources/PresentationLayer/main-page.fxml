@@ -46,7 +46,9 @@
                 <ToolBar>
                     <Label prefHeight="18.0" prefWidth="50.0" text="Tours" />
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Button alignment="CENTER_RIGHT" onAction="#addTourOnButtonClick">+</Button>
+                    <Button alignment="CENTER_RIGHT" onAction="#addTourOnButtonClick">+
+                        <tooltip><Tooltip text="Add Tour" /></tooltip>
+                    </Button>
                 </ToolBar>
                 <ListView fx:id="routeList" VBox.vgrow="ALWAYS">
 
@@ -57,6 +59,7 @@
                     <Label fx:id="tabTourname" prefHeight="18.0" text="-tourname-" />
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generateReportOnButtonClick">
+                        <tooltip><Tooltip text="Download Report" /></tooltip>
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/pdf.png" />
@@ -64,6 +67,7 @@
                         </graphic>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourOnButtonClick">
+                        <tooltip><Tooltip text="Edit" /></tooltip>
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/edit.png" />
@@ -71,6 +75,7 @@
                         </graphic>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#deleteTourOnButtonClick">
+                        <tooltip><Tooltip text="Delete" /></tooltip>
                         <graphic>
                             <ImageView fitHeight="15.0" fitWidth="15.0">
                                 <Image url="@../Icons/delete.png" />
