@@ -12,6 +12,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" text="import" />
                         <MenuItem mnemonicParsing="false" text="export" />
+                        <MenuItem mnemonicParsing="false" text="report" onAction="#generateSummarizeReportOnButtonClick" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Options">

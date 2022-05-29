@@ -94,4 +94,13 @@ public class TourPlannerController  {
             e.printStackTrace();
         }
     }
+
+    public void generateSummarizeReportOnButtonClick(ActionEvent event) throws FileNotFoundException {
+        IReportGenerator reportGenerator = new ReportGenerator(model.getTours());
+        try {
+            reportGenerator.generateSummarizeReport();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

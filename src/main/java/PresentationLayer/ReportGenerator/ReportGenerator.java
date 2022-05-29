@@ -19,10 +19,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
+import java.util.List;
 
 public class ReportGenerator implements IReportGenerator{
     private Tour tour;
+    private List<Tour> tours;
     private String filename;
     private PdfWriter writer;
     private PdfDocument pdf;
@@ -35,7 +36,44 @@ public class ReportGenerator implements IReportGenerator{
         this.writer = new PdfWriter(filename);
         this.pdf = new PdfDocument(writer);
         this.document = new Document(pdf);
+    }
 
+    public ReportGenerator(List<Tour> tours) throws FileNotFoundException {
+        this.tours = tours;
+        this.filename = "Summarize-Report.pdf";
+        this.writer = new PdfWriter(filename);
+        this.pdf = new PdfDocument(writer);
+        this.document = new Document(pdf);
+    }
+
+    public void generateSummarizeReport() throws IOException{
+        document.add(new Paragraph("Summarize-Report")
+                .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
+                .setFontSize(18)
+                .setBold()
+                .setFontColor(ColorConstants.BLACK));
+
+        for (Tour tour: tours){
+            //name
+            document.add(new Paragraph("Tour: " + tour.getName()).setBold());
+            //distance
+            document.add(new Paragraph("Distance: " + tour.getDistance()));
+            //rating & time
+            var rating = 0;
+            int count = 0;
+            var time = 0;
+            for(Log log: tour.getLogs()){
+                rating += log.getRating();
+                time += Integer.parseInt(log.getTotaltime());
+                count++;
+            }
+            double rating2 = (double)rating/(double)count;
+            document.add(new Paragraph("Rating: " + rating2));
+            double time2 = (double)time/(double)count;
+            document.add(new Paragraph("Time: " + time2));
+        }
+
+        document.close();
 
     }
 
