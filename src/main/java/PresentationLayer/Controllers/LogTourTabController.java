@@ -85,7 +85,27 @@ public class LogTourTabController {
         a.setHeaderText("Do you want to delete log " +  logId + "?");
         a.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
+                //delete from DB
                 model.deleteLog(logId);
+
+                //Delete from ListView
+                for(int i = 0; i < this.logList.getItems().size(); i++) {
+                    String vBox = this.logList.getItems().get(i).toString();
+                    Integer id = Integer.parseInt(vBox.substring(8, vBox.lastIndexOf(']')));
+                    if(id == logId) {
+                        this.logList.getItems().remove(i);
+                        break;
+                    }
+                }
+
+                //Delete from tour:
+                for(int i = 0; i < tour.getLogs().size(); i++) {
+                    if(tour.getLogs().get(i).getId() == logId) {
+                        tour.getLogs().remove(i);
+                    }
+                }
+
+                //Update the info in the descriptionTab
                 DescriptionTourTabController.model.setPopularity();
             }
         });
