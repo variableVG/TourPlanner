@@ -17,6 +17,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalTime;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -37,7 +38,8 @@ public class MapRequest {
                     + "&from="
                     + tour.getOrigin()
                     + "&to="
-                    + tour.getDestination();
+                    + tour.getDestination()
+                    + "&unit=k"; // With this parameter get get back the distance in km (default is miles m)
             mapDirections = getDirectionsAPIMap(request);
         }
         else {
@@ -122,6 +124,7 @@ public class MapRequest {
         apidirections.setLegs(o2.get("legs").toString());
         apidirections.setMessages(o4.get("messages"));
         apidirections.setStatuscode(Integer.parseInt(o4.get("statuscode").toString()));
+        apidirections.setFormattedTime(LocalTime.parse(o2.get("formattedTime").toString()));
         return apidirections;
     }
 

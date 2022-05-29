@@ -1,8 +1,12 @@
 package PresentationLayer.Models;
 
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Data;
+
+import java.time.LocalTime;
 
 @Data
 public class DescriptionTourTabModel {
@@ -21,19 +25,22 @@ public class DescriptionTourTabModel {
         origin = new SimpleStringProperty("Origin");
         destination = new SimpleStringProperty("Destination");
         transportType = new SimpleStringProperty("Transport Type");
-        distance = new SimpleStringProperty("Distance");
+        distance = new SimpleStringProperty("distance");
         time = new SimpleStringProperty("Time");
         description = new SimpleStringProperty("description");
     }
 
     public void updateTour(Tour tour) {
+        String time = "";
+        if(tour.getTime() != null) {time = tour.getTime().toString();}
+
         this.tour = tour;
         this.tourName.setValue(tour.getName());
         this.origin.setValue(tour.getOrigin());
         this.destination.setValue(tour.getDestination());
         this.transportType.setValue(tour.getTransportType());
-        this.distance.setValue(tour.getDistance());
-        this.time.setValue(tour.getTime());
+        this.distance.setValue(String.valueOf(tour.getDistance()));
+        this.time.setValue(time);
         this.description.setValue(tour.getDescription());
     }
 }

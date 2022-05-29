@@ -18,8 +18,8 @@ public class EditTourPageController {
     @FXML TextField origin;
     @FXML TextField destination;
     @FXML TextField transportType;
-    @FXML TextField distance;
-    @FXML TextField time;
+    //@FXML TextField distance;
+    //@FXML TextField time;
     @FXML TextArea description;
     @FXML public Button editButton;
     DescriptionTourTabController descriptionTourTabController;
@@ -38,8 +38,9 @@ public class EditTourPageController {
         origin.textProperty().bindBidirectional(model.getOrigin());
         destination.textProperty().bindBidirectional(model.getDestination());
         transportType.textProperty().bindBidirectional(model.getTransportType());
-        distance.textProperty().bindBidirectional(model.getDistance());
-        time.textProperty().bindBidirectional(model.getTime());;
+        //Distance and Time are requested by API
+        //distance.textProperty().bindBidirectional(model.getDistance());
+        //time.textProperty().bindBidirectional(model.getTime());;
         description.textProperty().bindBidirectional(model.getDescription());
     }
 

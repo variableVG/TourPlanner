@@ -1,6 +1,7 @@
 package PresentationLayer.Models;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalTime;
 import java.util.concurrent.CompletableFuture;
 
 import BusinessLayer.BusinessLayer;
@@ -19,8 +20,8 @@ public class Tour {
     private String origin;
     private String destination;
     private String transportType;
-    private String distance;
-    private String time;
+    private float distance;
+    private LocalTime time;
     private String popularity;
     private String childFriendliness;
     //private BufferedImage imageMap;
@@ -31,7 +32,7 @@ public class Tour {
     private ObservableList<Log> logs =  FXCollections.observableArrayList();
 
     //used when we create a tour but we don't know the id yet
-    public Tour (String name, String description, String origin,
+    /*public Tour (String name, String description, String origin,
                  String destination, String transportType, String distance,
                  String time) {
         this.name = name;
@@ -42,12 +43,11 @@ public class Tour {
         this.distance = distance;
         this.time = time;
         this.isAPIRequested = false;
-    }
+    }*/
 
     //used when we know the id (from database)
-    public Tour (int id, String name, String description, String origin,
-                 String destination, String transportType, String distance,
-                 String time) {
+    public Tour (int id, String name, String origin, String destination, String description,
+                  String transportType, float distance, LocalTime time) {
         this.id = id;
         this.name = name;
         this.description = description;//data from database

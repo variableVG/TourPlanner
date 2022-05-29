@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IDataAccessLayer {
 
-    void addTour(Tour newTour) throws Exception;
+    int addTour(Tour newTour) throws Exception;
 
     List<Tour> getTours();
 

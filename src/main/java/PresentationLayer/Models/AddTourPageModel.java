@@ -2,10 +2,14 @@ package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import lombok.Data;
+
+import java.time.LocalTime;
 
 @Data
 public class AddTourPageModel {
@@ -16,20 +20,21 @@ public class AddTourPageModel {
     private StringProperty origin = new SimpleStringProperty();
     private StringProperty destination = new SimpleStringProperty();
     private StringProperty transportType = new SimpleStringProperty();
-    private StringProperty distance = new SimpleStringProperty();
-    private StringProperty time = new SimpleStringProperty();
+    //Time and Distance are required from the API
+    //private FloatProperty distance = new SimpleFloatProperty();
+    //private StringProperty time = new SimpleStringProperty();
     private StringProperty description = new SimpleStringProperty();
 
     public boolean addTour(){
         if(validateFields()) {
-            Tour newTour = new Tour(
+            Tour newTour = new Tour(-1,
                     tourName.getValue(),
-                    description.getValue(),
                     origin.getValue(),
                     destination.getValue(),
+                    description.getValue(),
                     transportType.getValue(),
-                    distance.getValue(),
-                    time.getValue());
+                    -1,
+                    null);
 
             //Add newTour to the DB
             int tourId;
@@ -43,6 +48,10 @@ public class AddTourPageModel {
             }
 
             //Add tour id to tour and update the frontend
+            if(tourId < 0) {
+                System.out.println("Problem setting id in the backend");
+                return false;
+            }
             newTour.setId(tourId);
             TourPlannerModel.getInstance().addTour(newTour);
             return true;

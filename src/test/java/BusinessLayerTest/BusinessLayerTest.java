@@ -36,12 +36,13 @@ public class BusinessLayerTest {
     }
     @BeforeEach
     public void setUp() {
-        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
+        tour = new Tour(-1, "tour4", "Wien", "Graz", "ABC", "Auto", 0, null);
 
     }
 
     @Test
     public void addTourTest() throws Exception {
+        business.deleteTour(tour.getName());
         int answer = business.addTour(tour);
         assertTrue(answer >= 0, "Tour id is not a vaild number");
 

@@ -34,7 +34,7 @@ public class DatabaseTest {
     @BeforeEach
     public void setUp(){
 
-        tour = new Tour("tour4", "ABC", "Wien", "Graz", "Auto", "1000Km", "2 Stunden");
+        tour = new Tour(-1, "tour4", "Wien", "Graz","ABC", "Auto", 0, null);
 
     }
     @Test
@@ -51,17 +51,12 @@ public class DatabaseTest {
     }
 
     @Test
-    public void test() {
-        //Define log
-        LocalDate date = LocalDate.parse("2019-09-04");
-        LocalTime time = LocalTime.parse("21:00");
-        String comment = "This is a comment";
-        int difficulty = 1;
-        String totalTime = "3h";
-        int rating = 5;
-        Log log = new Log(-1, date, time, comment, difficulty, totalTime, rating );
-
-
+    public void addTourTest() {
+        Database.deleteTour(tour.getName());
+        int id = Database.addTour(tour);
+        assertTrue(id >= 0, "addTourTest() returns an invalid tour-id");
     }
+
+
 
 }

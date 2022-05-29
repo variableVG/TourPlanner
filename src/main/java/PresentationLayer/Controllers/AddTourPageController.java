@@ -15,8 +15,8 @@ public class AddTourPageController {
     @FXML public TextField origin;
     @FXML public TextField destination;
     @FXML public TextField transportType;
-    @FXML public TextField distance;
-    @FXML public TextField time;
+    //@FXML public TextField distance;
+    //@FXML public TextField time;
     @FXML public TextArea description;
     @FXML private AddTourPageModel model;
 
@@ -30,8 +30,9 @@ public class AddTourPageController {
         this.origin.textProperty().bindBidirectional(model.getOrigin());
         this.destination.textProperty().bindBidirectional(model.getDestination());
         this.transportType.textProperty().bindBidirectional(model.getTransportType());
-        this.distance.textProperty().bindBidirectional(model.getDistance());
-        this.time.textProperty().bindBidirectional(model.getTime());
+        //Distance and Time are requested by API
+        //this.distance.textProperty().bindBidirectional(model.getDistance());
+        //this.time.textProperty().bindBidirectional(model.getTime());
         this.description.textProperty().bindBidirectional(model.getDescription());
     }
 

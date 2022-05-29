@@ -43,7 +43,6 @@ public class RouteTourTabController {
         }*/
         completableFutureApiMap = tour.getFutureImageMap();
         completableFutureApiMap.thenApply(futureImage -> {
-
             Image mapImage = SwingFXUtils.toFXImage(futureImage, null);
             this.apiMapImageView.setImage(mapImage);
             return null;

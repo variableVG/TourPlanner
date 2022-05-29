@@ -17,8 +17,9 @@ public class EditTourPageModel {
     private StringProperty origin;
     private StringProperty destination;
     private StringProperty transportType;
-    private StringProperty distance;
-    private StringProperty time;
+    //Distance and time are required from the API
+    //private StringProperty distance;
+    //private StringProperty time;
     private StringProperty description;
 
     public EditTourPageModel(String tourName) {
@@ -28,8 +29,8 @@ public class EditTourPageModel {
         origin = new SimpleStringProperty(tour.getOrigin());
         destination = new SimpleStringProperty(tour.getDestination());
         transportType = new SimpleStringProperty(tour.getTransportType());
-        distance = new SimpleStringProperty(tour.getDistance());
-        time = new SimpleStringProperty(tour.getTime());
+        //distance = new SimpleStringProperty(tour.getDistance());
+        //time = new SimpleStringProperty(tour.getTime());
         description = new SimpleStringProperty(tour.getDescription());
 
         //**tour = business.getTourById(id);
@@ -44,8 +45,8 @@ public class EditTourPageModel {
             this.tour.setOrigin(origin.getValue());
             this.tour.setDestination(destination.getValue());
             this.tour.setTransportType(transportType.getValue());
-            this.tour.setDistance(distance.getValue());
-            this.tour.setTime(time.getValue());
+            //this.tour.setDistance(distance.getValue());
+            //this.tour.setTime(time.getValue());
             this.tour.setDescription(description.getValue());
 
             //Update tour in the database

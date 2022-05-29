@@ -37,11 +37,11 @@ public class DataAccessLayer implements IDataAccessLayer {
 
 
     @Override
-    public void addTour(Tour newTour) throws Exception {
+    public int addTour(Tour newTour) throws Exception {
         //Check if TourName is already present:
         Tour dbTour = Database.getTourByName(newTour.getName());
         if(dbTour == null) {
-            Database.addTour(newTour);
+            return Database.addTour(newTour);
         }
         else {
             throw new Exception("The tour cannot be added because a tour with the same name is already present in the DB.");

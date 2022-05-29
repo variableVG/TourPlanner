@@ -35,18 +35,12 @@ public class BusinessLayer implements IBusinessLayer {
 
         //TODO
         //We ask for the map when the Tour is created, so we can store it already and it can upload faster.
-        try { getMap(newTour);}
-        catch (Exception e){
-            System.out.println(e);
-        }
-        ////////
-
-        //Add new Tour to the database
-        dataAccessLayer.addTour(newTour);
-
+        getMap(newTour);
+        int id = dataAccessLayer.addTour(newTour);
+        System.out.println("Id in business is " + id);
         //return back the new Id so it can be assigned in the frontend
-        int id =  dataAccessLayer.getTourIdByName(newTour.getName());
         return id;
+
     }
 
     @Override
@@ -154,6 +148,8 @@ public class BusinessLayer implements IBusinessLayer {
                     try {
                         System.out.println("futureDirection in getMap/Business is ");
                         System.out.println(futureDirections);
+                        tour.setTime(futureDirections.getFormattedTime());
+                        tour.setDistance(futureDirections.getDistance());
                         tour.setFutureImageMap(mapRequest.getStaticMap(futureDirections));
                         //return apiMap;
 
@@ -164,8 +160,6 @@ public class BusinessLayer implements IBusinessLayer {
                     return tour;
                 }
                 );
-
-            //return apiMap.get();
     }
 
     @Override
