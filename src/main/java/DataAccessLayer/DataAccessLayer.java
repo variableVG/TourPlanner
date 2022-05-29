@@ -104,4 +104,9 @@ public class DataAccessLayer implements IDataAccessLayer {
     public boolean deleteLog(int logId) {
         return Database.deleteLog(logId);
     }
+
+    @Override
+    public List<Tour> searchText(String text) {
+        return Database.searchText(text);
+    }
 }

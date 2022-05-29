@@ -31,4 +31,6 @@ public interface IDataAccessLayer {
 
 
     boolean deleteLog(int logId);
+
+    List<Tour> searchText(String text);
 }

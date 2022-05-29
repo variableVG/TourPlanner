@@ -29,9 +29,8 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" />
-
-        <Button contentDisplay="GRAPHIC_ONLY" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" fx:id="searchTextTextField"/>
+        <Button contentDisplay="GRAPHIC_ONLY" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" onAction="#searchTextOnButtonClick">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0">
                     <Image url="@../Icons/loupe.png" />

@@ -136,4 +136,10 @@ public class TourPlannerModel {
             }
         }
     }
+
+    public void searchText(String text) {
+        List<Tour> foundTours = business.searchText(text);
+
+        //If the search returns something, then set the ObservableList tours and toursName with the new values.
+    }
 }

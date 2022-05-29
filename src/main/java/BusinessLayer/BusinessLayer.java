@@ -9,6 +9,7 @@ import PresentationLayer.Models.Tour;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -178,6 +179,11 @@ public class BusinessLayer implements IBusinessLayer {
         return log;
     }
 
+    @Override
+    public List<Tour> searchText(String text) {
+        List<Tour> allTours = dataAccessLayer.searchText(text);
+        return null;
+    }
 
 
 }

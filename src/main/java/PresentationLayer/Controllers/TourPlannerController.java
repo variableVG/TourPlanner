@@ -24,6 +24,7 @@ public class TourPlannerController  {
     @FXML public ListView routeList;
     @FXML public AnchorPane logTourTab;
     @FXML public AnchorPane routeTourTab;
+    @FXML public TextField searchTextTextField;
     @FXML private DescriptionTourTabController descriptionTourTabController;
     @FXML private LogTourTabController logTourTabController;
     //*!*@FXML private DeleteTourPageController deleteTourPageController;
@@ -109,5 +110,15 @@ public class TourPlannerController  {
     public void exportToursOnButtonClick(ActionEvent event) {
         ICSVFileHandler icsvFileHandler = new CSVFileHandler();
         icsvFileHandler.exportTours(model.getTours());
+    }
+
+    public void searchTextOnButtonClick(ActionEvent actionEvent) {
+        if(!this.searchTextTextField.getText().isEmpty()) {
+            model.searchText(this.searchTextTextField.getText());
+        }
+        else { //If the searchFiedl is empty, then reset the list with all values in the DB
+
+        }
+
     }
 }

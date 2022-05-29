@@ -3,6 +3,7 @@ package DataAccessLayer;
 import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.Date;
@@ -93,7 +94,6 @@ public class Database {
     }
 
     public static int addTour(Tour newTour) {
-        System.out.println("Im in Database a");
         int id = -1;
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 INSERT INTO tour
@@ -115,7 +115,6 @@ public class Database {
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next() ) {
                 id = resultSet.getInt("id");
-                System.out.println("Id has been recovered from DB and is" + id);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -394,6 +393,55 @@ public class Database {
         }
 
         return false;
+
+    }
+
+    public static List<Tour> searchText(String text) {
+        //Source: https://www.compose.com/articles/mastering-postgresql-tools-full-text-search-and-phrase-search/
+        List<Tour> foundTours = new ArrayList<>();
+        String pattern = "%" + text + "%";
+
+        int difficulty = 6;
+        if (text.equalsIgnoreCase("easy")) { difficulty = 1; }
+        else if (text.equalsIgnoreCase("medium")) { difficulty = 2; }
+        else if (text.equalsIgnoreCase("hard")) { difficulty = 3; }
+
+        //First we search the tours
+        try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT DISTINCT tour.* FROM tour FULL OUTER JOIN log ON tour.id = log.tour_id
+                WHERE
+                name LIKE ? OR description LIKE ? OR origin LIKE ?
+                OR destination LIKE ? OR transport_type LIKE ?
+                OR log.comment LIKE ? OR log.difficulty = ?;
+                """ )
+        ) {
+            statement.setString(1, pattern);
+            statement.setString(2, pattern);
+            statement.setString(3, pattern);
+            statement.setString(4, pattern);
+            statement.setString(5, pattern);
+            statement.setString(6, pattern);
+            statement.setInt(7, difficulty);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                foundTours.add(
+                        new Tour(
+                                resultSet.getInt("id"),
+                                resultSet.getString("name"),
+                                resultSet.getString("origin"),
+                                resultSet.getString("destination"),
+                                resultSet.getString("description"),
+                                resultSet.getString("transport_type"),
+                                resultSet.getFloat("distance"),
+                                resultSet.getString("estimated_time")
+                        )
+                );
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return foundTours;
 
     }
 }

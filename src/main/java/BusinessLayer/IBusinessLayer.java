@@ -32,4 +32,6 @@ public interface IBusinessLayer {
     void getMap(Tour tour) throws IOException, URISyntaxException, ExecutionException, InterruptedException;
 
     Log getLogById(int logId);
+
+    List<Tour> searchText(String text);
 }
