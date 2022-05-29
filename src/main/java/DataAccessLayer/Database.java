@@ -6,8 +6,10 @@ import PresentationLayer.Models.Tour;
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.Date;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.*;
 
 public class Database {
@@ -72,10 +74,6 @@ public class Database {
             statement.setString(1, tourName);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next() ) {
-                LocalTime time = null;
-                if(resultSet.getTime("estimated_time") != null) {
-                    time = LocalTime.parse(resultSet.getTime("estimated_time").toString());
-                }
                 return new Tour(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -84,7 +82,7 @@ public class Database {
                         resultSet.getString("description"),
                         resultSet.getString("transport_type"),
                         resultSet.getFloat("distance"),
-                        time
+                        resultSet.getString("estimated_time")
                 );
             }
 
@@ -105,7 +103,7 @@ public class Database {
                 """ )
         ) {
             Time time = null;
-            if(newTour.getTime() != null) { time = Time.valueOf(newTour.getTime()); }
+            if(newTour.getTime() != null) { time = Time.valueOf(newTour.getTime().toString()); }
 
             statement.setString(1, newTour.getName());
             statement.setString(2, newTour.getDescription());
@@ -134,10 +132,6 @@ public class Database {
         ) {
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
-                LocalTime time = null;
-                if(resultSet.getTime("estimated_time") != null) {
-                    time = LocalTime.parse(resultSet.getTime("estimated_time").toString());
-                }
                 tours.add(
                         new Tour(
                                 resultSet.getInt("id"),
@@ -147,7 +141,7 @@ public class Database {
                                 resultSet.getString("description"),
                                 resultSet.getString("transport_type"),
                                 resultSet.getFloat("distance"),
-                                time
+                                resultSet.getString("estimated_time")
                         )
                 );
             }
@@ -183,7 +177,7 @@ public class Database {
                 """ )
         ) {
             Time time = null;
-            if(newTour.getTime() != null) { time = Time.valueOf(newTour.getTime()); }
+            if(newTour.getTime() != null) { time = Time.valueOf(newTour.getTime().toString()); }
 
             statement.setString(1, newTour.getName());
             statement.setString(2, newTour.getDescription());
@@ -210,10 +204,7 @@ public class Database {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next() ) {
-                LocalTime time = null;
-                if(resultSet.getTime("estimated_time") != null) {
-                    time = LocalTime.parse(resultSet.getTime("estimated_time").toString());
-                }
+
                 return new Tour(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -222,7 +213,7 @@ public class Database {
                         resultSet.getString("description"),
                         resultSet.getString("transport_type"),
                         resultSet.getFloat("distance"),
-                        time
+                        resultSet.getString("estimated_time")
                 );
             }
 

@@ -1,7 +1,9 @@
 package PresentationLayer.Models;
 
 import java.awt.image.BufferedImage;
+import java.time.Duration;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.concurrent.CompletableFuture;
 
 import BusinessLayer.BusinessLayer;
@@ -21,7 +23,7 @@ public class Tour {
     private String destination;
     private String transportType;
     private float distance;
-    private LocalTime time;
+    private String time;
     private String popularity;
     private String childFriendliness;
     //private BufferedImage imageMap;
@@ -47,7 +49,7 @@ public class Tour {
 
     //used when we know the id (from database)
     public Tour (int id, String name, String origin, String destination, String description,
-                  String transportType, float distance, LocalTime time) {
+                  String transportType, float distance, String time) {
         this.id = id;
         this.name = name;
         this.description = description;//data from database
@@ -79,6 +81,5 @@ public class Tour {
     public void setIsAPIrequested(boolean b) {
         this.isAPIRequested =b;
     }
-
 
 }

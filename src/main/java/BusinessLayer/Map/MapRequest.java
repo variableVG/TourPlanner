@@ -17,7 +17,9 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -74,6 +76,7 @@ public class MapRequest {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            System.out.println("Something went wrong");
                             return null;
                         });
 
@@ -112,19 +115,26 @@ public class MapRequest {
                 "routeError : " + o2.get("routeError") + ", " +
                 "sessionId : " + o2.get("sessionId") + ", " +
                 "legs : " + o2.get("legs") + " , " +
+                "formattedTime: " + o2.get("formattedTime").toString() +
                 "}";
+        System.out.println("The answer should be " + jsonString);
 
         // objectMapper.readValue(jsonString, ApiMap.class);
         //I did not manage to make Object Mapper work, so I just created the class like this:
         ApiDirections apidirections = new ApiDirections();
-        apidirections.setDistance(Float.parseFloat(o2.get("distance").toString()));
-        apidirections.setBoundingBox(o2.get("boundingBox"));
-        apidirections.setRouteError(o2.get("routeError"));
-        apidirections.setSessionId(o2.get("sessionId").toString());
-        apidirections.setLegs(o2.get("legs").toString());
-        apidirections.setMessages(o4.get("messages"));
-        apidirections.setStatuscode(Integer.parseInt(o4.get("statuscode").toString()));
-        apidirections.setFormattedTime(LocalTime.parse(o2.get("formattedTime").toString()));
+        try {
+            apidirections.setDistance(Float.parseFloat(o2.get("distance").toString()));
+            apidirections.setBoundingBox(o2.get("boundingBox"));
+            apidirections.setRouteError(o2.get("routeError"));
+            apidirections.setSessionId(o2.get("sessionId").toString());
+            apidirections.setLegs(o2.get("legs").toString());
+            apidirections.setMessages(o4.get("messages"));
+            apidirections.setStatuscode(Integer.parseInt(o4.get("statuscode").toString()));
+            apidirections.setFormattedTime(o2.get("formattedTime").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return apidirections;
     }
 
@@ -136,6 +146,7 @@ public class MapRequest {
                 "";
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest= HttpRequest.newBuilder().uri(new URI(url)).build();
+        System.out.println("I am getting the response map");
 
         //send request
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofByteArray())

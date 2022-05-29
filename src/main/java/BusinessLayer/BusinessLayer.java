@@ -143,13 +143,17 @@ public class BusinessLayer implements IBusinessLayer {
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
         //AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
 
+        System.out.println("Waiting for directions future");
+
         directions.thenApply(
                 futureDirections -> {
+                    System.out.println("I do not enter here. I am waiting for directions. ");
                     try {
                         System.out.println("futureDirection in getMap/Business is ");
                         System.out.println(futureDirections);
                         tour.setTime(futureDirections.getFormattedTime());
                         tour.setDistance(futureDirections.getDistance());
+                        System.out.println("Now I am going to call the static map ");
                         tour.setFutureImageMap(mapRequest.getStaticMap(futureDirections));
                         //return apiMap;
 

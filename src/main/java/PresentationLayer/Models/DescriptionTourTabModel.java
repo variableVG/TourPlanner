@@ -31,8 +31,6 @@ public class DescriptionTourTabModel {
     }
 
     public void updateTour(Tour tour) {
-        String time = "";
-        if(tour.getTime() != null) {time = tour.getTime().toString();}
 
         this.tour = tour;
         this.tourName.setValue(tour.getName());
@@ -40,7 +38,7 @@ public class DescriptionTourTabModel {
         this.destination.setValue(tour.getDestination());
         this.transportType.setValue(tour.getTransportType());
         this.distance.setValue(String.valueOf(tour.getDistance()));
-        this.time.setValue(time);
+        this.time.setValue(tour.getTime());
         this.description.setValue(tour.getDescription());
     }
 }

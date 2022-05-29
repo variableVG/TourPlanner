@@ -42,14 +42,14 @@
                     <VBox>
                         <children>
                             <Label>Distance:</Label>
-                            <TextField fx:id="distance"/><!--calculated from BusinessLayer.Map from-to?-->
+                            <TextField fx:id="distance" disable="true" text="Distance from API"/><!--calculated from BusinessLayer.Map from-to?-->
                         </children>
                     </VBox>
 
                     <VBox>
                         <children>
                             <Label>Estimated-Time:</Label>
-                            <TextField fx:id="time"/><!--calculated from BusinessLayer.Map from-to?-->
+                            <TextField fx:id="time" disable="true" text="Time from API"/><!--calculated from BusinessLayer.Map from-to?-->
                         </children>
                     </VBox>
 
