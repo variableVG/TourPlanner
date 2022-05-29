@@ -93,94 +93,95 @@ public class LogTourTabController {
 
     private void setObservableLogs() {
         model.getLogs().clear();
-        String labelTitleStyle = "-fx-font-weight: bold;";
-        String cssLayout = "-fx-border-color: grey;\n" +
-                "-fx-border-insets: 5;\n" +
-                "-fx-border-width: 2;\n" +
-                "-fx-border-style: dashed;\n";
         for (Log l : tour.getLogs()) {
-            VBox logBox = new VBox();
-            logBox.setId(String.valueOf(l.getId()));
-            //ID BOX
-            HBox idBox = new HBox();
-            Label idLabel = new Label();
-            idLabel.setText("Log id:");
-            idLabel.setStyle(labelTitleStyle);
-            Label idLabelContent = new Label();
-            idLabelContent.setText("  " + l.getId());
-            idBox.getChildren().addAll(idLabel, idLabelContent);
-            logBox.getChildren().addAll(idBox);
-
-            //DATE AND TIME
-            HBox dateBox = new HBox();
-            dateBox.setId("HBoxDateBox"+l.getId());
-            Label dateLabel = new Label();
-            dateLabel.setText("Date: ");
-            dateLabel.setStyle(labelTitleStyle);
-            Label dateLabelContent = new Label();
-            dateLabelContent.setText(" " + l.getDate());
-            dateLabelContent.setId("date" + l.getId());
-            Label timeLabel = new Label();
-            timeLabel.setText(" at " + l.getTime() + " hours ");
-            timeLabel.setId("time" + l.getId());
-            dateBox.getChildren().addAll(dateLabel, dateLabelContent, timeLabel);
-            logBox.getChildren().addAll(dateBox);
-
-            //DIFFICULTY
-            HBox difficultyBox = new HBox();
-            Label difficultyLabel = new Label();
-            difficultyLabel.setText("Difficulty: ");
-            difficultyLabel.setStyle(labelTitleStyle);
-            Label difficultyLabelContent = new Label();
-            difficultyLabelContent.setText("  " + l.getDifficulty());
-            difficultyBox.getChildren().addAll(difficultyLabel, difficultyLabelContent);
-            logBox.getChildren().addAll(difficultyBox);
-
-            //TOTAL TIME
-            HBox totalTimeBox = new HBox();
-            Label totalTimeLabel = new Label();
-            totalTimeLabel.setText("Total time: ");
-            totalTimeLabel.setStyle(labelTitleStyle);
-            Label totalTimeLabelContent = new Label();
-            totalTimeLabelContent.setText("  " + String.valueOf(l.getTotaltime()));
-            totalTimeBox.getChildren().addAll(totalTimeLabel, totalTimeLabelContent);
-            logBox.getChildren().addAll(totalTimeBox);
-
-            //RATING
-            HBox ratingBox = new HBox();
-            Label ratingLabel = new Label();
-            ratingLabel.setText("Rating: ");
-            ratingLabel.setStyle(labelTitleStyle);
-            Label ratingLabelContent = new Label();
-            ratingLabelContent.setText("  " + String.valueOf(l.getRating()));
-            ratingBox.getChildren().addAll(ratingLabel, ratingLabelContent);
-            logBox.getChildren().addAll(ratingBox);
-
-            // COMMENTS
-            HBox commentBox = new HBox();
-            Label commentLabel = new Label();
-            commentLabel.setText("Comments: ");
-            commentLabel.setStyle(labelTitleStyle);
-            Label commentLabelContent = new Label();
-            commentLabelContent.setText("  " + String.valueOf(l.getComment()));
-            commentBox.getChildren().addAll(commentLabel, commentLabelContent);
-            logBox.getChildren().addAll(commentBox);
-
-            // EDIT AND DELETE BUTTONS
-            HBox buttonBox = new HBox();
-            Button editButton = new Button("Edit");
-            editButton.setPadding(new Insets(5));
-            editButton.setOnAction(event -> editLogOnButtonClick(event, l.getId()));
-            Button deleteButton = new Button("Delete");
-            deleteButton.setPadding(new Insets(5));
-            deleteButton.setOnAction(event -> deleteLogOnButtonClick(event, l.getId()));
-            buttonBox.getChildren().addAll(editButton, deleteButton);
-            logBox.getChildren().addAll(buttonBox);
-
-            model.getLogs().add(logBox);
+          setLogCell(l);
         }
 
 
+    }
+
+    public void setLogCell(Log l) {
+        String labelTitleStyle = "-fx-font-weight: bold;";
+
+        VBox logBox = new VBox();
+        logBox.setId(String.valueOf(l.getId()));
+        //ID BOX
+        HBox idBox = new HBox();
+        Label idLabel = new Label();
+        idLabel.setText("Log id:");
+        idLabel.setStyle(labelTitleStyle);
+        Label idLabelContent = new Label();
+        idLabelContent.setText("  " + l.getId());
+        idBox.getChildren().addAll(idLabel, idLabelContent);
+        logBox.getChildren().addAll(idBox);
+
+        //DATE AND TIME
+        HBox dateBox = new HBox();
+        dateBox.setId("HBoxDateBox"+l.getId());
+        Label dateLabel = new Label();
+        dateLabel.setText("Date: ");
+        dateLabel.setStyle(labelTitleStyle);
+        Label dateLabelContent = new Label();
+        dateLabelContent.setText(" " + l.getDate());
+        dateLabelContent.setId("date" + l.getId());
+        Label timeLabel = new Label();
+        timeLabel.setText(" at " + l.getTime() + " hours ");
+        timeLabel.setId("time" + l.getId());
+        dateBox.getChildren().addAll(dateLabel, dateLabelContent, timeLabel);
+        logBox.getChildren().addAll(dateBox);
+
+        //DIFFICULTY
+        HBox difficultyBox = new HBox();
+        Label difficultyLabel = new Label();
+        difficultyLabel.setText("Difficulty: ");
+        difficultyLabel.setStyle(labelTitleStyle);
+        Label difficultyLabelContent = new Label();
+        difficultyLabelContent.setText("  " + l.getDifficulty());
+        difficultyBox.getChildren().addAll(difficultyLabel, difficultyLabelContent);
+        logBox.getChildren().addAll(difficultyBox);
+
+        //TOTAL TIME
+        HBox totalTimeBox = new HBox();
+        Label totalTimeLabel = new Label();
+        totalTimeLabel.setText("Total time: ");
+        totalTimeLabel.setStyle(labelTitleStyle);
+        Label totalTimeLabelContent = new Label();
+        totalTimeLabelContent.setText("  " + String.valueOf(l.getTotaltime()));
+        totalTimeBox.getChildren().addAll(totalTimeLabel, totalTimeLabelContent);
+        logBox.getChildren().addAll(totalTimeBox);
+
+        //RATING
+        HBox ratingBox = new HBox();
+        Label ratingLabel = new Label();
+        ratingLabel.setText("Rating: ");
+        ratingLabel.setStyle(labelTitleStyle);
+        Label ratingLabelContent = new Label();
+        ratingLabelContent.setText("  " + String.valueOf(l.getRating()));
+        ratingBox.getChildren().addAll(ratingLabel, ratingLabelContent);
+        logBox.getChildren().addAll(ratingBox);
+
+        // COMMENTS
+        HBox commentBox = new HBox();
+        Label commentLabel = new Label();
+        commentLabel.setText("Comments: ");
+        commentLabel.setStyle(labelTitleStyle);
+        Label commentLabelContent = new Label();
+        commentLabelContent.setText("  " + String.valueOf(l.getComment()));
+        commentBox.getChildren().addAll(commentLabel, commentLabelContent);
+        logBox.getChildren().addAll(commentBox);
+
+        // EDIT AND DELETE BUTTONS
+        HBox buttonBox = new HBox();
+        Button editButton = new Button("Edit");
+        editButton.setPadding(new Insets(5));
+        editButton.setOnAction(event -> editLogOnButtonClick(event, l.getId()));
+        Button deleteButton = new Button("Delete");
+        deleteButton.setPadding(new Insets(5));
+        deleteButton.setOnAction(event -> deleteLogOnButtonClick(event, l.getId()));
+        buttonBox.getChildren().addAll(editButton, deleteButton);
+        logBox.getChildren().addAll(buttonBox);
+
+        model.getLogs().add(0, logBox);
     }
 
 }
