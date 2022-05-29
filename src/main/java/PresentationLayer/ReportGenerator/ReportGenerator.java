@@ -118,12 +118,12 @@ public class ReportGenerator implements IReportGenerator{
                 .setBold()
                 .setFontColor(ColorConstants.BLACK));
 
-        Table logsTable = new Table(UnitValue.createPercentArray(4)).useAllAvailableWidth();
+        Table logsTable = new Table(UnitValue.createPercentArray(6)).useAllAvailableWidth();
             logsTable.addHeaderCell(getHeaderCell("Date"));
-            //logsTable.addHeaderCell(getHeaderCell("Time"));
+            logsTable.addHeaderCell(getHeaderCell("Time"));
             logsTable.addHeaderCell(getHeaderCell("Total Time"));
             logsTable.addHeaderCell(getHeaderCell("Rating"));
-            //logsTable.addHeaderCell(getHeaderCell("Difficulty"));
+            logsTable.addHeaderCell(getHeaderCell("Difficulty"));
             logsTable.addHeaderCell(getHeaderCell("Comment"));
 
         for(Log log : tour.getLogs()){
