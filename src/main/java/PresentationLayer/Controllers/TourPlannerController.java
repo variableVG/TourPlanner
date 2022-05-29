@@ -40,7 +40,7 @@ public class TourPlannerController  {
     }
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
         this.routeList.setItems(model.getTourNames());
         // this.tabTourname.setName
         //option.getChildre().clear() use a cell factory
@@ -115,9 +115,10 @@ public class TourPlannerController  {
     public void searchTextOnButtonClick(ActionEvent actionEvent) {
         if(!this.searchTextTextField.getText().isEmpty()) {
             model.searchText(this.searchTextTextField.getText());
+            initialize();
         }
         else { //If the searchFiedl is empty, then reset the list with all values in the DB
-
+            model.getAllTours();
         }
 
     }

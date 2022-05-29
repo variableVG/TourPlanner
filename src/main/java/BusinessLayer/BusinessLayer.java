@@ -181,8 +181,15 @@ public class BusinessLayer implements IBusinessLayer {
 
     @Override
     public List<Tour> searchText(String text) {
-        List<Tour> allTours = dataAccessLayer.searchText(text);
-        return null;
+        List<Tour> foundTours = dataAccessLayer.searchText(text);
+        for (Tour t : foundTours) {
+            try {
+                getMap(t);
+            } catch (URISyntaxException | IOException | ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return foundTours;
     }
 
 

@@ -20,14 +20,7 @@ public class TourPlannerModel {
     private  TourPlannerModel () {
         business = new BusinessLayer();
         getAllTours();
-        // When starting the application for first time, we want to call all the Maps for each tour
-        for(Tour t: tours) {
-            try {
-                business.getMap(t);
-            } catch (IOException | URISyntaxException | ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     public static synchronized TourPlannerModel getInstance() {
@@ -51,11 +44,17 @@ public class TourPlannerModel {
         return tourPlannerModel;
     }
 
-    private void getAllTours(){
+    public void getAllTours(){
         tours.clear();
         tourNames.clear();
         List<Tour> toursDb = business.getAllTours();
+        // When starting the application for first time, we want to call all the Maps for each tour
         for(Tour t: toursDb){
+            try {
+                business.getMap(t);
+            } catch (IOException | URISyntaxException | ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
             tours.add(t);
             tourNames.add(t.getName());
         }
@@ -139,6 +138,13 @@ public class TourPlannerModel {
 
     public void searchText(String text) {
         List<Tour> foundTours = business.searchText(text);
+        tours.clear();
+        tourNames.clear();
+        for(Tour t: foundTours){
+            tours.add(t);
+            tourNames.add(t.getName());
+            System.out.println(t.getName());
+        }
 
         //If the search returns something, then set the ObservableList tours and toursName with the new values.
     }
