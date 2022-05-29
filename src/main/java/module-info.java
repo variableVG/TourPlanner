@@ -18,6 +18,7 @@ module main.tourplanner {
     requires layout;
     requires kernel;
     requires io;
+    requires opencsv;
 
     opens PresentationLayer.Controllers to javafx.fxml;
     exports PresentationLayer.Controllers;

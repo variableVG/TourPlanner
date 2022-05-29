@@ -1,5 +1,7 @@
 package PresentationLayer.Controllers;
 
+import PresentationLayer.CSVFileHandler.CSVFileHandler;
+import PresentationLayer.CSVFileHandler.ICSVFileHandler;
 import PresentationLayer.Models.TourPlannerModel;
 import PresentationLayer.ReportGenerator.IReportGenerator;
 import PresentationLayer.ReportGenerator.ReportGenerator;
@@ -102,5 +104,10 @@ public class TourPlannerController  {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void exportToursOnButtonClick(ActionEvent event) {
+        ICSVFileHandler icsvFileHandler = new CSVFileHandler();
+        icsvFileHandler.exportTours(model.getTours());
     }
 }
