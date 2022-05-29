@@ -86,6 +86,7 @@ public class LogTourTabController {
         a.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 model.deleteLog(logId);
+                DescriptionTourTabController.model.setPopularity();
             }
         });
     }

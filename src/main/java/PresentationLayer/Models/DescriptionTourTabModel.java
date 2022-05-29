@@ -42,6 +42,12 @@ public class DescriptionTourTabModel {
         //this.popularity.setValue(tour.getPopularity());
 
         //Set popularity:
+        setPopularity();
+
+
+    }
+
+    public void setPopularity() {
         if(tour.getPopularity() == 5) {
             this.popularity.setValue("♥♥♥♥♥");
         }
@@ -56,8 +62,6 @@ public class DescriptionTourTabModel {
         } else {
             this.popularity.setValue("♥♡♡♡♡");
         }
-
-
     }
 
 

@@ -5,9 +5,16 @@ import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
+
+import java.io.IOException;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class AddLogPageController {
 
@@ -65,11 +72,15 @@ public class AddLogPageController {
             Log log = model.addLog();
             if(log != null) {
                 stage.close();
-                tabController.setLogCell(log);
+                tabController.setLogCell(log); //Set new cell
             }
         } catch (Exception e) {
             e.printStackTrace();
             info.setText(e.toString());
         }
+
+        //Update popularity in the controller
+        DescriptionTourTabController.model.setPopularity();
+
     }
 }

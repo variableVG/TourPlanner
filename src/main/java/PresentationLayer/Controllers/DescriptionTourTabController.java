@@ -29,7 +29,8 @@ public class DescriptionTourTabController {
     @FXML public Label tourPopularityLabel;
     @FXML public Label childFriendlinessLabel;
 
-    DescriptionTourTabModel model;
+    //In order to be able to change information, the model has to be static here (and public)
+    static public DescriptionTourTabModel model;
 
     public DescriptionTourTabController(Tour tour) {
         //we need this, because otherwise tour would be null when we inizialize() -> error
@@ -52,7 +53,6 @@ public class DescriptionTourTabController {
 
     public void updateTourTab(Tour tour) {
         model.updateTour(tour);
-
     }
 
 

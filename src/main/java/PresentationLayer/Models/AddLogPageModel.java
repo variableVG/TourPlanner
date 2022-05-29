@@ -2,6 +2,7 @@ package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
+import PresentationLayer.Controllers.DescriptionTourTabController;
 import javafx.beans.property.*;
 import lombok.Data;
 
