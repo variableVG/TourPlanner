@@ -3,41 +3,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@descriptionTourTab.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.DescriptionTourTabController">
+<AnchorPane stylesheets="@descriptionTourTab.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.DescriptionTourTabController">
     <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-        <HBox HBox.hgrow="ALWAYS">
-            <Label prefHeight="18.0" prefWidth="36.0">From: </Label>
-            <Label fx:id="originTourLabel" prefHeight="18.0" prefWidth="92.0" text="Origin" />
+        <HBox alignment="BOTTOM_LEFT" HBox.hgrow="ALWAYS">
+            <Label styleClass="labelClass">From: </Label>
+            <Label fx:id="originTourLabel" alignment="BASELINE_LEFT" contentDisplay="BOTTOM" styleClass="to-from" text="Origin" />
 
-            <Label prefHeight="18.0" prefWidth="23.0">To: </Label>
-            <Label fx:id="destinationTourLabel" prefHeight="18.0" prefWidth="152.0" text="Destination" />
-
-            <Label prefHeight="18.0" prefWidth="113.0">Tour Distance: </Label>
-            <Label fx:id="tourDistanceLabel" text="xx.x km" />
+            <Label fx:id="destinationTitleLabel" styleClass="labelClass">To: </Label>
+            <Label fx:id="destinationTourLabel" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" styleClass="to-from" text="Destination" />
         </HBox>
 
         <HBox>
-            <Label layoutX="258.0" prefHeight="18.0" prefWidth="96.0">Estimated Time:  </Label>
-            <Label fx:id="estimatedTimeLabel" prefHeight="18.0" prefWidth="61.0" text="y h" />
-
-            <Label prefHeight="18.0" prefWidth="93.0">Transport Type: </Label>
-            <Label fx:id="transportTypeLabel" text="Bike, feet ..." />
+            <Label styleClass="labelClass">Tour Distance: </Label>
+            <Label fx:id="tourDistanceLabel" styleClass="contentClass" text="xx.x km" />
         </HBox>
 
         <HBox>
-            <Label>Popularity: </Label>
-            <Label fx:id="tourPopularityLabel" prefHeight="18.0" prefWidth="50.0" text="* * *" />
+            <Label styleClass="labelClass">Estimated Time:  </Label>
+            <Label fx:id="estimatedTimeLabel" styleClass="contentClass" text="y h" />
+        </HBox>
 
-            <Label layoutX="427.0" prefHeight="18.0" prefWidth="107.0">Child Friendliness: </Label>
-            <Label fx:id="childFriendlinessLabel" text="* *" />
+        <HBox>
+            <Label styleClass="labelClass">Transport Type: </Label>
+            <Label fx:id="transportTypeLabel" styleClass="contentClass" text="Bike, feet ..." />
+        </HBox>
+
+        <HBox>
+            <Label styleClass="labelClass">Popularity: </Label>
+            <Label fx:id="tourPopularityLabel" prefHeight="18.0" prefWidth="50.0" styleClass="contentClass" text="* * *" />
+
+            <Label styleClass="labelClass">Child Friendliness: </Label>
+            <Label fx:id="childFriendlinessLabel" styleClass="contentClass" text="* *" />
         </HBox>
 
         <HBox>
             <VBox>
-                <Label>Tour Description: </Label>
-                <Label fx:id="tourDescriptionLabel"/>
+                <Label styleClass="labelClass">Tour Description: </Label>
+                <Label fx:id="tourDescriptionLabel" styleClass="contentClass" />
             </VBox>
-
         </HBox>
 
     </VBox>

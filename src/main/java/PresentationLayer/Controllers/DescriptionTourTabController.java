@@ -36,6 +36,7 @@ public class DescriptionTourTabController {
         this.estimatedTimeLabel.textProperty().bindBidirectional(model.getTime());
         this.transportTypeLabel.textProperty().bindBidirectional(model.getTransportType());
 
+
     }
 
     public void updateTourTab(Tour tour) {

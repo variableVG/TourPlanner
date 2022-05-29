@@ -24,7 +24,7 @@ public class Tour {
     private String transportType;
     private float distance;
     private String time;
-    private String popularity;
+    private int popularity;
     private String childFriendliness;
     //private BufferedImage imageMap;
 
@@ -60,6 +60,18 @@ public class Tour {
         this.time = time;
         this.isAPIRequested = false;
         getLogsFromDb();
+        setPopularityFromNumberOfLogs();
+    }
+
+    private void setPopularityFromNumberOfLogs() {
+        //Popularity can be set from 1 to 5: 1 not popular - 5 very popular
+        int numberOfLogs = logs.size();
+        if(numberOfLogs > 10) { this.popularity = 5; }
+        else if(numberOfLogs > 8) { this.popularity = 4; }
+        else if(numberOfLogs > 6) { this.popularity = 3; }
+        else if(numberOfLogs > 3) {this.popularity = 2; }
+        else {this.popularity = 1; }
+
     }
 
     public void getLogsFromDb() {

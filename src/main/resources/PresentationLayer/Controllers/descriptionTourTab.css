@@ -1,5 +1,29 @@
-#label {
+HBox {
+    -fx-alignment: BOTTOM_LEFT;
+    -fx-padding: 5px 5px;
+}
+
+Label {
+    -fx-font-family: "Droid Sans";
+    -fx-padding: 5px 5px;
+}
+
+.labelClass {
+    -fx-font-size: 12px;
+}
+
+.to-from {
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-font-size: 14;
+    -fx-alignment: BOTTOM_LEFT;
+    -fx-padding: 5px 5px 2px 5px;
+}
+
+#destinationTitleLabel {
+    -fx-padding: 5px 5px 5px 20px;
+}
+
+.contentClass{
+    -fx-font-size: 14px;
 }
 
