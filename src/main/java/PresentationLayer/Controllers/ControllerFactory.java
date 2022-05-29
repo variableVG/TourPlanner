@@ -24,7 +24,7 @@ public class ControllerFactory {
         }else if (controllerClass == AddTourPageController.class) {
             return new AddTourPageController();
         }else if (controllerClass == AddLogPageController.class) {
-            return new AddLogPageController(tourPlannerModel.getTourByName(tourName));
+            return new AddLogPageController(tourPlannerModel.getTourByName(tourName), logTourTabController);
         }else if(controllerClass == DescriptionTourTabController.class){
             return new DescriptionTourTabController(tourPlannerModel.getTourByName(tourName));
         }else if(controllerClass == RouteTourTabController.class){

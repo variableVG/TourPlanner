@@ -28,7 +28,8 @@ public class AddLogPageModel {
     }
 
 
-    public boolean addLog() {
+    public Log addLog() {
+        Log log = null;
         if(validateFields()) {
 
             //Validate and set the time
@@ -36,11 +37,11 @@ public class AddLogPageModel {
             if(this.time.getValue() != null) {
                 timeLog = validateTime();
                 if (timeLog == null) {
-                    return false;
+                    return null;
                 }
             }
 
-            Log log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
+            log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
                     this.difficulty.getValue(), this.totalTime.getValue(),
                     this.rating.getValue());
 
@@ -54,9 +55,8 @@ public class AddLogPageModel {
             log.setId(logId);
             this.tour.getLogs().add(log);
             TourPlannerModel.getInstance().updateTour(tour);
-            return true;
         }
-        return false;
+        return log;
 
     }
 

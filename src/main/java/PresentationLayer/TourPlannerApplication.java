@@ -45,8 +45,9 @@ public class TourPlannerApplication extends Application {
         startScene(fxmlLoader,stage,"Edit Tour \"" + tourName + "\"",500,500,400,400);
     }
 
-    public void addLog(Stage stage, String tourName) throws IOException{
+    public void addLog(Stage stage, String tourName, LogTourTabController tabController) throws IOException{
         factory.setTourName(tourName);
+        factory.setLogTourTabController(tabController);
         FXMLLoader fxmlLoader = getFxmlLoader(factory, "Controllers/add-log-page.fxml");
         startScene(fxmlLoader,stage,"New Tour Log",500,400,400,400);
     }

@@ -1,6 +1,7 @@
 package PresentationLayer.Controllers;
 
 import PresentationLayer.Models.AddLogPageModel;
+import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,10 +24,12 @@ public class AddLogPageController {
     @FXML public RadioButton hardDiff;
     Tour tour;
     AddLogPageModel model;
+    LogTourTabController tabController;
 
-    AddLogPageController(Tour tour) {
+    AddLogPageController(Tour tour, LogTourTabController tabController) {
         this.tour = tour;
         model = new AddLogPageModel(tour);
+        this.tabController = tabController;
 
     }
 
@@ -56,10 +59,13 @@ public class AddLogPageController {
             model.getDifficulty().setValue(0);
         }
 
+
         Stage stage = (Stage) addButton.getScene().getWindow();
         try {
-            if(model.addLog()) {
+            Log log = model.addLog();
+            if(log != null) {
                 stage.close();
+                tabController.setLogCell(log);
             }
         } catch (Exception e) {
             e.printStackTrace();

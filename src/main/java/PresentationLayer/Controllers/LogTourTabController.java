@@ -56,7 +56,7 @@ public class LogTourTabController {
     public void addLogOnButtonClick(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         if(tour != null) {
-            tpa.addLog(stage, tour.getName());
+            tpa.addLog(stage, tour.getName(), this);
         }
         else {
             System.out.println("You cannot add a log to an empty tour");
