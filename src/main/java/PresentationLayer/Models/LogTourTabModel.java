@@ -2,6 +2,7 @@ package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
+import PresentationLayer.Controllers.DescriptionTourTabController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -47,6 +48,9 @@ public class LogTourTabModel {
             business.deleteLog(logId);
             //delete Log in the frontend
             TourPlannerModel.getInstance().deleteLog(tour, logId);
+
+            //We might have to delete the line below
+            DescriptionTourTabController.model.setPopularity();
         } catch (Exception e) {
             e.printStackTrace();
         }

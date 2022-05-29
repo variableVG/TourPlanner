@@ -50,6 +50,8 @@ public class EditTourPageController {
         if(model.updateTour()){
             stage.close();
             descriptionTourTabController.updateTourTab(tour);
+
+
         }
 
     }

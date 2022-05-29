@@ -80,7 +80,7 @@ public class AddLogPageController {
         }
 
         //Update popularity in the controller
-        DescriptionTourTabController.model.setPopularity();
+        DescriptionTourTabController.model.updateTour(tour);
 
     }
 }

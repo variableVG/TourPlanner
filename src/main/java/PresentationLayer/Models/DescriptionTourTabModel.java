@@ -17,6 +17,7 @@ public class DescriptionTourTabModel {
     private StringProperty time;
     private StringProperty description;
     private StringProperty popularity;
+    private StringProperty childFrienliness;
 
     public DescriptionTourTabModel() {
         tourName = new SimpleStringProperty("Tour Name");
@@ -27,6 +28,7 @@ public class DescriptionTourTabModel {
         time = new SimpleStringProperty("Time");
         description = new SimpleStringProperty("description");
         popularity = new SimpleStringProperty("♡♡♡♡♡");
+        childFrienliness = new SimpleStringProperty("\uD83D\uDC76");
     }
 
     public void updateTour(Tour tour) {
@@ -40,14 +42,19 @@ public class DescriptionTourTabModel {
         this.time.setValue(tour.getTime() + " hours");
         this.description.setValue(tour.getDescription());
         //this.popularity.setValue(tour.getPopularity());
+        this.childFrienliness.setValue("\uD83D\uDC76");
 
         //Set popularity:
         setPopularity();
 
+        //set childfriendliness:
+        setChildFriendliness();
 
     }
 
     public void setPopularity() {
+        tour.setPopularityFromNumberOfLogs();
+        System.out.println("Popularity for tour " + tour.getName() + " is " + tour.getPopularity());
         if(tour.getPopularity() == 5) {
             this.popularity.setValue("♥♥♥♥♥");
         }
@@ -62,6 +69,16 @@ public class DescriptionTourTabModel {
         } else {
             this.popularity.setValue("♥♡♡♡♡");
         }
+    }
+
+    public void setChildFriendliness() {
+        tour.setChildFriendlinessFromOwnData();
+        System.out.println("Childfriendliness is " + tour.getChildFriendliness());
+        String childFriendly = "\uD83D\uDC76 ";
+        for(int i = 0; i < tour.getChildFriendliness(); i++) {
+            childFriendly += "\uD83D\uDC76 ";
+        }
+        this.childFrienliness.setValue(childFriendly);
     }
 
 

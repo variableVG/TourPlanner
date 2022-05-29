@@ -61,6 +61,8 @@ public class LogTourTabController {
         else {
             System.out.println("You cannot add a log to an empty tour");
         }
+
+        DescriptionTourTabController.model.updateTour(tour);
     }
 
     public void editLogOnButtonClick(ActionEvent actionEvent, int logId)  {
@@ -76,6 +78,8 @@ public class LogTourTabController {
         else {
             System.out.println("You cannot add a log to an empty tour");
         }
+
+        DescriptionTourTabController.model.updateTour(tour);
     }
 
     public void deleteLogOnButtonClick(ActionEvent event, int logId) {
@@ -102,11 +106,12 @@ public class LogTourTabController {
                 for(int i = 0; i < tour.getLogs().size(); i++) {
                     if(tour.getLogs().get(i).getId() == logId) {
                         tour.getLogs().remove(i);
+                        break;
                     }
                 }
 
                 //Update the info in the descriptionTab
-                DescriptionTourTabController.model.setPopularity();
+                DescriptionTourTabController.model.updateTour(tour);
             }
         });
     }

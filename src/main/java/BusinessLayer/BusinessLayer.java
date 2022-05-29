@@ -36,6 +36,8 @@ public class BusinessLayer implements IBusinessLayer {
         //TODO
         //We ask for the map when the Tour is created, so we can store it already and it can upload faster.
         getMap(newTour);
+        newTour.setChildFriendlinessFromOwnData();
+        newTour.setPopularityFromNumberOfLogs();
         int id = dataAccessLayer.addTour(newTour);
         System.out.println("Id in business is " + id);
         //return back the new Id so it can be assigned in the frontend
@@ -67,6 +69,8 @@ public class BusinessLayer implements IBusinessLayer {
         dataAccessLayer.updateTour(tour);
         try {
             getMap(tour);
+            tour.setChildFriendlinessFromOwnData();
+            tour.setPopularityFromNumberOfLogs();
         } catch (URISyntaxException | IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }

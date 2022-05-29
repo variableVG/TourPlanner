@@ -99,6 +99,7 @@ public class EditLogPageController {
             }
 
         }
+        DescriptionTourTabController.model.updateTour(tour);
 
     }
 }
