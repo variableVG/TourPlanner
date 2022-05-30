@@ -48,14 +48,20 @@ public class DataAccessLayer implements IDataAccessLayer {
         }
     }
 
-    @Override
+    /*@Override
     public List<Tour> getTours() {
         return Database.getTours();
-    }
-    /*TEST @Override
-    public List<Tour> getTours(String search) {
-        return Database.getTours(search);
     }*/
+    @Override
+    public List<Tour> getTours(String search) {
+        //return Database.getTours(search);
+
+        if(search.equals("")){
+            return Database.getTours();
+        }else{
+            return Database.searchText(search);
+        }
+    }
 
     @Override
     public void deleteTour(String tourName) {

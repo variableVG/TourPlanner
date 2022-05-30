@@ -112,7 +112,7 @@ public class TourPlannerController  {
         icsvFileHandler.exportTours(model.getTours());
     }
 
-    public void searchTextOnButtonClick(ActionEvent actionEvent) {
+    /*public void searchTextOnButtonClick(ActionEvent actionEvent) {
 
         //warum nicht einfach model.getAllTours(this.searchTextTextField.getText())
 
@@ -124,8 +124,8 @@ public class TourPlannerController  {
             model.getAllTours();
         }
 
-    }
-    /*TEST public void searchTextOnButtonClick(ActionEvent actionEvent){
-        model.getAllTours(this.searchTextTextField.getText());
     }*/
+    public void searchTextOnButtonClick(ActionEvent actionEvent){
+        model.getAllTours(this.searchTextTextField.getText());
+    }
 }

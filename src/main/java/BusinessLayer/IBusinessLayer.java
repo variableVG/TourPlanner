@@ -12,8 +12,8 @@ import java.util.concurrent.ExecutionException;
 public interface IBusinessLayer {
     int addTour(Tour tourName) throws Exception;
 
-    List<Tour> getAllTours();
-    //TEST List<Tour> getAllTours(String search);
+    //List<Tour> getAllTours();
+    List<Tour> getAllTours(String search);
 
     void deleteTour(String tourName);
 
