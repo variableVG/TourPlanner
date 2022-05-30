@@ -149,6 +149,65 @@ public class Database {
         }
         return tours;
     }
+    /*TEST public static List<Tour> getTours(String search){
+        List<Tour> tours = new ArrayList<>();
+        if(search.equals("")){
+            try (
+                    PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT *
+                FROM tour
+                """ )
+            ) {
+                ResultSet resultSet = statement.executeQuery();
+                while(resultSet.next()){
+                    tours.add(
+                            new Tour(
+                                    resultSet.getInt("id"),
+                                    resultSet.getString("name"),
+                                    resultSet.getString("origin"),
+                                    resultSet.getString("destination"),
+                                    resultSet.getString("description"),
+                                    resultSet.getString("transport_type"),
+                                    resultSet.getFloat("distance"),
+                                    resultSet.getString("estimated_time")
+                            )
+                    );
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else{
+            try (
+                    PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
+                SELECT *
+                FROM tour
+                WHERE name = ?
+                """ )
+            ) {
+                statement.setString(1, search);
+                //statement.execute();
+                ResultSet resultSet = statement.executeQuery();
+                while(resultSet.next()){
+                    tours.add(
+                            new Tour(
+                                    resultSet.getInt("id"),
+                                    resultSet.getString("name"),
+                                    resultSet.getString("origin"),
+                                    resultSet.getString("destination"),
+                                    resultSet.getString("description"),
+                                    resultSet.getString("transport_type"),
+                                    resultSet.getFloat("distance"),
+                                    resultSet.getString("estimated_time")
+                            )
+                    );
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+        return tours;
+    }*/
 
     public static void deleteTour(String tourName) {
         //return type boolean -> delete succ || err ?

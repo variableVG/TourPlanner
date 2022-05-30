@@ -50,6 +50,10 @@ public class BusinessLayer implements IBusinessLayer {
     public List<Tour> getAllTours() {
         return dataAccessLayer.getTours();
     }
+    /*TEST @Override
+    public List<Tour> getAllTours(String search) {
+        return dataAccessLayer.getTours(search);
+    }*/
 
     @Override
     public void deleteTour(String tourName) {

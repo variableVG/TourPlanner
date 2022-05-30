@@ -46,6 +46,7 @@ public class ReportGenerator implements IReportGenerator{
         this.document = new Document(pdf);
     }
 
+    @Override
     public void generateSummarizeReport() throws IOException{
         document.add(new Paragraph("Summarize-Report")
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
@@ -82,6 +83,7 @@ public class ReportGenerator implements IReportGenerator{
 
     }
 
+    @Override
     public void generateReport() throws IOException {
         document.add(new Paragraph(tour.getName())
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))

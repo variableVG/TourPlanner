@@ -13,6 +13,7 @@ public interface IBusinessLayer {
     int addTour(Tour tourName) throws Exception;
 
     List<Tour> getAllTours();
+    //TEST List<Tour> getAllTours(String search);
 
     void deleteTour(String tourName);
 

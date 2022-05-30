@@ -19,8 +19,8 @@ public class TourPlannerModel {
 
     private  TourPlannerModel () {
         business = new BusinessLayer();
+        //TEST getAllTours("");
         getAllTours();
-
     }
 
     public static synchronized TourPlannerModel getInstance() {
@@ -59,6 +59,21 @@ public class TourPlannerModel {
             tourNames.add(t.getName());
         }
     }
+    /*TEST public void getAllTours(String search){
+        tours.clear();
+        tourNames.clear();
+        List<Tour> toursDb = business.getAllTours(search);
+        // When starting the application for first time, we want to call all the Maps for each tour
+        for(Tour t: toursDb){
+            try {
+                business.getMap(t);
+            } catch (IOException | URISyntaxException | ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            tours.add(t);
+            tourNames.add(t.getName());
+        }
+    }*/
 
     public ObservableList<Tour> getTours() {
         return tours;

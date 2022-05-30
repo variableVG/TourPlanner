@@ -113,6 +113,9 @@ public class TourPlannerController  {
     }
 
     public void searchTextOnButtonClick(ActionEvent actionEvent) {
+
+        //warum nicht einfach model.getAllTours(this.searchTextTextField.getText())
+
         if(!this.searchTextTextField.getText().isEmpty()) {
             model.searchText(this.searchTextTextField.getText());
             initialize();
@@ -122,4 +125,7 @@ public class TourPlannerController  {
         }
 
     }
+    /*TEST public void searchTextOnButtonClick(ActionEvent actionEvent){
+        model.getAllTours(this.searchTextTextField.getText());
+    }*/
 }
