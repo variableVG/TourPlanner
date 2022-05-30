@@ -58,15 +58,6 @@
                     <Label fx:id="tabTourname" prefHeight="18.0" text="-tourname-" />
                     <Pane HBox.hgrow="ALWAYS" />
 
-                    <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generateSummarizeReportOnButtonClick">
-                        <tooltip><Tooltip text="Download Summarize-Report" /></tooltip>
-                        <graphic>
-                            <ImageView fitHeight="15.0" fitWidth="15.0">
-                                <Image url="@../Icons/statistics2.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
-
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generateReportOnButtonClick">
                         <tooltip><Tooltip text="Download Tour-Report" /></tooltip>
                         <graphic>
