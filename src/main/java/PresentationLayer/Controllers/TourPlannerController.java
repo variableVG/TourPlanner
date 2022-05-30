@@ -90,18 +90,18 @@ public class TourPlannerController  {
     }
 
     public void generateReportOnButtonClick(ActionEvent actionEvent) throws FileNotFoundException {
-        IReportGenerator reportGenerator = new ReportGenerator(model.getTourByName(tabTourname.getText()));
+        IReportGenerator reportGenerator = new ReportGenerator();
         try {
-            reportGenerator.generateReport();
+            reportGenerator.generateReport(model.getTourByName(tabTourname.getText()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void generateSummarizeReportOnButtonClick(ActionEvent event) throws FileNotFoundException {
-        IReportGenerator reportGenerator = new ReportGenerator(model.getTours());
+        IReportGenerator reportGenerator = new ReportGenerator();
         try {
-            reportGenerator.generateSummarizeReport();
+            reportGenerator.generateSummarizeReport(model.getTours());
         } catch (IOException e) {
             e.printStackTrace();
         }

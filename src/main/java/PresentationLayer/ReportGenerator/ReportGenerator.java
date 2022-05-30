@@ -22,32 +22,16 @@ import java.io.IOException;
 import java.util.List;
 
 public class ReportGenerator implements IReportGenerator{
-    private Tour tour;
-    private List<Tour> tours;
-    private String filename;
-    private PdfWriter writer;
-    private PdfDocument pdf;
-    private Document document;
 
-
-    public ReportGenerator(Tour tour) throws FileNotFoundException {
-        this.tour = tour;
-        this.filename = tour.getName() + ".pdf";
-        this.writer = new PdfWriter(filename);
-        this.pdf = new PdfDocument(writer);
-        this.document = new Document(pdf);
-    }
-
-    public ReportGenerator(List<Tour> tours) throws FileNotFoundException {
-        this.tours = tours;
-        this.filename = "Summarize-Report.pdf";
-        this.writer = new PdfWriter(filename);
-        this.pdf = new PdfDocument(writer);
-        this.document = new Document(pdf);
-    }
+    public ReportGenerator(){}
 
     @Override
-    public void generateSummarizeReport() throws IOException{
+    public void generateSummarizeReport(List<Tour> tours) throws IOException{
+        String filename = "Summarize-Report.pdf";
+        PdfWriter writer = new PdfWriter(filename);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+
         document.add(new Paragraph("Summarize-Report")
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
                 .setFontSize(18)
@@ -84,7 +68,12 @@ public class ReportGenerator implements IReportGenerator{
     }
 
     @Override
-    public void generateReport() throws IOException {
+    public void generateReport(Tour tour) throws IOException {
+        String filename = tour.getName() + ".pdf";
+        PdfWriter writer = new PdfWriter(filename);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+
         document.add(new Paragraph(tour.getName())
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
                 .setFontSize(18)
