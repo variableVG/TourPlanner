@@ -6,7 +6,6 @@ import PresentationLayer.Models.Tour;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public interface IBusinessLayer {

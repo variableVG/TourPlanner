@@ -107,7 +107,25 @@ public class BusinessLayerTest {
     }
     @Test
     public void addLogTest(){
-        //TODO
+
+        //get Tour:
+        Tour checkTour = business.getTourByName(tour.getName());
+        //Define log
+        LocalDate date = LocalDate.parse("2022-02-01");
+        LocalTime time = LocalTime.parse("12:00");
+        String comment = "This is a comment";
+        int difficulty = 1;
+        String totalTime = "1h";
+        int rating = 4;
+        Log log = new Log(-2, date, time, comment, difficulty, totalTime, rating);
+        try {
+            business.addLog(checkTour, log);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(business.getLogs(-1),tour.getLogs(), "create Log successfuly");
+
+
     }
     @Test
     public void editLogTest() {
