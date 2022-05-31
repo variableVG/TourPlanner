@@ -106,6 +106,10 @@ public class BusinessLayerTest {
         //TODO
     }
     @Test
+    public void addLogTest(){
+        //TODO
+    }
+    @Test
     public void editLogTest() {
 
         //Define log
