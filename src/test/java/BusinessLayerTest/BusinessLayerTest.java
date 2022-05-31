@@ -74,6 +74,24 @@ public class BusinessLayerTest {
         assertTrue(answer2 < 0, "Tour was added in the DB with an empty Origin");
 
     }
+    @Test
+    public void TourDestinationTest() {
+        business.deleteTour(tour.getName());
+
+        Tour tourEmptyDestination = new Tour(-1, "Name", "Damaskus", "", "ABC", "Auto", 0, null);
+
+        int answer2 = -1;
+        try {
+            answer2 = business.addTour(tourEmptyDestination);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertTrue(e instanceof Exception, "Exception works in TourDestinationTest");
+
+        }
+        assertTrue(answer2 < 0, "Tour was added in the DB with an empty Destination");
+
+    }
 
     @Test
     public void deleteTourTest(){
@@ -156,10 +174,6 @@ public class BusinessLayerTest {
             assertTrue(e instanceof Exception);
         }
 
-
-
     }
-
-
 
 }
