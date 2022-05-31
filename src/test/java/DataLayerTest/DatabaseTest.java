@@ -95,9 +95,6 @@ public class DatabaseTest {
         assertEquals(tour2.getId(), foundTours.get(0).getId());
 
 
-
     }
-
-
 
 }
