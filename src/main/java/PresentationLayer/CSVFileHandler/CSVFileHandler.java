@@ -14,6 +14,7 @@ public class CSVFileHandler implements ICSVFileHandler{
 
     @Override
     public void exportTours(List<Tour> tours){
+        //nicht JFileChooser aber JavaFX FileChooser
         //how can we define a new file and path (window to select destination and filename)
         File file = new File("csvFile.csv");
         try {

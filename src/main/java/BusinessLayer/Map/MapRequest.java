@@ -20,6 +20,7 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.Period;
+import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -27,10 +28,25 @@ import org.json.JSONObject;
 
 
 public class MapRequest {
-    static private String consumerKey = "qcJrJbF1oBJN4pGOFkbG3gNhqLHXPv06";
+    //static private String consumerKey = "qcJrJbF1oBJN4pGOFkbG3gNhqLHXPv06";
+    static private String consumerKey = loadMapQuestConfiguration();
     static private String apiBasicMapRequest = "https://www.mapquestapi.com/staticmap/v5/map?key="+ consumerKey + "&center=Boston,MA&size=600,400@2x";
 
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
+
+    static private String loadMapQuestConfiguration(){
+        try {
+            Properties appProperties = new Properties();
+            appProperties.load(Thread.currentThread()
+                    .getContextClassLoader()
+                    .getResourceAsStream("app.properties"));
+
+            return appProperties.getProperty("mapquestkey");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public CompletableFuture<ApiDirections> getMapDirections(Tour tour) throws IOException, URISyntaxException, InterruptedException, ExecutionException {
         CompletableFuture<ApiDirections> mapDirections = new CompletableFuture<ApiDirections>();
