@@ -41,16 +41,31 @@ public class BusinessLayerTest {
     }
 
     @Test
-    public void addTourTest() throws Exception {
+    public void addTourTest() {
         business.deleteTour(tour.getName());
-        int answer = business.addTour(tour);
+
+        Tour tourEmptyOrigin = new Tour(-1, "Name", "", "Damaskus", "ABC", "Auto", 0, null);
+
+        int answer = -1; int answer2 = -1;
+        try {
+            answer = business.addTour(tour);
+            answer2 = business.addTour(tourEmptyOrigin);
+            assertTrue(false, "Exception does not work in addTour");
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertTrue(e instanceof Exception, "Exception works in addTour");
+
+        }
         assertTrue(answer >= 0, "Tour id is not a vaild number");
+        assertTrue(answer2 < 0, "Tour was added in the DB with an empty Origin");
 
     }
+
     @Test
-    public void deleteTourTest() throws Exception{
+    public void deleteTourTest(){
         business.deleteTour("tour4");
-        assertEquals("tour4","tour4","Tour wurde nicht gelöscht");
+        //
+        assertNull(business.getTourByName("tour4"), "Tour was not deleted");
 
     }
 

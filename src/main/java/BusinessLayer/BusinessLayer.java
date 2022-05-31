@@ -40,7 +40,6 @@ public class BusinessLayer implements IBusinessLayer {
         newTour.setChildFriendlinessFromOwnData();
         newTour.setPopularityFromNumberOfLogs();
         int id = dataAccessLayer.addTour(newTour);
-        System.out.println("Id in business is " + id);
         //return back the new Id so it can be assigned in the frontend
         return id;
 
@@ -152,7 +151,6 @@ public class BusinessLayer implements IBusinessLayer {
         CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
         //AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
 
-        System.out.println("Waiting for directions future");
 
         directions.thenApply(
                 futureDirections -> {
