@@ -112,6 +112,10 @@ public class TourPlannerController  {
         icsvFileHandler.exportTours(model.getTours());
     }
 
+    public void importToursOnButtonClick(ActionEvent event) {
+        ICSVFileHandler icsvFileHandler = new CSVFileHandler();
+        icsvFileHandler.importTours();
+    }
     /*public void searchTextOnButtonClick(ActionEvent actionEvent) {
 
         //warum nicht einfach model.getAllTours(this.searchTextTextField.getText())
@@ -125,6 +129,7 @@ public class TourPlannerController  {
         }
 
     }*/
+
     public void searchTextOnButtonClick(ActionEvent actionEvent){
         model.getAllTours(this.searchTextTextField.getText());
     }

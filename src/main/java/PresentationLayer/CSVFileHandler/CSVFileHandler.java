@@ -3,11 +3,15 @@ package PresentationLayer.CSVFileHandler;
 import PresentationLayer.Models.Tour;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
 public class CSVFileHandler implements ICSVFileHandler{
@@ -37,13 +41,24 @@ public class CSVFileHandler implements ICSVFileHandler{
             FileWriter outputfile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputfile);
 
-            //all attributes here
-            String[] header = {"Tourname","Origin","Destination"};
+            //all attributes here except childfriendliness and popularity, bacause we can't insert into db and we also calculate it, no id too, not shure about distance and time
+            String[] header = {"Name","Description","Origin","Destination","TransportType","Distance","EstimatedTime"};
             writer.writeNext(header);
 
-            //maybe here json jackson??
-            String[] data1 = {tours.get(0).getName(), tours.get(0).getOrigin(), tours.get(0).getDestination()};
-            writer.writeNext(data1);
+            //insert data
+            for(Tour tour: tours){
+                writer.writeNext(
+                        new String[]{
+                                tour.getName(),
+                                tour.getDescription(),
+                                tour.getOrigin(),
+                                tour.getDestination(),
+                                tour.getTransportType(),
+                                String.valueOf(tour.getDistance()),//typecasting
+                                tour.getTime()
+                        }
+                );
+            }
 
             writer.close();
 
@@ -52,4 +67,42 @@ public class CSVFileHandler implements ICSVFileHandler{
         }
     }
 
+    @Override
+    public List<Tour> importTours() {
+        File file = new File(loadCSVFilePathnameConfiguration());
+        List<Tour> tours = new ArrayList<>();
+
+        try{
+            FileReader inputfile = new FileReader(file);
+            CSVReader reader = new CSVReader(inputfile);
+            String[] nextLine;
+
+            //skip first line
+            nextLine = reader.readNext();
+            //loop other lines
+            while((nextLine = reader.readNext()) != null){
+                List<String> singleTourElements = new ArrayList<>(Arrays.asList(nextLine));
+
+                tours.add(
+                        new Tour(
+                                0,//id is garbage
+                                singleTourElements.get(0),
+                                singleTourElements.get(1),
+                                singleTourElements.get(2),
+                                singleTourElements.get(3),
+                                singleTourElements.get(4),
+                                Float.parseFloat(singleTourElements.get(5)),
+                                singleTourElements.get(6)
+                        )
+                );
+
+                System.out.println("STE: " + singleTourElements);
+            }
+            System.out.println("all tours: " + tours);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
