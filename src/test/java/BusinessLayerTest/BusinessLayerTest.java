@@ -123,7 +123,7 @@ public class BusinessLayerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals(business.getLogs(-1),tour.getLogs(), "create Log successfuly");
+        assertEquals(business.getLogs(-1),tour.getLogs(), "tour has no logs");
 
 
     }
