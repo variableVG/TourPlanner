@@ -2,6 +2,7 @@ package PresentationLayer.Controllers;
 
 import PresentationLayer.CSVFileHandler.CSVFileHandler;
 import PresentationLayer.CSVFileHandler.ICSVFileHandler;
+import PresentationLayer.Models.Tour;
 import PresentationLayer.Models.TourPlannerModel;
 import PresentationLayer.ReportGenerator.IReportGenerator;
 import PresentationLayer.ReportGenerator.ReportGenerator;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public class TourPlannerController  {
 
@@ -114,7 +116,12 @@ public class TourPlannerController  {
 
     public void importToursOnButtonClick(ActionEvent event) {
         ICSVFileHandler icsvFileHandler = new CSVFileHandler();
-        icsvFileHandler.importTours();
+        List<Tour> tours = icsvFileHandler.importTours();
+        if(tours != null){
+            model.addTourList(tours);
+        }else{
+            System.out.println("CSV file is null (empty)");
+        }
     }
     /*public void searchTextOnButtonClick(ActionEvent actionEvent) {
 

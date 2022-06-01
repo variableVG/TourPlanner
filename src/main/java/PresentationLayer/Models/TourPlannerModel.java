@@ -59,6 +59,17 @@ public class TourPlannerModel {
             tourNames.add(t.getName());
         }
     }*/
+
+    public void addTourList(List<Tour> tours) {
+        try {
+            for(Tour tour : tours){
+                business.addTour(tour);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void getAllTours(String search){
         tours.clear();
         tourNames.clear();

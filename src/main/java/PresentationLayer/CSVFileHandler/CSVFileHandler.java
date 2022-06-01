@@ -95,14 +95,10 @@ public class CSVFileHandler implements ICSVFileHandler{
                                 singleTourElements.get(6)
                         )
                 );
-
-                System.out.println("STE: " + singleTourElements);
             }
-            System.out.println("all tours: " + tours);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return tours;
     }
 }
