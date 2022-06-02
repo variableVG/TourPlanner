@@ -163,6 +163,29 @@ public class BusinessLayerTest {
         //assert
         assertEquals(checkLog.getComment(), log.getComment(), "Comment was not updated");
     }
+    @Test
+    public void getLogByIdTest(){
+        //Define log
+        LocalDate date = LocalDate.parse("2022-02-01");
+        LocalTime time = LocalTime.parse("12:00");
+        String comment = "This is a comment";
+        int difficulty = 1;
+        String totalTime = "1h";
+        int rating = 4;
+        Log log = new Log(-2, date, time, comment, difficulty, totalTime, rating);
+
+        business.getLogById(-2);
+        assertEquals(-2, log.getId(),"Id is not correct");
+    }
+    /*
+    @Override
+    public Log getLogById(int logId) {
+        Log log = null;
+        log = dataAccessLayer.getLogById(logId);
+
+        return log;
+    }
+     */
 
     @Test
     public void deleteLogTest() {
