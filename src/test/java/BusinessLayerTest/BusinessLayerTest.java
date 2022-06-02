@@ -177,15 +177,7 @@ public class BusinessLayerTest {
         business.getLogById(-2);
         assertEquals(-2, log.getId(),"Id is not correct");
     }
-    /*
-    @Override
-    public Log getLogById(int logId) {
-        Log log = null;
-        log = dataAccessLayer.getLogById(logId);
 
-        return log;
-    }
-     */
 
     @Test
     public void deleteLogTest() {
