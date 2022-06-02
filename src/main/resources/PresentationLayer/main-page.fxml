@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -17,7 +18,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Options">
                     <items>
-                        <MenuItem fx:id="btnMode" onAction="#changeTheme" text="change Theme" />
+                        <MenuItem onAction="#changeTheme" text="change Theme" />
                         <MenuItem mnemonicParsing="false" text="do" />
                         <MenuItem mnemonicParsing="false" text="something" />
                         <MenuItem mnemonicParsing="false" text="here" />
@@ -29,6 +30,10 @@
                     </items>
                 </Menu>
             </menus>
+         <styleClass>
+            <String fx:value="primary-color" />
+            <String fx:value="font-color" />
+         </styleClass>
         </MenuBar>
         <TextField fx:id="searchTextTextField" prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" />
         <Button contentDisplay="GRAPHIC_ONLY" onAction="#searchTextOnButtonClick" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
@@ -37,17 +42,25 @@
                     <Image url="@../Icons/loupe.png" />
                 </ImageView>
             </graphic>
+         <styleClass>
+            <String fx:value="primary-color" />
+            <String fx:value="border-style" />
+         </styleClass>
         </Button>
     </AnchorPane>
 
     <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
         <items>
             <VBox>
-                <ToolBar>
-                    <Label prefHeight="18.0" prefWidth="50.0" text="Tours" />
+                <ToolBar styleClass="primary-color">
+                    <Label prefHeight="18.0" prefWidth="50.0" styleClass="font-color" text="Tours" />
                     <Pane HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER_RIGHT" onAction="#addTourOnButtonClick">+
                         <tooltip><Tooltip text="Add Tour" /></tooltip>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="border-style" />
+                  </styleClass>
                     </Button>
                 </ToolBar>
                 <ListView fx:id="routeList" VBox.vgrow="ALWAYS">
@@ -55,8 +68,8 @@
                 </ListView>
             </VBox>
             <VBox>
-                <ToolBar>
-                    <Label fx:id="tabTourname" prefHeight="18.0" text="-tourname-" />
+                <ToolBar styleClass="primary-color">
+                    <Label fx:id="tabTourname" prefHeight="18.0" styleClass="font-color" text="-tourname-" />
                     <Pane HBox.hgrow="ALWAYS" />
 
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#generateReportOnButtonClick">
@@ -66,6 +79,10 @@
                                 <Image url="@../Icons/pdf.png" />
                             </ImageView>
                         </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="border-style" />
+                  </styleClass>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#editTourOnButtonClick">
                         <tooltip><Tooltip text="Edit" /></tooltip>
@@ -74,6 +91,10 @@
                                 <Image url="@../Icons/edit.png" />
                             </ImageView>
                         </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="border-style" />
+                  </styleClass>
                     </Button>
                     <Button alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#deleteTourOnButtonClick">
                         <tooltip><Tooltip text="Delete" /></tooltip>
@@ -82,29 +103,37 @@
                                 <Image url="@../Icons/delete.png" />
                             </ImageView>
                         </graphic>
+                  <styleClass>
+                     <String fx:value="primary-color" />
+                     <String fx:value="border-style" />
+                  </styleClass>
                     </Button>
 
                 </ToolBar>
 
-                <TabPane tabClosingPolicy="UNAVAILABLE">
+                <TabPane styleClass="primary-color" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                         <Tab text="Route">
                             <content>
                                 <AnchorPane>
                                     <fx:include fx:id="routeTourTab" source="Controllers/routeTourTab.fxml" />
+                           <styleClass>
+                              <String fx:value="primary-color" />
+                              <String fx:value="font-color" />
+                           </styleClass>
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Description">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="primary-color">
                                         <fx:include fx:id="descriptionTourTab" source="Controllers/descriptionTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Logs">
                             <content>
-                                <AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0">
+                                <AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0" styleClass="primary-color">
                                     <fx:include fx:id="logTourTab" source="Controllers/logTourTab.fxml" />
                                 </AnchorPane>
                             </content>

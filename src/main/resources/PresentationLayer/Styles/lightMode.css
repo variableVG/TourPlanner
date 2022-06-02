@@ -1,3 +1,11 @@
 .primary-color{
-    -fx-background-color: green;
+    -fx-background-color: #F2F2F2;
+}
+.font-color{
+    -fx-text-fill: #222326;
+    -fx-text-inner-color: #222326;
+}
+.border-style{
+    -fx-border-color: #BFBFBF ;
+    -fx-border-width: 2 ;
 }
