@@ -105,7 +105,7 @@ public class BusinessLayerTest {
 
     @Test
     public void addLogTest(){
-
+        //System.out.println(tour.getLogs());
         //Define log
         LocalDate date = LocalDate.parse("2022-02-01");
         LocalTime time = LocalTime.parse("12:00");
@@ -115,10 +115,11 @@ public class BusinessLayerTest {
         int rating = 4;
         Log log = new Log(-2, date, time, comment, difficulty, totalTime, rating);
         try {
-            business.addLog(tour, log);
+           business.addLog(tour, log);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //System.out.println(tour.getLogs());
         assertNotNull(tour.getLogs());
 
     }
