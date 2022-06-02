@@ -4,19 +4,20 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.TourPlannerController">
+<VBox fx:id="parent" alignment="CENTER" prefHeight="400" prefWidth="400" styleClass="primary-color" stylesheets="@Styles/lightMode.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.TourPlannerController">
     <AnchorPane>
         <MenuBar AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="import" onAction="#importToursOnButtonClick"/>
-                        <MenuItem mnemonicParsing="false" text="export" onAction="#exportToursOnButtonClick"/>
-                        <MenuItem mnemonicParsing="false" text="report" onAction="#generateSummarizeReportOnButtonClick" />
+                        <MenuItem mnemonicParsing="false" onAction="#importToursOnButtonClick" text="import" />
+                        <MenuItem mnemonicParsing="false" onAction="#exportToursOnButtonClick" text="export" />
+                        <MenuItem mnemonicParsing="false" onAction="#generateSummarizeReportOnButtonClick" text="report" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Options">
                     <items>
+                        <MenuItem fx:id="btnMode" onAction="#changeTheme" text="change Theme" />
                         <MenuItem mnemonicParsing="false" text="do" />
                         <MenuItem mnemonicParsing="false" text="something" />
                         <MenuItem mnemonicParsing="false" text="here" />
@@ -29,8 +30,8 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextField prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" fx:id="searchTextTextField"/>
-        <Button contentDisplay="GRAPHIC_ONLY" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" onAction="#searchTextOnButtonClick">
+        <TextField fx:id="searchTextTextField" prefHeight="25.0" prefWidth="127.0" AnchorPane.rightAnchor="31.666666666666686" AnchorPane.topAnchor="0.0" />
+        <Button contentDisplay="GRAPHIC_ONLY" onAction="#searchTextOnButtonClick" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <graphic>
                 <ImageView fitHeight="15.0" fitWidth="15.0">
                     <Image url="@../Icons/loupe.png" />
@@ -96,14 +97,14 @@
                         </Tab>
                         <Tab text="Description">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" >
+                                <AnchorPane minHeight="0.0" minWidth="0.0">
                                         <fx:include fx:id="descriptionTourTab" source="Controllers/descriptionTourTab.fxml" />
                                 </AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Logs">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0"  maxHeight="Infinity" maxWidth="Infinity"  >
+                                <AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0">
                                     <fx:include fx:id="logTourTab" source="Controllers/logTourTab.fxml" />
                                 </AnchorPane>
                             </content>

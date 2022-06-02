@@ -13,13 +13,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 public class TourPlannerController  {
+
+    @FXML public VBox parent;
+    private boolean isLightMode = true;
 
     @FXML public Label tabTourname;//extends Application
     @FXML public AnchorPane descriptionTourTab;
@@ -139,5 +144,31 @@ public class TourPlannerController  {
 
     public void searchTextOnButtonClick(ActionEvent actionEvent){
         model.getAllTours(this.searchTextTextField.getText());
+    }
+
+    public void changeTheme(ActionEvent event) {
+        isLightMode = !isLightMode;
+        if(isLightMode){
+            setLightMode();
+        }else{
+            setDarkMode();
+        }
+        //System.out.println(parent.getStylesheets().toString());
+    }
+
+    private void setLightMode(){
+        File f = new File("src/main/resources/PresentationLayer/Styles/darkMode.css");
+        parent.getStylesheets().remove("file:///" + f.getAbsolutePath().replace("\\", "/"));
+
+        f = new File("src/main/resources/PresentationLayer/Styles/lightMode.css");
+        parent.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+    }
+
+    private void setDarkMode(){
+        File f = new File("src/main/resources/PresentationLayer/Styles/lightMode.css");
+        parent.getStylesheets().remove("file:///" + f.getAbsolutePath().replace("\\", "/"));
+
+        f = new File("src/main/resources/PresentationLayer/Styles/darkMode.css");
+        parent.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
     }
 }
