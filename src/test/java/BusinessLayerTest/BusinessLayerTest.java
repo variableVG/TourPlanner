@@ -5,6 +5,7 @@ import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 import javafx.util.converter.LocalDateStringConverter;
 import org.bouncycastle.asn1.cms.Time;
+import org.bouncycastle.operator.bc.BcSignerOutputStream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -101,15 +102,10 @@ public class BusinessLayerTest {
     }
 
     @DisplayName("Log testing")
-    @Test
-    public void getLogTest(){
-        //TODO
-    }
+
     @Test
     public void addLogTest(){
 
-        //get Tour:
-        Tour checkTour = business.getTourByName(tour.getName());
         //Define log
         LocalDate date = LocalDate.parse("2022-02-01");
         LocalTime time = LocalTime.parse("12:00");
@@ -119,14 +115,15 @@ public class BusinessLayerTest {
         int rating = 4;
         Log log = new Log(-2, date, time, comment, difficulty, totalTime, rating);
         try {
-            business.addLog(checkTour, log);
+            business.addLog(tour, log);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals(business.getLogs(-1),tour.getLogs(), "tour has no logs");
-
+        assertNotNull(tour.getLogs());
 
     }
+
+
     @Test
     public void editLogTest() {
 
