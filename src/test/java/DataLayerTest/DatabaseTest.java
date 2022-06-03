@@ -49,9 +49,26 @@ public class DatabaseTest {
 
         assertEquals(checkTour.getId(), checkTour2.getId(), "getTourById() does not return the correct tour");
 
-
     }
 
+    @Test
+    public void getTourByNameTest(){
+        Tour checkTour = Database.getTourById(tour.getId());
+        System.out.println("Checktour Name is " + checkTour.getName());
+
+        Tour checkTour2 = Database.getTourById(checkTour.getId());
+        System.out.println("Chektour Name is " + checkTour2.getName());
+
+        assertEquals(checkTour.getName(), checkTour2.getName(), "getTourByName() does not return the correct tour");
+
+
+    }
+    /*
+        public Tour getTourByName(String tourName) {
+        return dataAccessLayer.getTourByName(tourName);
+    }
+
+     */
     @Test
     public void addTourTest() {
         Database.deleteTour(tour.getName());

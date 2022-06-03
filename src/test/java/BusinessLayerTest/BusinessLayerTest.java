@@ -46,7 +46,6 @@ public class BusinessLayerTest {
         int answer = 0;
         try {
             answer = business.addTour(tour);
-            assertTrue(false, "Exception does not work in addTour");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,7 +122,6 @@ public class BusinessLayerTest {
         assertNotNull(tour.getLogs());
 
     }
-
 
     @Test
     public void editLogTest() {
