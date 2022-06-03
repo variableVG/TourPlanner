@@ -62,12 +62,7 @@ public class DatabaseTest {
 
 
     }
-    /*
-        public Tour getTourByName(String tourName) {
-        return dataAccessLayer.getTourByName(tourName);
-    }
 
-     */
     @Test
     public void addTourTest() {
         Database.deleteTour(tour.getName());
