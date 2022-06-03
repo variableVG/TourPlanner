@@ -19,7 +19,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-
 public class DatabaseTest {
     static private Tour tour;
 
@@ -36,7 +35,7 @@ public class DatabaseTest {
     @BeforeEach
     public void setUp(){
 
-        tour = new Tour(-1, "tour4", "Wien", "Graz","ABC", "Auto", 0, null);
+        tour = new Tour(1, "tour4", "Wien", "Graz","ABC", "Auto", 0, null);
 
     }
     @Test
