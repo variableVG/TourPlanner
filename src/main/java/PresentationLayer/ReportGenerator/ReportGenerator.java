@@ -45,7 +45,7 @@ public class ReportGenerator implements IReportGenerator{
             //name
             document.add(new Paragraph("Tour: " + tour.getName()).setBold());
             //distance
-            document.add(new Paragraph("Distance: " + tour.getDistance()));
+            document.add(new Paragraph("Distance: " + tour.getDistance() + " km"));
             //total logs:
             document.add(new Paragraph("Number of logs: " + tour.getLogs().size()));
             //rating & time
