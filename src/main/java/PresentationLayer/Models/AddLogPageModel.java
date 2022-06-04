@@ -42,6 +42,12 @@ public class AddLogPageModel {
                 }
             }
 
+            //validate totalTime
+            if(!validateTotalTime()) {
+                this.info.set("totalTime must have the format HH:MM");
+                return null;
+            }
+
             log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
                     this.difficulty.getValue(), this.totalTime.getValue(),
                     this.rating.getValue());
@@ -82,7 +88,6 @@ public class AddLogPageModel {
 
     private LocalTime validateTime() {
         LocalTime time = null;
-
         //If time has been entered, control that it has a valid format.
         try {
             time = LocalTime.parse(this.time.getValue());
@@ -91,6 +96,21 @@ public class AddLogPageModel {
         }
 
         return time;
+    }
+
+    private boolean validateTotalTime(){
+        String totalTimeString = this.totalTime.getValue();
+        if(!totalTimeString.isEmpty()) {
+            //Total time should have the format HH:MM
+            String time = this.totalTime.getValue();
+            String[] arrOfStr = time.split(":");
+            int hours = Integer.parseInt(arrOfStr[0]);
+            int minutes = Integer.parseInt(arrOfStr[1]);
+            if(hours >= 0 & (minutes >= 0 & minutes < 60)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
