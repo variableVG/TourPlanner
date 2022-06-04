@@ -14,11 +14,14 @@ import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.UnitValue;
+
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 public class ReportGenerator implements IReportGenerator{
@@ -46,21 +49,45 @@ public class ReportGenerator implements IReportGenerator{
             //total logs:
             document.add(new Paragraph("Number of logs: " + tour.getLogs().size()));
             //rating & time
-            var rating = 0;
+            int rating = 0;
             int ratingCount = 0;
             int timeCount = 0;
-            var time = 0;
+            Duration totalTime = Duration.ZERO;
             for(Log log: tour.getLogs()){
                 if(log.getRating() != null) { rating += log.getRating();  ratingCount++;}
                 if(log.getTotaltime() != null) {
-                    time += Integer.parseInt(log.getTotaltime());
+                    //Parse String totalTime to get Hours and Minutes
+                    String timeString = log.getTotaltime();
+                    String[] arrOfStr = timeString.split(":");
+                    int hours = Integer.parseInt(arrOfStr[0]);
+                    int minutes = Integer.parseInt(arrOfStr[1]);
+
+                    //add result to total time
+                    totalTime = totalTime.plusHours(hours);
+                    totalTime = totalTime.plusMinutes(minutes);
+
                     timeCount++;
                 }
             }
-            double ratingFinal = (double)rating/(double)ratingCount;
-            document.add(new Paragraph("Rating: " + ratingFinal));
-            double time2 = (double)time/(double)timeCount;
-            document.add(new Paragraph("Time: " + time2));
+
+            if(ratingCount > 0) {
+                double ratingFinal = (double)rating/(double)ratingCount;
+                document.add(new Paragraph("Average Rating: " + ratingFinal));
+            }
+
+            //add total Time:
+            // I have to check first, if timeCount is 0, since it cannot perform division by 0.
+            // If timeCount = 0, then no totalTime has been registered for the logs.
+            if(timeCount > 0) {
+                totalTime = totalTime.dividedBy(timeCount);
+                String totalTimeString = String.valueOf(totalTime.toHoursPart()) + ":" +
+                        String.valueOf(totalTime.toMinutesPart()) + ":" +
+                        String.valueOf(totalTime.toSecondsPart());
+
+                document.add(new Paragraph("Average Total Time: " + totalTimeString));
+            }
+            else { document.add(new Paragraph("Average Total Time: NaN")); }
+
         }
 
         document.close();
