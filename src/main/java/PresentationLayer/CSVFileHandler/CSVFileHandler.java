@@ -87,9 +87,9 @@ public class CSVFileHandler implements ICSVFileHandler{
                         new Tour(
                                 0,//id is garbage
                                 singleTourElements.get(0),
-                                singleTourElements.get(1),
                                 singleTourElements.get(2),
                                 singleTourElements.get(3),
+                                singleTourElements.get(1),
                                 singleTourElements.get(4),
                                 Float.parseFloat(singleTourElements.get(5)),
                                 singleTourElements.get(6)

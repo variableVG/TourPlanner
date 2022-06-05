@@ -38,6 +38,7 @@ public class BusinessLayer implements IBusinessLayer {
             return -1;
         }
 
+
         //We ask for the map when the Tour is created, so we can store it already and it can upload faster.
         try {
             getMap(newTour);
