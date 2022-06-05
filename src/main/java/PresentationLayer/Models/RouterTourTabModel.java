@@ -2,7 +2,6 @@ package PresentationLayer.Models;
 
 import BusinessLayer.BusinessLayer;
 import BusinessLayer.IBusinessLayer;
-import BusinessLayer.Map.ApiMap;
 import lombok.Data;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,7 +23,6 @@ public class RouterTourTabModel {
     }
 
     public void requestRouteAPI(Tour tour) throws Exception {
-        CompletableFuture<ApiMap> mapImage = null;
         if(tour == null) {
             throw new Exception("please select a tour");
         }

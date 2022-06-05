@@ -1,8 +1,5 @@
 package PresentationLayer.ReportGenerator;
 
-import BusinessLayer.Map.ApiDirections;
-import BusinessLayer.Map.ApiMap;
-import BusinessLayer.Map.MapRequest;
 import PresentationLayer.Models.Log;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageData;
@@ -17,9 +14,7 @@ import com.itextpdf.layout.properties.UnitValue;
 
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;

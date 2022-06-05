@@ -23,7 +23,7 @@ public interface IDataAccessLayer {
 
     List<Log> getLogs(int tourId);
 
-    int getTourIdByName(String name) throws Exception;
+    int getTourIdByName(String name);
 
 
     boolean updateLog(Log log, int tourId);

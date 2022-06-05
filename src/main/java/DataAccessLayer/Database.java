@@ -1,5 +1,7 @@
 package DataAccessLayer;
 
+import BusinessLayer.Logger.ILoggerWrapper;
+import BusinessLayer.Logger.LoggerFactory;
 import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 
@@ -14,6 +16,7 @@ import java.time.Period;
 import java.util.*;
 
 public class Database {
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
 
     public static void initDb() {
         try (Connection connection = DatabaseConnection.getInstance().connect("")) {
@@ -22,6 +25,7 @@ public class Database {
                 DatabaseConnection.executeSql(connection, "CREATE DATABASE tourplanner", false);
             }
         } catch (SQLException throwables) {
+            logger.fatal("Class Database, initDb(). " + throwables);
             throwables.printStackTrace();
         }
 
@@ -53,6 +57,7 @@ public class Database {
                     """);
         }
         catch (SQLException throwables) {
+            logger.fatal("Class Database, initDb(). " + throwables);
             throwables.printStackTrace();
         }
     }
@@ -88,6 +93,7 @@ public class Database {
             }
 
         } catch (SQLException throwables) {
+            logger.error("Class Database, getTourByName. " + throwables);
             throwables.printStackTrace();
         }
         return null;
@@ -113,10 +119,10 @@ public class Database {
             statement.setFloat(6, newTour.getDistance());
             statement.setTime(7, time);
             ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next() ) {
-                id = resultSet.getInt("id");
-            }
+
+            if(resultSet.next() ) { id = resultSet.getInt("id"); }
         } catch (SQLException throwables) {
+            logger.error("Class Database, addTour(). " + throwables);
             throwables.printStackTrace();
         }
         return id;
@@ -145,10 +151,12 @@ public class Database {
                 );
             }
         } catch (SQLException throwables) {
+            logger.error("Class Database, getTours(). " + throwables);
             throwables.printStackTrace();
         }
         return tours;
     }
+
     /*TEST public static List<Tour> getTours(String search){
         List<Tour> tours = new ArrayList<>();
         if(search.equals("")){
@@ -221,6 +229,7 @@ public class Database {
             statement.setString(1, tourName);
             statement.execute();
         } catch (SQLException throwables) {
+            logger.error("Class Database, deleteTour(). " + throwables);
             throwables.printStackTrace();
         }
     }
@@ -248,12 +257,12 @@ public class Database {
             statement.execute();
 
         } catch (SQLException throwables) {
+            logger.error("Class Database, updateTour(). " + throwables);
             throwables.printStackTrace();
         }
 
     }
 
-    //**
     public static Tour getTourById(int id) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
                 SELECT * FROM tour WHERE id = ?;
@@ -276,6 +285,7 @@ public class Database {
             }
 
         } catch (SQLException throwables) {
+            logger.error("Class Database, getTourById(). " + throwables);
             throwables.printStackTrace();
         }
         return null;
@@ -304,11 +314,11 @@ public class Database {
             statement.setInt(6, log.getRating());
             statement.setString(7, log.getComment());
             ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next() ) {
-                id = resultSet.getInt("id");
-            }
+
+            if(resultSet.next() ) { id = resultSet.getInt("id"); }
         }
         catch (SQLException throwables) {
+            logger.error("Class Database, addLog(). " + throwables);
             throwables.printStackTrace();
         }
         return id;
@@ -348,6 +358,7 @@ public class Database {
                 );
             }
         } catch (SQLException throwables) {
+            logger.error("Class Database, getLogs(). " + throwables);
             throwables.printStackTrace();
         }
         return logs;
@@ -366,6 +377,7 @@ public class Database {
             }
 
         } catch (SQLException throwables) {
+            logger.error("Class Database, getTourIdByName(). " + throwables);
             throwables.printStackTrace();
         }
         return answer;
@@ -396,6 +408,7 @@ public class Database {
             return true;
 
         } catch (SQLException throwables) {
+            logger.error("Class Database, updateLog(). " + throwables);
             throwables.printStackTrace();
         }
         return false;
@@ -431,6 +444,7 @@ public class Database {
             }
 
         } catch (SQLException throwables) {
+            logger.error("Class Database, getLogById(). " + throwables);
             throwables.printStackTrace();
         }
 
@@ -439,20 +453,17 @@ public class Database {
 
     public static boolean deleteLog(int logId) {
         try ( PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement("""
-                DELETE 
-                FROM log 
-                WHERE id=?;
+                DELETE FROM log WHERE id=?;
                 """ )
         ) {
             statement.setInt(1, logId);
             statement.execute();
             return true;
         } catch (SQLException throwables) {
+            logger.error("Class Database, deleteLog(). " + throwables);
             throwables.printStackTrace();
         }
-
         return false;
-
     }
 
     public static List<Tour> searchText(String text) {
@@ -497,10 +508,9 @@ public class Database {
                 );
             }
         } catch (SQLException throwables) {
+            logger.error("Class Database, searchText(). " + throwables);
             throwables.printStackTrace();
         }
-
         return foundTours;
-
     }
 }

@@ -1,5 +1,7 @@
 package DataAccessLayer;
 
+import BusinessLayer.Logger.ILoggerWrapper;
+import BusinessLayer.Logger.LoggerFactory;
 import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 
@@ -9,6 +11,7 @@ public class DataAccessLayer implements IDataAccessLayer {
 
     private static DataAccessLayer dataAccessLayer = null;
     private static Object mutex = new Object();
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
 
     private DataAccessLayer() {
         Database.initDb();
@@ -48,10 +51,6 @@ public class DataAccessLayer implements IDataAccessLayer {
         }
     }
 
-    /*@Override
-    public List<Tour> getTours() {
-        return Database.getTours();
-    }*/
     @Override
     public List<Tour> getTours(String search) {
         //return Database.getTours(search);
@@ -77,6 +76,7 @@ public class DataAccessLayer implements IDataAccessLayer {
     public Tour getTourByName(String tourName) {
         return Database.getTourByName(tourName);
     }
+
     @Override
     public Tour getTourById(int id) {
         return Database.getTourById(id);

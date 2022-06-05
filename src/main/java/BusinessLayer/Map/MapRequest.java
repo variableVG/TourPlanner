@@ -1,5 +1,7 @@
 package BusinessLayer.Map;
 
+import BusinessLayer.Logger.ILoggerWrapper;
+import BusinessLayer.Logger.LoggerFactory;
 import PresentationLayer.Models.Tour;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -34,6 +36,8 @@ public class MapRequest {
 
     public static final String HTTPS_API_MAP = apiBasicMapRequest;
 
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
+
     static private String loadMapQuestConfiguration(){
         try {
             Properties appProperties = new Properties();
@@ -43,7 +47,8 @@ public class MapRequest {
 
             return appProperties.getProperty("mapquestkey");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Class MapRequest, loadMapQuestConfiguration() - " + e);
+            //e.printStackTrace();
         }
         return null;
     }
@@ -110,7 +115,7 @@ public class MapRequest {
                     JsonDeserializer<?> deserializer,
                     Object beanOrClass,
                     String propertyName) throws IOException {
-                if(beanOrClass.getClass().equals(ApiMap.class)) {
+                if(beanOrClass.getClass().equals(ApiDirections.class)) {
                     p.skipChildren();
                     System.out.println("it returns true");
                     return true;
