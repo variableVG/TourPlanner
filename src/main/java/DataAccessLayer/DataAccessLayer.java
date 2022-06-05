@@ -11,7 +11,6 @@ public class DataAccessLayer implements IDataAccessLayer {
 
     private static DataAccessLayer dataAccessLayer = null;
     private static Object mutex = new Object();
-    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
 
     private DataAccessLayer() {
         Database.initDb();

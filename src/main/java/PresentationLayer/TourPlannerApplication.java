@@ -17,11 +17,9 @@ import java.io.IOException;
 
 public class TourPlannerApplication extends Application {
 
-    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
     ControllerFactory factory = new ControllerFactory();
 
     public static void main(String[] args) {
-        logger.debug("Program start");
         launch();
         DatabaseConnection.getInstance().close();
     }

@@ -38,6 +38,7 @@ public class DatabaseTest {
         tour = new Tour(1, "tour4", "Wien", "Graz","ABC", "Auto", 0, null);
 
     }
+
     @Test
     public void getTourByIdTest() {
         Tour checkTour = Database.getTourByName(tour.getName());
