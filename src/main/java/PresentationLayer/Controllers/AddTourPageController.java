@@ -4,6 +4,7 @@ import PresentationLayer.Models.AddTourPageModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,6 +19,10 @@ public class AddTourPageController {
     //@FXML public TextField distance;
     //@FXML public TextField time;
     @FXML public TextArea description;
+    @FXML public RadioButton AutoFastest;
+    @FXML public RadioButton AutoShortest;
+    @FXML public RadioButton Bicycle;
+    @FXML public RadioButton Pedestrian;
     @FXML private AddTourPageModel model;
 
     public AddTourPageController() {
@@ -29,7 +34,6 @@ public class AddTourPageController {
         this.tourName.textProperty().bindBidirectional(model.getTourName());
         this.origin.textProperty().bindBidirectional(model.getOrigin());
         this.destination.textProperty().bindBidirectional(model.getDestination());
-        this.transportType.textProperty().bindBidirectional(model.getTransportType());
         //Distance and Time are requested by API
         //this.distance.textProperty().bindBidirectional(model.getDistance());
         //this.time.textProperty().bindBidirectional(model.getTime());
@@ -38,6 +42,20 @@ public class AddTourPageController {
 
     public void addTourOnClick(ActionEvent actionEvent){
         Stage stage = (Stage) addButton.getScene().getWindow();
+
+        if(AutoShortest.isSelected()) {
+            model.getTransportType().setValue("shortest");
+        }
+        else if(Bicycle.isSelected()) {
+            model.getTransportType().setValue("bicycle");
+        }
+        else if(Pedestrian.isSelected()) {
+            model.getTransportType().setValue("pedestrian");
+        }
+        else {
+            model.getTransportType().setValue("fastest");
+        }
+
         if(model.addTour()) {
             stage.close();
         }

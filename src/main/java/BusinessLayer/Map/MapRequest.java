@@ -57,6 +57,8 @@ public class MapRequest {
                     + tour.getOrigin()
                     + "&to="
                     + tour.getDestination()
+                    + "&routeType="
+                    + tour.getTransportType()
                     + "&unit=k"; // With this parameter get get back the distance in km (default is miles m)
             mapDirections = getDirectionsAPIMap(request);
         }
