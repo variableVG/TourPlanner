@@ -124,6 +124,12 @@ public class TourPlannerController  {
         List<Tour> tours = icsvFileHandler.importTours();
         if(tours != null){
             model.addTourList(tours);
+            for(Tour tour : tours){
+                if(!model.getTourNames().contains(tour.getName())){
+                    model.getTours().add(tour);
+                    model.getTourNames().add(tour.getName());
+                }
+            }
         }else{
             System.out.println("CSV file is null (empty)");
         }
