@@ -19,6 +19,7 @@ public class Database {
     private static final ILoggerWrapper logger = LoggerFactory.getLogger();
 
     public static void initDb() {
+        logger.debug("Class Database, initDb() - Starting Database.");
         try (Connection connection = DatabaseConnection.getInstance().connect("")) {
             if(reloadDatabase()) {
                 DatabaseConnection.executeSql(connection, "DROP DATABASE IF EXISTS tourplanner", false);
@@ -67,6 +68,7 @@ public class Database {
         Scanner scanner = new Scanner(System.in);
         int answer = scanner.nextInt();
         if(answer == 1) {
+            logger.debug("Class Database, reloadDatabase() - The user has press 1 to delete the all database and create new tables.");
             return true;
         }
         return false;

@@ -92,9 +92,7 @@ public class Tour {
 
         float totalTimeScore = 0;
         if(this.time != null) {
-            System.out.println("Time is " + time);
             String hours = time.substring(0, time.indexOf(":"));
-            System.out.println("Hour is " + hours);
             int hoursInt = Integer.parseInt(hours);
             if(hoursInt > 1 & hoursInt <= 2) {
                 totalTimeScore = 1;
@@ -146,8 +144,6 @@ public class Tour {
 
     public void setFutureImageMap(CompletableFuture<BufferedImage> m) {
         this.futureImageMap = m;
-        System.out.println("m in Tour setter is ");
-        System.out.println(m);
     }
 
     public boolean getIsAPIrequested() {

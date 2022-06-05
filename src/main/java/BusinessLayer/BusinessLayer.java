@@ -1,5 +1,7 @@
 package BusinessLayer;
 
+import BusinessLayer.Logger.ILoggerWrapper;
+import BusinessLayer.Logger.LoggerFactory;
 import DataAccessLayer.DataAccessLayer;
 import DataAccessLayer.IDataAccessLayer;
 import BusinessLayer.Map.ApiDirections;
@@ -18,87 +20,117 @@ public class BusinessLayer implements IBusinessLayer {
     IDataAccessLayer dataAccessLayer = null;
     MapRequest mapRequest;
 
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
+
     public BusinessLayer() {
         dataAccessLayer = DataAccessLayer.getInstance();
         mapRequest = new MapRequest();
     }
 
     @Override
-    public int addTour(Tour newTour) throws Exception {
+    public int addTour(Tour newTour) {
         /** This function add a tour to the database and gives back the in the database generated Id for that tour.
          * */
 
         //Check if the tour has set name, destination and origin
         if(newTour.getName().isEmpty() | newTour.getDestination().isEmpty() | newTour.getOrigin().isEmpty()) {
-            throw new Exception("Tour Name or Destination or Origin are empty");
+            logger.error("Class BusinessLayer, addTour() - Tour Name or Destination or Origin are empty");
+            return -1;
         }
 
-        //TODO
         //We ask for the map when the Tour is created, so we can store it already and it can upload faster.
-        getMap(newTour);
+        try {
+            getMap(newTour);
+        } catch (URISyntaxException | InterruptedException | ExecutionException | IOException e) {
+            logger.error("Class BusinessLayer, addTour() - Exception when requesting map for tour " + newTour.getName());
+            logger.error("Exception: " + e);
+            //e.printStackTrace();
+        }
+
+        //Set Childfriendliness and Popularity
         newTour.setChildFriendlinessFromOwnData();
         newTour.setPopularityFromNumberOfLogs();
-        int id = dataAccessLayer.addTour(newTour);
+
+
+        int id = 0;
+        try {
+            logger.debug("Class BusinessLayer, addTour() - Adding Tour " + newTour.getName());
+            id = dataAccessLayer.addTour(newTour);
+        } catch (Exception e) {
+            logger.error("Class BusinessLayer, addTour() - Exception " + e);
+            e.printStackTrace();
+        }
+
         //return back the new Id so it can be assigned in the frontend
+        logger.debug("Class BusinessLayer, addTour() - Tour " + newTour.getName() + " successfully added and id " + id + " assigned.");
         return id;
 
     }
 
-    /*@Override
-    public List<Tour> getAllTours() {
-        return dataAccessLayer.getTours();
-    }*/
     @Override
     public List<Tour> getAllTours(String search) {
+        logger.debug("Class BusinessLayer, getAllTours() - All tours requested.");
         return dataAccessLayer.getTours(search);
     }
 
     @Override
     public void deleteTour(String tourName) {
         dataAccessLayer.deleteTour(tourName);
+        logger.debug("Class BusinessLayer, deleteTour() - Tour " + tourName + " was deleted.");
     }
 
     @Override
     public Tour getTourByName(String tourName) {
         return dataAccessLayer.getTourByName(tourName);
     }
+
     @Override
     public Tour getTourById(int id) {
         return dataAccessLayer.getTourById(id);
-    }//**
+    }
 
     @Override
     public void updateTour(Tour tour) {
+        logger.debug("Class BusinessLayer, updateTour() - Tour " + tour.getName() + " with id " + tour.getId() + " will be updated.");
         dataAccessLayer.updateTour(tour);
         try {
             getMap(tour);
             tour.setChildFriendlinessFromOwnData();
             tour.setPopularityFromNumberOfLogs();
         } catch (URISyntaxException | IOException | ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            logger.error("Class BusinessLayer, updateTour() - Exception: " + e);
+            //e.printStackTrace();
         }
+
+        logger.debug("Class BusinessLayer, updateTour() - Tour " + tour.getName() + " with id " + tour.getId() + " has been updated.");
+
     }
 
     @Override
-    public int addLog(Tour tour, Log log) throws Exception {
+    public int addLog(Tour tour, Log log) {
         //check if tourId exists in DB
         Tour tourCheck = dataAccessLayer.getTourById(tour.getId());
         if(tourCheck.getId() != tour.getId()) {
-            throw new Exception("Tour does not match with tour in DB");
-
+            logger.warn("Class BusinessLayer, addLog() - Tour " + tour.getName() + " with id " + tour.getId() +
+                    " does not match with tour in DB.");
         }
 
         //check Log data
         //Check rating: Rating should be between 0 and 5
         if(log.getRating() < 0 | log.getRating() > 6) {
-            throw new Exception("Log-Rating has not valid value");
+            logger.warn("Class BusinessLayer, addLog() - Tour " + tour.getName() + " with id " + tour.getId() +
+                    " cannot add log because Log-Rating has not a valid value.");
         }
         //Check difficulty: Difficulty should have a value between 0 and 3
         if(log.getDifficulty() < 0 | log.getDifficulty() > 4) {
-            throw new Exception("Difficulty has not valid value");
+            logger.warn("Class BusinessLayer, addLog() - Tour " + tour.getName() + " with id " + tour.getId() +
+                    " cannot add log because Log-Rating has not a valid difficulty.");
         }
+
         int logId = -1;
+        logger.debug("Class BusinessLayer, addLog() - Adding Log " + log.getId() + " to tour " + tour.getId());
         logId = dataAccessLayer.addLog(tour.getId(), log);
+        logger.debug("Class BusinessLayer, addLog() - Log " +logId + " successfully added  to tour " + tour.getId());
 
         return logId;
 
@@ -111,28 +143,33 @@ public class BusinessLayer implements IBusinessLayer {
     }
 
     @Override
-    public boolean updateLog(Log log, int tourId) throws Exception {
+    public boolean updateLog(Log log, int tourId) {
+        logger.debug("Class BusinessLayer, updateLog() - Log " + log.getId() + " will be updated.");
+
         if(log.getRating() > 5 || log.getRating() < 0) {
-            throw new Exception("Rating score is not a valid value. Valid values between 0 and 5");
+            logger.warn("Class BusinessLayer, updateLog() - Log " + log.getId() + " has an invalid rating-score value.");
         }
         else if(log.getDifficulty() > 3 || log.getDifficulty() < 0) {
-            throw new Exception("Difficulty store is not a valid value. Valid values between 0 and 3");
+            logger.warn("Class BusinessLayer, updateLog() - Log " + log.getId() + " has an invalid difficulty-score value.");
         }
 
         if(dataAccessLayer.updateLog(log, tourId)) {
+            logger.debug("Class BusinessLayer, updateLog() - Log " + log.getId() + " successfully updated.");
             return true;
         }
-        return false;
 
+        logger.debug("Class BusinessLayer, updateLog() - Log " + log.getId() + " could not be updated.");
+        return false;
     }
 
     @Override
-    public boolean deleteLog(int logId) throws Exception {
+    public boolean deleteLog(int logId) {
         //Check first if log is present in the DB:
         Log checkLog = dataAccessLayer.getLogById(logId);
         if(checkLog == null) {
-            throw new Exception("Log is not present in the database");
+            logger.debug("Class BusinessLayer, deleteLog() - Log " + logId+ " could not be deleted because it is not present in the database.");
         }
+        logger.debug("Class BusinessLayer, deleteLog() - Log " + logId + " will be deleted.");
         return dataAccessLayer.deleteLog(logId);
     }
 
@@ -147,26 +184,26 @@ public class BusinessLayer implements IBusinessLayer {
          *      * When adding a new Tour
          *      * When editing Origin or destination of a tour
          * */
-        CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
-        //AtomicReference<CompletableFuture<ApiMap>> apiMap = new AtomicReference<>(new CompletableFuture<>());
 
+        CompletableFuture<ApiDirections> directions = mapRequest.getMapDirections(tour);
+        logger.debug("Class BusinessLayer, getMap() - Map for tour " + tour.getName() + " requested.");
 
         directions.thenApply(
                 futureDirections -> {
-                    System.out.println("I do not enter here. I am waiting for directions. ");
                     try {
-                        System.out.println("futureDirection in getMap/Business is ");
-                        System.out.println(futureDirections);
+                        logger.debug("Class BusinessLayer, getMap() - Directions for tour " + tour.getName() + " received: " +
+                                futureDirections);
+
                         tour.setTime(futureDirections.getFormattedTime());
                         tour.setDistance(futureDirections.getDistance());
-                        System.out.println("Now I am going to call the static map ");
+
+                        logger.debug("Class BusinessLayer, getMap() - Static Map for tour " + tour.getName() + " requested.");
                         tour.setFutureImageMap(mapRequest.getStaticMap(futureDirections));
-                        //return apiMap;
 
                     } catch (URISyntaxException e) {
-                        e.printStackTrace();
+                        logger.error("Class BusinessLayer, getMap() - Tour " + tour.getName() + " Exception: " + e);
+                        //e.printStackTrace();
                     }
-                    //return apiMap;
                     return tour;
                 }
                 );
@@ -187,7 +224,8 @@ public class BusinessLayer implements IBusinessLayer {
             try {
                 getMap(t);
             } catch (URISyntaxException | IOException | ExecutionException | InterruptedException e) {
-                e.printStackTrace();
+                logger.error("Class BusinessLayer, searchText() - Exception: " + e);
+                //e.printStackTrace();
             }
         }
         return foundTours;

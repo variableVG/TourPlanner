@@ -19,12 +19,8 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.Period;
 import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 import org.json.JSONObject;
 
@@ -53,7 +49,7 @@ public class MapRequest {
         return null;
     }
 
-    public CompletableFuture<ApiDirections> getMapDirections(Tour tour) throws IOException, URISyntaxException, InterruptedException, ExecutionException {
+    public CompletableFuture<ApiDirections> getMapDirections(Tour tour) {
         CompletableFuture<ApiDirections> mapDirections = new CompletableFuture<ApiDirections>();
         if(tour != null) {
             String request = "http://www.mapquestapi.com/directions/v2/route?key="
@@ -65,41 +61,40 @@ public class MapRequest {
                     + "&routeType="
                     + tour.getTransportType()
                     + "&unit=k"; // With this parameter get get back the distance in km (default is miles m)
-            mapDirections = getDirectionsAPIMap(request);
+            mapDirections = sendDirectionsRequest(request);
         }
         else {
-            System.out.println("Tour has not been selected. Please select a tour");
-            //If a tour is not set, a static picture will be sent back.
+            logger.warn("Class MapRequest, getMapDirections() - Map could not be requested because tour is null.");
+            //If a tour is not set, a static picture should be sent back.
         }
-
         return mapDirections;
-
     }
 
-    private CompletableFuture<ApiDirections> getDirectionsAPIMap(String url) {
+    private CompletableFuture<ApiDirections> sendDirectionsRequest(String url) {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest;
         try {
+            logger.debug("Class MapRequest, sendDirectionsRequest() - Send request for map.");
             httpRequest = HttpRequest.newBuilder().uri(new URI(url)).build();
         }
         catch(Exception e) {
-            System.out.println("Exception has occured in getDirectionsAPIMap");
-            System.out.println(e);
+            logger.warn("Class MapRequest, sendDirectionsRequest() - " + e);
             return null;
         }
         //send request
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
                 .thenApply(
                         stringHttpResponse -> {
+                            logger.debug("Class MapRequest, sendDirectionsRequest() - Http response received: " + stringHttpResponse.body());
                             System.out.println("Directions response is ");
                             System.out.println(stringHttpResponse.body());
                             try {
                                 return parseResponseJSON(stringHttpResponse.body());
 
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                logger.warn("Class MapRequest, sendDirectionsRequest() - " + e);
+                                //e.printStackTrace();
                             }
-                            System.out.println("Something went wrong");
                             return null;
                         });
 
@@ -123,7 +118,6 @@ public class MapRequest {
                     System.out.println("It returns false");
                     return false;
                 }
-
             }
         });
 
@@ -162,6 +156,9 @@ public class MapRequest {
     }
 
     public CompletableFuture<BufferedImage> getStaticMap(ApiDirections apiMap) throws URISyntaxException {
+        logger.debug("Class MapRequest, getStaticMap() - Static Map requested for SessionId: " + apiMap.getSessionId());
+
+        //Prepare string for request
         String url = "https://www.mapquestapi.com/staticmap/v5/map?key="
                 + consumerKey
                 + "&session="
@@ -169,18 +166,18 @@ public class MapRequest {
                 "";
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest= HttpRequest.newBuilder().uri(new URI(url)).build();
-        System.out.println("I am getting the response map");
 
         //send request
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofByteArray())
                 .thenApply(
                         stringHttpResponse -> {
-                            System.out.println("Response for map is ");
-                            System.out.println(stringHttpResponse.toString());
+                            logger.debug("Class MapRequest, getStaticMap() - Response received for SessionId: " + apiMap.getSessionId());
+                            logger.debug("Class MapRequest, getStaticMap() - Response: " + stringHttpResponse.toString());
                             try {
                                 return parseResponseImage(stringHttpResponse.body());
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                logger.warn("Class MapRequest, getStaticMap() - " + e);
+                                //e.printStackTrace();
                             }
                             return null;
                         });
