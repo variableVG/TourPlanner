@@ -35,7 +35,30 @@
                     <VBox>
                         <children>
                             <Label>Transport-Type:</Label>
-                            <TextField fx:id="transportType"/><!--fixed options to choose from (walk, bike, car, ufo...)?-->
+                            <HBox>
+                                <RadioButton fx:id="AutoFastest" text="Auto (fastest route)" style="-fx-padding:5">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="transport"/>
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="AutoShortest" text="Auto (shortest route)" style="-fx-padding: 5">
+                                    <toggleGroup>
+                                        <fx:reference source="transport"/>
+                                    </toggleGroup>
+                                </RadioButton>
+                            </HBox>
+                            <HBox>
+                                <RadioButton fx:id="Bicycle" text="Bicycle " style="-fx-padding: 5">
+                                    <toggleGroup>
+                                        <fx:reference source="transport"/>
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="Pedestrian" text="Walking " style="-fx-padding: 5">
+                                    <toggleGroup>
+                                        <fx:reference source="transport"/>
+                                    </toggleGroup>
+                                </RadioButton>
+                            </HBox>
                         </children>
                     </VBox>
 

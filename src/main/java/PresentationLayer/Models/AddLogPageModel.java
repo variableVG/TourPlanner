@@ -43,10 +43,13 @@ public class AddLogPageModel {
             }
 
             //validate totalTime
-            if(!validateTotalTime()) {
-                this.info.set("totalTime must have the format HH:MM");
-                return null;
+            if(this.totalTime.getValue() != null) {
+                if(!validateTotalTime()) {
+                    this.info.set("totalTime must have the format HH:MM");
+                    return null;
+                }
             }
+
 
             log = new Log(-1, date.getValue(), timeLog , this.comment.getValue(),
                     this.difficulty.getValue(), this.totalTime.getValue(),
@@ -100,7 +103,7 @@ public class AddLogPageModel {
 
     private boolean validateTotalTime(){
         String totalTimeString = this.totalTime.getValue();
-        if(!totalTimeString.isEmpty()) {
+        if(totalTimeString != null) {
             //Total time should have the format HH:MM
             String time = this.totalTime.getValue();
             String[] arrOfStr = time.split(":");
