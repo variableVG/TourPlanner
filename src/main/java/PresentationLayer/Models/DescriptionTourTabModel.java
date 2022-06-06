@@ -54,7 +54,6 @@ public class DescriptionTourTabModel {
 
     public void setPopularity() {
         tour.setPopularityFromNumberOfLogs();
-        System.out.println("Popularity for tour " + tour.getName() + " is " + tour.getPopularity());
         if(tour.getPopularity() == 5) {
             this.popularity.setValue("♥♥♥♥♥");
         }
@@ -73,7 +72,6 @@ public class DescriptionTourTabModel {
 
     public void setChildFriendliness() {
         tour.setChildFriendlinessFromOwnData();
-        System.out.println("Childfriendliness is " + tour.getChildFriendliness());
         String childFriendly = "\uD83D\uDC76 ";
         for(int i = 0; i < tour.getChildFriendliness(); i++) {
             childFriendly += "\uD83D\uDC76 ";

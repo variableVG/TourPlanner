@@ -132,6 +132,7 @@ public class Tour {
 
 
         float totalScore = (distanceScore + totalTimeScore + difficultyScore) / 3;
+        this.childFriendliness = totalScore;
 
         return totalScore;
     }
