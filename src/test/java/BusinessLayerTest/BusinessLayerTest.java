@@ -32,7 +32,7 @@ public class BusinessLayerTest {
     public static void setUpAll(){
         //Simulate user input
         //Source: https://www.logicbig.com/how-to/junit/java-test-user-command-line-input.html
-        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        System.setIn(new ByteArrayInputStream("1\n".getBytes()));
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(byteArrayOutputStream);
         business = new BusinessLayer();
@@ -47,12 +47,12 @@ public class BusinessLayerTest {
     @Test
     public void addTourTestWithMock() {
         IDataAccessLayer d = EasyMock.createMock(IDataAccessLayer.class);
-        business = new BusinessLayer(d);
+        BusinessLayer businessLayer = new BusinessLayer(d);
 
         try {
             EasyMock.expect(d.addTour(tour)).andReturn(1);
             EasyMock.replay(d);
-            assertEquals(business.addTour(tour), 1, "Tour has not be added correctly");
+            assertEquals(businessLayer.addTour(tour), 1, "Tour has not be added correctly");
             EasyMock.verify(d);
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,13 +62,13 @@ public class BusinessLayerTest {
     @Test
     public void getTourByNameTestWithMock() {
         IDataAccessLayer d = EasyMock.createMock(IDataAccessLayer.class);
-        business = new BusinessLayer(d);
+        BusinessLayer businessLayer = new BusinessLayer(d);
 
         try {
             //Check if it gets a tour when a tourName is given.
             EasyMock.expect(d.getTourByName(tour.getName())).andReturn(tour);
             EasyMock.replay(d);
-            assertEquals(business.getTourByName("tour4"), tour,
+            assertEquals(businessLayer.getTourByName("tour4"), tour,
                     "getTourByName does not return the correct tour");
             EasyMock.verify(d);
         } catch (Exception e) {
@@ -79,14 +79,14 @@ public class BusinessLayerTest {
     @Test
     public void getTourByIdTestWithMock() {
         IDataAccessLayer d = EasyMock.createMock(IDataAccessLayer.class);
-        business = new BusinessLayer(d);
+        BusinessLayer businessLayer = new BusinessLayer(d);
 
         Tour t = new Tour(10, "getIdTour", "Wien", "Graz", "ABC", "Auto", 0, null);
 
         try {
             EasyMock.expect(d.getTourById(t.getId())).andReturn(t);
             EasyMock.replay(d);
-            assertEquals(business.getTourById(t.getId()), t,
+            assertEquals(businessLayer.getTourById(t.getId()), t,
                     "getTourById does not return the correct tour");
             EasyMock.verify(d);
 
@@ -129,7 +129,37 @@ public class BusinessLayerTest {
 
     }
 
-    
+    @Test
+    public void updateNameTourTest() {
+        Tour t = new Tour(-1, "old Name", "Wien", "Graz", "ABC", "Auto", 0, null);
+
+        int id = business.addTour(t);
+        t.setId(id);
+        //change origin
+        t.setName("new Name");
+        business.updateTour(t);
+
+        Tour checkTour = business.getTourById(id);
+
+        assertEquals(checkTour.getName(), "new Name", "Origin has not been updated correctly");
+        assertNotEquals(checkTour.getName(), "old Name", "Origin has not been updated correctly");
+    }
+
+    @Test
+    public void updateDescriptionTourTest() {
+        Tour t = new Tour(-1, "updateDescription", "Wien", "Graz", "old Description", "Auto", 0, null);
+
+        int id = business.addTour(t);
+        t.setId(id);
+        //change origin
+        t.setDescription("new Description");
+        business.updateTour(t);
+
+        Tour checkTour = business.getTourById(id);
+
+        assertEquals(checkTour.getDescription(), "new Description", "Origin has not been updated correctly");
+        assertNotEquals(checkTour.getName(), "old Description", "Origin has not been updated correctly");
+    }
 
     @Test
     public void addTourTest(){
@@ -185,8 +215,13 @@ public class BusinessLayerTest {
 
     @Test
     public void deleteTourTest(){
-        business.deleteTour("tour4");
-        assertNull(business.getTourByName("tour4"), "Tour was not deleted");
+        Tour t = new Tour(-1, "deleteTour", "Wien", "Graz", "old Description", "Auto", 0, null);
+        int id = business.addTour(t);
+        assertTrue(id >= 0, "tour could not be added in the deleteTest function");
+
+        //the tour with name "deleteTour" should not be present in the db
+        business.deleteTour("deleteTour");
+        assertNull(business.getTourByName("deleteTour"), "Tour was not deleted");
     }
 
 
@@ -215,6 +250,7 @@ public class BusinessLayerTest {
 
     @Test
     public void editLogTest() {
+        Tour t = new Tour(-1, "editLog", "Wien", "Graz", "Description", "Auto", 0, null);
 
         //Define log
         LocalDate date = LocalDate.parse("2019-09-04");
@@ -226,12 +262,13 @@ public class BusinessLayerTest {
         Log log = new Log(-1, date, time, comment, difficulty, totalTime, rating );
 
         //get Tour:
-        Tour checkTour = business.getTourByName(tour.getName());
+        int tourId = business.addTour(t);
+        t.setId(tourId);
 
         // Add log
         try {
-            int id = business.addLog(checkTour, log);
-            log.setId(id);
+            int logId = business.addLog(t, log);
+            log.setId(logId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -241,7 +278,7 @@ public class BusinessLayerTest {
         assertEquals("This is another comment", log.getComment(), "There is a problem with setters in Log Class. Variable comment is not set");
 
         try {
-            business.updateLog(log, checkTour.getId());
+            business.updateLog(log, t.getId());
         }catch (Exception e) {
             System.out.println(e);
         }
@@ -280,11 +317,13 @@ public class BusinessLayerTest {
         Log log = new Log(-1, date, time, comment, difficulty, totalTime, rating );
 
         //get Tour:
-        Tour checkTour = business.getTourByName(tour.getName());
+        Tour t = new Tour(-1, "deleteLog", "Wien", "Graz", "old Description", "Auto", 0, null);
+        int tourId = business.addTour(t);
+        t.setId(tourId);
 
         // Add log
         try {
-            int id = business.addLog(checkTour, log);
+            int id = business.addLog(t, log);
             log.setId(id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -292,13 +331,10 @@ public class BusinessLayerTest {
 
         // asserts
         try {
-            assertEquals(true, business.deleteLog(log.getId()), "business.DeleteLog() has failed");
+            assertTrue(business.deleteLog(log.getId()), "business.DeleteLog() has failed");
             assertFalse(business.deleteLog(log.getId()), "The test gives back true but the log is not present in the DB");
-            // In the last assert we expect an Exception, we will also test for the exception:
-            assertTrue(false); // this line of code should not be run
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(e instanceof Exception);
         }
 
     }

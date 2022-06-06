@@ -174,6 +174,7 @@ public class BusinessLayer implements IBusinessLayer {
         Log checkLog = dataAccessLayer.getLogById(logId);
         if(checkLog == null) {
             logger.debug("Class BusinessLayer, deleteLog() - Log " + logId+ " could not be deleted because it is not present in the database.");
+            return false;
         }
         logger.debug("Class BusinessLayer, deleteLog() - Log " + logId + " will be deleted.");
         return dataAccessLayer.deleteLog(logId);
