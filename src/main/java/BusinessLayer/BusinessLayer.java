@@ -27,6 +27,11 @@ public class BusinessLayer implements IBusinessLayer {
         mapRequest = new MapRequest();
     }
 
+    public BusinessLayer(IDataAccessLayer b) {
+        dataAccessLayer = b;
+        mapRequest = new MapRequest();
+    }
+
     @Override
     public int addTour(Tour newTour) {
         /** This function add a tour to the database and gives back the in the database generated Id for that tour.

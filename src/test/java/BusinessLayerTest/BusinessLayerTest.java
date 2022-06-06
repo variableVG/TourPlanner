@@ -1,16 +1,19 @@
 package BusinessLayerTest;
 
 import BusinessLayer.BusinessLayer;
+import DataAccessLayer.*;
 import PresentationLayer.Models.Log;
 import PresentationLayer.Models.Tour;
 import javafx.util.converter.LocalDateStringConverter;
 import org.bouncycastle.asn1.cms.Time;
 import org.bouncycastle.operator.bc.BcSignerOutputStream;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.crypto.Data;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -40,6 +43,93 @@ public class BusinessLayerTest {
         tour = new Tour(-1, "tour4", "Wien", "Graz", "ABC", "Auto", 0, null);
 
     }
+
+    @Test
+    public void addTourTestWithMock() {
+        IDataAccessLayer d = EasyMock.createMock(IDataAccessLayer.class);
+        business = new BusinessLayer(d);
+
+        try {
+            EasyMock.expect(d.addTour(tour)).andReturn(1);
+            EasyMock.replay(d);
+            assertEquals(business.addTour(tour), 1, "Tour has not be added correctly");
+            EasyMock.verify(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getTourByNameTestWithMock() {
+        IDataAccessLayer d = EasyMock.createMock(IDataAccessLayer.class);
+        business = new BusinessLayer(d);
+
+        try {
+            //Check if it gets a tour when a tourName is given.
+            EasyMock.expect(d.getTourByName(tour.getName())).andReturn(tour);
+            EasyMock.replay(d);
+            assertEquals(business.getTourByName("tour4"), tour,
+                    "getTourByName does not return the correct tour");
+            EasyMock.verify(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getTourByIdTestWithMock() {
+        IDataAccessLayer d = EasyMock.createMock(IDataAccessLayer.class);
+        business = new BusinessLayer(d);
+
+        Tour t = new Tour(10, "getIdTour", "Wien", "Graz", "ABC", "Auto", 0, null);
+
+        try {
+            EasyMock.expect(d.getTourById(t.getId())).andReturn(t);
+            EasyMock.replay(d);
+            assertEquals(business.getTourById(t.getId()), t,
+                    "getTourById does not return the correct tour");
+            EasyMock.verify(d);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void updateOriginTourTest() {
+        Tour t = new Tour(-1, "updateOrigin", "Wien", "Graz", "ABC", "Auto", 0, null);
+
+        int id = business.addTour(t);
+        t.setId(id);
+        //change origin
+        t.setOrigin("Linz");
+        business.updateTour(t);
+
+        Tour checkTour = business.getTourById(id);
+
+        assertEquals(checkTour.getOrigin(), "Linz", "Origin has not been updated correctly");
+        assertNotEquals(checkTour.getOrigin(), "Wien", "Origin has not been updated correctly");
+
+    }
+
+    @Test
+    public void updateDestinationTourTest() {
+        Tour t = new Tour(-1, "updateDestination", "Wien", "Graz", "ABC", "Auto", 0, null);
+
+        int id = business.addTour(t);
+        t.setId(id);
+        //change origin
+        t.setDestination("Linz");
+        business.updateTour(t);
+
+        Tour checkTour = business.getTourById(id);
+
+        assertEquals(checkTour.getDestination(), "Linz", "Origin has not been updated correctly");
+        assertNotEquals(checkTour.getDestination(), "Graz", "Origin has not been updated correctly");
+
+    }
+
+    
 
     @Test
     public void addTourTest(){
@@ -72,8 +162,8 @@ public class BusinessLayerTest {
 
         }
         assertTrue(answer2 < 0, "Tour was added in the DB with an empty Origin");
-
     }
+
     @Test
     public void TourDestinationTest() {
         business.deleteTour(tour.getName());
@@ -97,8 +187,8 @@ public class BusinessLayerTest {
     public void deleteTourTest(){
         business.deleteTour("tour4");
         assertNull(business.getTourByName("tour4"), "Tour was not deleted");
-
     }
+
 
     @DisplayName("Log testing")
 
