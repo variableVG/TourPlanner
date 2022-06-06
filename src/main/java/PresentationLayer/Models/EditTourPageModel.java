@@ -45,8 +45,6 @@ public class EditTourPageModel {
             this.tour.setOrigin(origin.getValue());
             this.tour.setDestination(destination.getValue());
             this.tour.setTransportType(transportType.getValue());
-            //this.tour.setDistance(distance.getValue());
-            //this.tour.setTime(time.getValue());
             this.tour.setDescription(description.getValue());
 
             //Update tour in the database

@@ -129,9 +129,12 @@ public class TourPlannerModel {
             if(tours.get(i).getId() == tour.getId()) {
                 //This approach is creating some Exceptions and problems with the threads (completableFuture)
                 tours.remove(tours.get(i));
-                tours.add(tour);
+                tours.add(0, tour);
+                tourNames.remove(tourNames.get(i));
+                tourNames.add(0, tour.getName());
             }
         }
+
 
     }
 

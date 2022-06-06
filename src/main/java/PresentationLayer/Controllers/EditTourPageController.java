@@ -95,7 +95,6 @@ public class EditTourPageController {
             stage.close();
             descriptionTourTabController.updateTourTab(tour);
 
-
         }
 
     }
