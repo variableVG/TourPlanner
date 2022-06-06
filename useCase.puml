@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+
+package System {
+    usecase "check saved routes" as UC1
+    usecase "manage routes" as UC2
+    usecase "manage logs" as UC3
+    usecase "see map" as UC4
+    usecase "see route information" as UC5
+    usecase "see the route's logs" as UC6
+    usecase "create route" as UC7
+    usecase "delete route" as UC8
+    usecase "update route" as UC9
+    usecase "add log to a tour" as UC10
+    usecase "delete log from a tour" as UC11
+    usecase "update log" as UC12
+    usecase "download tour-report" as UC13
+    usecase "download summarize-report" as UC14
+    usecase "import/export tours from csv file" as UC15
+    usecase "full text-search" as UC16
+    usecase "change style (Unique feature)" as UC17
+}
+
+User -> UC1
+UC1 --> UC4
+UC1 --> UC5
+UC1 --> UC6
+User --> UC2
+UC2 --> UC7
+UC2--> UC8
+UC2 --> UC9
+UC2 --> UC3
+UC3 --> UC10
+UC3 --> UC11
+UC3 --> UC12
+User --> UC13
+User --> UC14
+User --> UC15
+User --> UC16
+User --> UC17
+
+
+@enduml
