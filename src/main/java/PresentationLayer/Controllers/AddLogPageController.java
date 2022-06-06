@@ -81,7 +81,9 @@ public class AddLogPageController {
         }
 
         //Update popularity in the controller
-        DescriptionTourTabController.model.updateTour(tour);
+        //DescriptionTourTabController.model.updateTour(tour);
+        tour.setPopularityFromNumberOfLogs();
+        DescriptionTourTabController.model.setPopularity();
 
     }
 }

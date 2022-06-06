@@ -79,35 +79,48 @@ public class Tour {
         //From difficulty values, total time, distance.
         //Childfriendliness can have a value between 1 and 5: 1 not frienly - 5 very friendly
 
-        //Difficulty score is an average of all difficulties and it should have a value between 0 and 5
+        //Difficulty score is an average of all difficulties and it should have a value between 0 and 3
         float difficultyScore = 0;
+        float difficulty = 0;
         int counter = 0;
         for(Log log : this.getLogs()) {
             if(log.getDifficulty() != null) {
-                difficultyScore += log.getDifficulty();
+                difficulty += log.getDifficulty();
                 counter++;
             }
         }
-        difficultyScore = (float) difficultyScore/ counter;
+        if(counter > 0) {
+            difficulty = (float)difficulty / counter;
+            if(difficulty < 1) {
+                difficultyScore = 5;
+            }
+            else if(difficulty < 2) {
+                difficultyScore = 3;
+            }
+            else {
+                difficultyScore = -1;
+            }
+
+        }
 
         float totalTimeScore = 0;
         if(this.time != null) {
             String hours = time.substring(0, time.indexOf(":"));
             int hoursInt = Integer.parseInt(hours);
             if(hoursInt > 1 & hoursInt <= 2) {
-                totalTimeScore = 1;
+                totalTimeScore = 5;
             }
             else if(hoursInt <= 3) {
-                totalTimeScore = 2;
+                totalTimeScore = 4;
             }
             else if(hoursInt <= 4) {
                 totalTimeScore = 3;
             }
             else if(hoursInt <= 5) {
-                totalTimeScore = 4;
+                totalTimeScore = 2;
             }
             else {
-                totalTimeScore = 5;
+                totalTimeScore = 1;
             }
         }
 
@@ -115,19 +128,19 @@ public class Tour {
         //set DistanceScore
         int distanceScore = 0;
         if(distance >= 1 & distance < 2) {
-            distanceScore = 1;
+            distanceScore = 5;
         }
         else if(distance < 4) {
-            distanceScore = 2;
+            distanceScore = 4;
         }
         else if(distance < 8) {
             distanceScore = 3;
         }
         else if(distance < 12) {
-            distanceScore = 4;
+            distanceScore = 2;
         }
         else {
-            distanceScore = 5;
+            distanceScore = 1;
         }
 
 
